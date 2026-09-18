@@ -3,6 +3,7 @@ import { config } from '../config.js';
 import { logger } from '../logger.js';
 import { db, type Job, type JobStatus } from '../database.js';
 import { telegramBot } from '../telegram/bot.js';
+import { mtprotoService, type TranscriberBotIncomingMessage } from '../telegram/mtproto.js';
 
 export interface IncomingBotMessage {
   id: number;
@@ -50,9 +51,6 @@ export class TranscriberWorkerService {
   // Completed/timed out job IDs (to detect late responses)
   private recentlyCompletedJobIds = new Map<number, { completedAt: number; reason: string }>();
 
-  // Monotonically increasing simulated message counter for MTProto messages
-  private nextMtprotoMsgId = 10000;
-
   private constructor() {
     // Singleton pattern ensures exactly ONE instance exists in the application
   }
@@ -78,11 +76,23 @@ export class TranscriberWorkerService {
       poll_interval_ms: config.transcriber.pollIntervalMs,
     });
 
-    // 1. Attach single centralized incoming listener
-    this.registerCentralizedListener();
+    // 1. Connect MTProto client and ensure centralized bot handler is active
+    try {
+      const isAuth = await mtprotoService.connect();
+      this.isConnected = isAuth;
+      if (isAuth) {
+        logger.info('[TranscriberWorker] MTProto client connected and authorized');
+        await mtprotoService.ensureCentralizedBotHandler();
+      } else {
+        logger.warn('[TranscriberWorker] MTProto client connected but not authorized yet');
+      }
+    } catch (err: unknown) {
+      const errMsg = err instanceof Error ? err.message : String(err);
+      logger.error('[TranscriberWorker] Failed to connect MTProto client on start', { error: errMsg });
+    }
 
-    // 2. Mark connection as active / ready
-    this.isConnected = true;
+    // 2. Attach single centralized incoming listener
+    this.registerCentralizedListener();
 
     // 3. Start periodic queue processor
     this.startQueuePolling();
@@ -99,6 +109,19 @@ export class TranscriberWorkerService {
     }
 
     this.hasRegisteredListener = true;
+
+    // Connect to the centralized MTProto bot message dispatcher
+    mtprotoService.addBotMessageListener(async (incoming: TranscriberBotIncomingMessage) => {
+      await this.handleIncomingMessage({
+        id: incoming.id,
+        date: new Date(incoming.date * 1000),
+        senderUsername: config.transcriber.botUsername,
+        senderId: incoming.senderId,
+        text: incoming.text,
+        replyToMsgId: incoming.replyToMsgId,
+      });
+    });
+
     logger.info('[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully');
   }
 
@@ -229,9 +252,7 @@ export class TranscriberWorkerService {
       transcriber_message_id: msg.id,
     });
 
-    // Requirement 4, 5, 6: Publish result back to original chat via Bot API
-    // STRICT ORDER:
-    // VOICE RECEIVED -> TRANSCRIPTION RECEIVED -> BOT REPLY SUCCESS -> DELETE ORIGINAL VOICE -> JOB COMPLETE
+    // Step 1: Publish result back to original chat via Bot API as a reply
     let replyResult: { message_id: number; sent_at: string };
     try {
       replyResult = await telegramBot.sendTranscriptionReply(
@@ -241,29 +262,32 @@ export class TranscriberWorkerService {
         cleanText
       );
 
-      // [BOT REPLY SUCCESS] Diagnostic Log
+      // [BOT REPLY SUCCESS] Structured Log
       logger.info(`[BOT REPLY SUCCESS]\njob_id=${correlation.jobId}\nbot_message_id=${replyResult.message_id}`, {
         job_id: correlation.jobId,
         chat_id: correlation.telegramChatId,
         reply_to_message_id: correlation.telegramMessageId,
-        bot_message_id: replyResult.message_id,
+        outgoing_mtproto_message_id: correlation.sentVoiceMessageId,
+        voice_sent_at: correlation.voiceSentAt.toISOString(),
+        response_received: true,
+        wait_time_seconds: waitTimeSec,
+        final_text: cleanText,
+        bot_reply_message_id: replyResult.message_id,
         sent_at: replyResult.sent_at,
       });
     } catch (err: unknown) {
-      // If Bot API sendMessage fails -> DO NOT delete voice, mark job failed!
       const errorMsg = err instanceof Error ? err.message : String(err);
       await db.updateJob(correlation.jobId, {
         status: 'failed',
         error: `Bot API reply failed: ${errorMsg}`,
-        delete_status: 'pending',
         completed_at: new Date().toISOString(),
       });
 
-      // [JOB FAILED] Structured Log
       logger.error('[JOB FAILED] Job failed to publish transcription reply back to Telegram chat', err, {
         job_id: correlation.jobId,
         chat_id: correlation.telegramChatId,
         message_id: correlation.telegramMessageId,
+        outgoing_mtproto_message_id: correlation.sentVoiceMessageId,
         error: errorMsg,
       });
 
@@ -271,83 +295,29 @@ export class TranscriberWorkerService {
       return false;
     }
 
-    // Step 2: Delete original voice message from group/chat
-    // [VOICE DELETE START] Diagnostic Log
-    logger.info(`[VOICE DELETE START]\njob_id=${correlation.jobId}\nchat_id=${correlation.telegramChatId}\nmessage_id=${correlation.telegramMessageId}`, {
-      job_id: correlation.jobId,
-      chat_id: correlation.telegramChatId,
-      message_id: correlation.telegramMessageId,
-    });
-
-    let deleteStatus: 'deleted' | 'failed' = 'deleted';
-    let deletedAt: string | null = null;
-    let deleteError: string | null = null;
-
-    try {
-      const deleteSuccess = await telegramBot.deleteOriginalVoiceMessage(
-        correlation.telegramChatId,
-        correlation.telegramMessageId,
-        correlation.jobId
-      );
-
-      if (deleteSuccess) {
-        deleteStatus = 'deleted';
-        deletedAt = new Date().toISOString();
-        // [VOICE DELETE SUCCESS] Diagnostic Log
-        logger.info(`[VOICE DELETE SUCCESS]\njob_id=${correlation.jobId}\nchat_id=${correlation.telegramChatId}\nmessage_id=${correlation.telegramMessageId}`, {
-          job_id: correlation.jobId,
-          chat_id: correlation.telegramChatId,
-          message_id: correlation.telegramMessageId,
-          deleted_at: deletedAt,
-        });
-      } else {
-        deleteStatus = 'failed';
-        deleteError = 'Telegram deleteMessage returned false';
-        // [VOICE DELETE FAILED] Diagnostic Log
-        logger.warn(`[VOICE DELETE FAILED]\njob_id=${correlation.jobId}\nerror=${deleteError}`, {
-          job_id: correlation.jobId,
-          chat_id: correlation.telegramChatId,
-          message_id: correlation.telegramMessageId,
-          error: deleteError,
-        });
-      }
-    } catch (delErr: unknown) {
-      deleteStatus = 'failed';
-      deleteError = delErr instanceof Error ? delErr.message : String(delErr);
-      // [VOICE DELETE FAILED] Diagnostic Log
-      logger.warn(`[VOICE DELETE FAILED]\njob_id=${correlation.jobId}\nerror=${deleteError}`, {
-        job_id: correlation.jobId,
-        chat_id: correlation.telegramChatId,
-        message_id: correlation.telegramMessageId,
-        error: deleteError,
-      });
-    }
-
-    // Step 3: Complete the job in SQLite
-    // Note: If delete failed, transcription was still delivered, so job is completed with delete_status = 'failed'
+    // Step 2: Complete the job in SQLite (original voice deletion deferred to subsequent stage per requirement)
     await db.updateJob(correlation.jobId, {
       status: 'completed',
       transcription: cleanText,
       bot_reply_message_id: replyResult.message_id,
       completed_at: receivedAt.toISOString(),
       transcriber_message_id: msg.id,
-      delete_status: deleteStatus,
-      deleted_at: deletedAt,
-      delete_error: deleteError,
+      delete_status: 'pending',
     });
 
-    // [JOB COMPLETE] Diagnostic Log
+    // [JOB COMPLETE] Structured Log with all required metrics
     logger.info(`[JOB COMPLETE]\njob_id=${correlation.jobId}`, {
       job_id: correlation.jobId,
       chat_id: correlation.telegramChatId,
       message_id: correlation.telegramMessageId,
-      outgoing_message_id: correlation.sentVoiceMessageId,
+      outgoing_mtproto_message_id: correlation.sentVoiceMessageId,
       incoming_message_id: msg.id,
+      voice_sent_at: correlation.voiceSentAt.toISOString(),
+      response_received: true,
+      wait_time_seconds: waitTimeSec,
+      final_text: cleanText,
       bot_reply_message_id: replyResult.message_id,
-      delete_status: deleteStatus,
-      deleted_at: deletedAt,
-      delete_error: deleteError,
-      wait_seconds: waitTimeSec,
+      completed_at: receivedAt.toISOString(),
     });
 
     correlation.resolve(cleanText);
@@ -391,16 +361,15 @@ export class TranscriberWorkerService {
   }
 
   /**
-   * Sends voice file to @speech_transcriber_bot and registers the job in the centralized correlation registry.
+   * Sends voice file to @speech_transcriber_bot via live MTProto and registers the job
+   * in the centralized correlation registry with the real Telegram outgoing message ID.
    */
-  public sendVoiceAndAwaitTranscription(job: Job): Promise<string> {
+  public async sendVoiceAndAwaitTranscription(job: Job): Promise<string> {
     const jobId = job.id;
-    const voiceSentAt = new Date();
-    const sentVoiceMessageId = ++this.nextMtprotoMsgId;
 
-    // Requirement 6: Check if voice file exists on disk
-    if (job.local_file_path && !fs.existsSync(job.local_file_path)) {
-      const errMsg = `Voice file not found at local path: ${job.local_file_path}`;
+    // Check if voice file exists on disk
+    if (!job.local_file_path || !fs.existsSync(job.local_file_path)) {
+      const errMsg = `Voice file not found at local path: ${job.local_file_path || 'null'}`;
       logger.error('[JOB FAILED] Voice file not found locally on disk', undefined, {
         job_id: jobId,
         chat_id: job.telegram_chat_id,
@@ -408,25 +377,71 @@ export class TranscriberWorkerService {
         local_file_path: job.local_file_path,
         error: errMsg,
       });
-      db.updateJob(jobId, {
+      await db.updateJob(jobId, {
         status: 'failed',
         error: errMsg,
         attempts: job.attempts + 1,
         completed_at: new Date().toISOString(),
-      }).catch((e) => logger.error(`Failed to update failed status for job ${jobId}`, e));
-
-      return Promise.reject(new Error(errMsg));
+      });
+      throw new Error(errMsg);
     }
 
-    // [MTProto SEND] Diagnostic Log
+    // Check MTProto connection & authorization
+    const client = mtprotoService.getClient();
+    if (!client.connected) {
+      await client.connect();
+    }
+    const isAuthorized = await client.checkAuthorization();
+    if (!isAuthorized) {
+      const errMsg = 'MTProto client is not authorized. Please complete authorization via Web UI.';
+      logger.error('[JOB FAILED] MTProto client not authorized', undefined, {
+        job_id: jobId,
+        chat_id: job.telegram_chat_id,
+        message_id: job.telegram_message_id,
+        error: errMsg,
+      });
+      await db.updateJob(jobId, {
+        status: 'failed',
+        error: errMsg,
+        attempts: job.attempts + 1,
+        completed_at: new Date().toISOString(),
+      });
+      throw new Error(errMsg);
+    }
+
+    // Ensure centralized incoming handler is listening for responses
+    await mtprotoService.ensureCentralizedBotHandler();
+
+    const voiceSentAt = new Date();
+    logger.info('[MTProto SEND START] Sending real voice file to @speech_transcriber_bot via MTProto', {
+      job_id: jobId,
+      chat_id: job.telegram_chat_id,
+      message_id: job.telegram_message_id,
+      local_file_path: job.local_file_path,
+      voice_sent_at: voiceSentAt.toISOString(),
+      target_bot: `@${config.transcriber.botUsername}`,
+    });
+
+    // Real send via MTProto client to @speech_transcriber_bot
+    const sentMessage = await mtprotoService.sendAudioToTranscriberBot(job.local_file_path);
+    const sentVoiceMessageId = sentMessage.id;
+
+    // [MTProto SEND] Diagnostic Log with REAL outgoing message ID
     logger.info(`[MTProto SEND]\njob_id=${jobId}\noutgoing_message_id=${sentVoiceMessageId}`, {
       job_id: jobId,
-      telegram_chat_id: job.telegram_chat_id,
-      telegram_message_id: job.telegram_message_id,
+      chat_id: job.telegram_chat_id,
+      message_id: job.telegram_message_id,
       outgoing_message_id: sentVoiceMessageId,
       voice_sent_at: voiceSentAt.toISOString(),
       target_bot: `@${config.transcriber.botUsername}`,
       timeout_seconds: config.transcriber.timeoutSeconds,
+    });
+
+    // Update SQLite status to waiting_transcription with real outgoing MTProto message ID
+    await db.updateJob(jobId, {
+      status: 'waiting_transcription',
+      outgoing_mtproto_message_id: sentVoiceMessageId,
+      started_at: voiceSentAt.toISOString(),
     });
 
     return new Promise<string>((resolve, reject) => {
@@ -453,21 +468,13 @@ export class TranscriberWorkerService {
       this.waitingByJobId.set(jobId, correlation);
       this.waitingFifoQueue.push(correlation);
 
-      // Asynchronously update SQLite status to waiting_transcription
-      db.updateJob(jobId, {
-        status: 'waiting_transcription',
-        outgoing_mtproto_message_id: sentVoiceMessageId,
-        started_at: voiceSentAt.toISOString(),
-      }).catch((err) => {
-        logger.error(`[TranscriberWorker] Failed to update job ${jobId} status to waiting_transcription`, err);
-      });
-
       // [MTProto WAIT] Structured Log
       logger.info('[MTProto WAIT] Waiting for transcription from @speech_transcriber_bot', {
         job_id: jobId,
         chat_id: job.telegram_chat_id,
         message_id: job.telegram_message_id,
         outgoing_message_id: sentVoiceMessageId,
+        voice_sent_at: voiceSentAt.toISOString(),
         timeout_seconds: config.transcriber.timeoutSeconds,
       });
     });
@@ -607,337 +614,28 @@ export class TranscriberWorkerService {
   }
 
   /**
-   * Diagnostic simulation endpoint for testing the centralized handler,
-   * intermediate status messages, and final transcription matching.
+   * Manually dispatches an existing job through the real MTProto pipeline.
    */
-  public async simulateBotInteraction(
-    jobId: number,
-    finalText = 'Привет, это успешно расшифрованное голосовое сообщение через @speech_transcriber_bot.',
-    delayMs = 1500
-  ): Promise<{ success: boolean; message: string }> {
+  public async processJobNow(jobId: number): Promise<{ success: boolean; message: string }> {
     const job = await db.getJobById(jobId);
     if (!job) {
       throw new Error(`Job ${jobId} not found`);
     }
 
-    // 1. Check if correlation already exists or send voice and register
-    let correlation = this.waitingByJobId.get(jobId);
-    let transcriptionPromise: Promise<string>;
+    await db.updateJob(job.id, {
+      status: 'processing',
+      started_at: new Date().toISOString(),
+    });
 
-    if (correlation) {
-      transcriptionPromise = new Promise<string>((resolve) => {
-        const prevResolve = correlation!.resolve;
-        correlation!.resolve = (text) => {
-          prevResolve(text);
-          resolve(text);
-        };
-      });
-    } else {
-      transcriptionPromise = this.sendVoiceAndAwaitTranscription(job);
-      correlation = this.waitingByJobId.get(jobId);
-    }
+    // Execute through live MTProto client in background
+    this.sendVoiceAndAwaitTranscription(job).catch((err: unknown) => {
+      const errMsg = err instanceof Error ? err.message : String(err);
+      logger.error(`[TranscriberWorker] Job ${jobId} execution failed`, err);
+    });
 
-    if (!correlation) {
-      throw new Error(`Failed to create correlation for job ${jobId}`);
-    }
-
-    const sentMsgId = correlation.sentVoiceMessageId;
-
-    // 2. Simulate intermediate status message after delayMs / 2
-    setTimeout(async () => {
-      await this.handleIncomingMessage({
-        id: sentMsgId + 1,
-        date: new Date(),
-        senderUsername: config.transcriber.botUsername,
-        text: '🎙 Распознаю голосовое сообщение...',
-        replyToMsgId: sentMsgId,
-      });
-    }, Math.floor(delayMs / 2));
-
-    // 3. Simulate final transcription message after delayMs
-    setTimeout(async () => {
-      await this.handleIncomingMessage({
-        id: sentMsgId + 2,
-        date: new Date(),
-        senderUsername: config.transcriber.botUsername,
-        text: finalText,
-        replyToMsgId: sentMsgId,
-      });
-    }, delayMs);
-
-    await transcriptionPromise;
     return {
       success: true,
-      message: `Job ${jobId} successfully processed through centralized MTProto correlation`,
-    };
-  }
-
-  /**
-   * Rigorous parallel testing of 3 simultaneous voice jobs (#2, #3, #4):
-   * 1. Sends all 3 voice jobs at the exact same moment with individual outgoing MTProto message IDs.
-   * 2. Tests out-of-order response arrival (Job #4 first, Job #2 intermediate next, Job #3 third, Job #2 final fourth).
-   * 3. Tests late/unexpected message after timeout (ensuring listener remains alive without crash).
-   * 4. Logs exact tags [MTProto SEND], [MTProto INCOMING], [MTProto MATCH], [MTProto WAIT], [MTProto COMPLETE].
-   * 5. Produces the final verification table.
-   */
-  public async runParallelJobsTest(targetJobIds: number[] = [2, 3, 4]): Promise<{
-    success: boolean;
-    listener_verification: {
-      single_listener_active: boolean;
-      multiple_listeners_created: boolean;
-      listener_count: number;
-    };
-    results: Array<{
-      job_id: number;
-      telegram_message_id: number;
-      outgoing_message_id: number;
-      incoming_message_id: number;
-      wait_seconds: number;
-      matched_correctly: boolean;
-      final_status: string;
-      transcription: string;
-    }>;
-    chronology: Array<{
-      step: number;
-      event: string;
-      job_id?: number;
-      message_id: number;
-      timestamp: string;
-    }>;
-  }> {
-    logger.info('[MTProto TEST] Starting parallel 3-jobs test (#2, #3, #4)', {
-      target_jobs: targetJobIds,
-      configured_timeout: config.transcriber.timeoutSeconds,
-    });
-
-    // 1. Verify single listener state
-    const listenerVerification = {
-      single_listener_active: this.hasRegisteredListener,
-      multiple_listeners_created: false,
-      listener_count: 1,
-    };
-
-    // 2. Prepare and reset DB records for target jobs
-    const jobs: Job[] = [];
-    for (const id of targetJobIds) {
-      this.removeCorrelation(id);
-      await db.updateJob(id, {
-        status: 'pending',
-        error: null,
-        transcription: null,
-        started_at: null,
-        completed_at: null,
-        transcriber_message_id: null,
-      });
-      const job = await db.getJobById(id);
-      if (!job) throw new Error(`Job ${id} not found in database`);
-      jobs.push(job);
-    }
-
-    const chronology: Array<{
-      step: number;
-      event: string;
-      job_id?: number;
-      message_id: number;
-      timestamp: string;
-    }> = [];
-
-    let stepCounter = 1;
-
-    // 3. Send all 3 voice jobs SIMULTANEOUSLY
-    const job2 = jobs.find((j) => j.id === 2) || jobs[0];
-    const job3 = jobs.find((j) => j.id === 3) || jobs[1];
-    const job4 = jobs.find((j) => j.id === 4) || jobs[2];
-
-    const p2 = this.sendVoiceAndAwaitTranscription(job2);
-    const p3 = this.sendVoiceAndAwaitTranscription(job3);
-    const p4 = this.sendVoiceAndAwaitTranscription(job4);
-
-    const corr2 = this.waitingByJobId.get(job2.id)!;
-    const corr3 = this.waitingByJobId.get(job3.id)!;
-    const corr4 = this.waitingByJobId.get(job4.id)!;
-
-    chronology.push(
-      {
-        step: stepCounter++,
-        event: '[MTProto SEND] Job #2 sent to @speech_transcriber_bot',
-        job_id: job2.id,
-        message_id: corr2.sentVoiceMessageId,
-        timestamp: corr2.voiceSentAt.toISOString(),
-      },
-      {
-        step: stepCounter++,
-        event: '[MTProto SEND] Job #3 sent to @speech_transcriber_bot',
-        job_id: job3.id,
-        message_id: corr3.sentVoiceMessageId,
-        timestamp: corr3.voiceSentAt.toISOString(),
-      },
-      {
-        step: stepCounter++,
-        event: '[MTProto SEND] Job #4 sent to @speech_transcriber_bot',
-        job_id: job4.id,
-        message_id: corr4.sentVoiceMessageId,
-        timestamp: corr4.voiceSentAt.toISOString(),
-      }
-    );
-
-    // 4. Schedule out-of-order responses through the SINGLE centralized listener:
-    // Event A: Job #4 completes FIRST (at +400ms)
-    const incMsgId4 = 30101;
-    setTimeout(async () => {
-      chronology.push({
-        step: stepCounter++,
-        event: '[MTProto INCOMING] Response 1 arrived (for Job #4)',
-        job_id: job4.id,
-        message_id: incMsgId4,
-        timestamp: new Date().toISOString(),
-      });
-      await this.handleIncomingMessage({
-        id: incMsgId4,
-        date: new Date(),
-        senderUsername: config.transcriber.botUsername,
-        text: 'Расшифровка аудио #4: договор успешно согласован сторонами.',
-        replyToMsgId: corr4.sentVoiceMessageId,
-      });
-    }, 400);
-
-    // Event B: Job #2 receives intermediate progress ("Распознаю...") at +900ms
-    const incMsgId2Inter = 30102;
-    setTimeout(async () => {
-      chronology.push({
-        step: stepCounter++,
-        event: '[MTProto INCOMING] Intermediate progress for Job #2 ("Распознаю...")',
-        job_id: job2.id,
-        message_id: incMsgId2Inter,
-        timestamp: new Date().toISOString(),
-      });
-      await this.handleIncomingMessage({
-        id: incMsgId2Inter,
-        date: new Date(),
-        senderUsername: config.transcriber.botUsername,
-        text: '🎙 Распознаю голосовое сообщение (файл #2)...',
-        replyToMsgId: corr2.sentVoiceMessageId,
-      });
-    }, 900);
-
-    // Event C: Job #3 completes SECOND at +1600ms
-    const incMsgId3 = 30103;
-    setTimeout(async () => {
-      chronology.push({
-        step: stepCounter++,
-        event: '[MTProto INCOMING] Response 2 arrived (for Job #3)',
-        job_id: job3.id,
-        message_id: incMsgId3,
-        timestamp: new Date().toISOString(),
-      });
-      await this.handleIncomingMessage({
-        id: incMsgId3,
-        date: new Date(),
-        senderUsername: config.transcriber.botUsername,
-        text: 'Расшифровка аудио #3: плановое совещание перенесено на пятницу.',
-        replyToMsgId: corr3.sentVoiceMessageId,
-      });
-    }, 1600);
-
-    // Event D: Job #2 completes THIRD with final transcription at +2300ms
-    const incMsgId2Final = 30104;
-    setTimeout(async () => {
-      chronology.push({
-        step: stepCounter++,
-        event: '[MTProto INCOMING] Response 3 arrived (final for Job #2)',
-        job_id: job2.id,
-        message_id: incMsgId2Final,
-        timestamp: new Date().toISOString(),
-      });
-      await this.handleIncomingMessage({
-        id: incMsgId2Final,
-        date: new Date(),
-        senderUsername: config.transcriber.botUsername,
-        text: 'Расшифровка аудио #2: еженедельный аналитический отчет отправлен.',
-        replyToMsgId: corr2.sentVoiceMessageId,
-      });
-    }, 2300);
-
-    // Event E: Late response test for timed-out/expired job at +2600ms
-    setTimeout(async () => {
-      chronology.push({
-        step: stepCounter++,
-        event: '[MTProto INCOMING] Late response test after timeout/unknown id (listener remains healthy)',
-        message_id: 30105,
-        timestamp: new Date().toISOString(),
-      });
-      await this.handleIncomingMessage({
-        id: 30105,
-        date: new Date(),
-        senderUsername: config.transcriber.botUsername,
-        text: 'Запоздалое сообщение от бота после таймаута',
-        replyToMsgId: 999999, // unknown/timed-out
-      });
-    }, 2600);
-
-    // 5. Await all three concurrent jobs
-    await Promise.all([p2, p3, p4]);
-
-    // 6. Fetch final states from DB
-    const finalJob2 = (await db.getJobById(job2.id))!;
-    const finalJob3 = (await db.getJobById(job3.id))!;
-    const finalJob4 = (await db.getJobById(job4.id))!;
-
-    const getWaitSec = (job: Job): number => {
-      if (!job.started_at || !job.completed_at) return 0;
-      const start = new Date(job.started_at).getTime();
-      const end = new Date(job.completed_at).getTime();
-      return Number(((end - start) / 1000).toFixed(2));
-    };
-
-    const results = [
-      {
-        job_id: finalJob2.id,
-        telegram_message_id: finalJob2.telegram_message_id,
-        outgoing_message_id: corr2.sentVoiceMessageId,
-        incoming_message_id: finalJob2.transcriber_message_id || incMsgId2Final,
-        wait_seconds: getWaitSec(finalJob2),
-        matched_correctly:
-          finalJob2.transcriber_message_id === incMsgId2Final &&
-          (finalJob2.transcription || '').includes('отчет отправлен'),
-        final_status: finalJob2.status,
-        transcription: finalJob2.transcription || '',
-      },
-      {
-        job_id: finalJob3.id,
-        telegram_message_id: finalJob3.telegram_message_id,
-        outgoing_message_id: corr3.sentVoiceMessageId,
-        incoming_message_id: finalJob3.transcriber_message_id || incMsgId3,
-        wait_seconds: getWaitSec(finalJob3),
-        matched_correctly:
-          finalJob3.transcriber_message_id === incMsgId3 &&
-          (finalJob3.transcription || '').includes('совещание перенесено'),
-        final_status: finalJob3.status,
-        transcription: finalJob3.transcription || '',
-      },
-      {
-        job_id: finalJob4.id,
-        telegram_message_id: finalJob4.telegram_message_id,
-        outgoing_message_id: corr4.sentVoiceMessageId,
-        incoming_message_id: finalJob4.transcriber_message_id || incMsgId4,
-        wait_seconds: getWaitSec(finalJob4),
-        matched_correctly:
-          finalJob4.transcriber_message_id === incMsgId4 &&
-          (finalJob4.transcription || '').includes('договор успешно согласован'),
-        final_status: finalJob4.status,
-        transcription: finalJob4.transcription || '',
-      },
-    ];
-
-    logger.info('[MTProto TEST] Parallel test completed successfully with zero cross-talk', {
-      results,
-    });
-
-    return {
-      success: results.every((r) => r.matched_correctly && r.final_status === 'completed'),
-      listener_verification: listenerVerification,
-      results,
-      chronology,
+      message: `Job ${jobId} dispatched to @${config.transcriber.botUsername} via live MTProto client`,
     };
   }
 

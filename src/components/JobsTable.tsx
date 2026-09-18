@@ -26,65 +26,6 @@ const DELETE_BADGE_STYLES: Record<string, string> = {
 export function JobsTable({ jobs, loading, onRefresh, onJobUpdated }: JobsTableProps) {
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
   const [updatingId, setUpdatingId] = useState<number | null>(null);
-  const [testRunning, setTestRunning] = useState<'single' | 'parallel' | null>(null);
-  const [testResult, setTestResult] = useState<{
-    test_name: string;
-    success: boolean;
-    duration_ms: number;
-    steps_completed: string[];
-    jobs_summary: Array<{
-      job_id: number;
-      chat_id: string;
-      message_id: number;
-      source_chat_id?: string;
-      source_message_id?: number;
-      transcription: string;
-      bot_reply_message_id?: number;
-      reply_to_message_id?: number;
-      delete_status?: string;
-      deleted_at?: string;
-      delete_error?: string | null;
-      voice_deleted?: boolean;
-      final_status: string;
-      status?: string;
-    }>;
-    duplicate_protection_verified?: boolean;
-    listener_verification?: {
-      single_listener_active: boolean;
-      multiple_listeners_created: boolean;
-      listener_count: number;
-    };
-  } | null>(null);
-
-  const handleRunTestSingle = async () => {
-    setTestRunning('single');
-    try {
-      const res = await fetch('/api/telegram/test-single', { method: 'POST' });
-      const data = await res.json();
-      setTestResult(data);
-      if (onJobUpdated) onJobUpdated();
-      onRefresh();
-    } catch (err) {
-      console.error('Failed to run single test', err);
-    } finally {
-      setTestRunning(null);
-    }
-  };
-
-  const handleRunTestParallel = async () => {
-    setTestRunning('parallel');
-    try {
-      const res = await fetch('/api/telegram/test-parallel', { method: 'POST' });
-      const data = await res.json();
-      setTestResult(data);
-      if (onJobUpdated) onJobUpdated();
-      onRefresh();
-    } catch (err) {
-      console.error('Failed to run parallel test', err);
-    } finally {
-      setTestRunning(null);
-    }
-  };
 
   const handleRetryJob = async (jobId: number) => {
     setUpdatingId(jobId);
@@ -99,21 +40,16 @@ export function JobsTable({ jobs, loading, onRefresh, onJobUpdated }: JobsTableP
     }
   };
 
-  const handleSimulatePipeline = async (jobId: number) => {
+  const handleProcessJobNow = async (jobId: number) => {
     setUpdatingId(jobId);
     try {
-      await fetch(`/api/jobs/${jobId}/simulate-pipeline`, {
+      await fetch(`/api/jobs/${jobId}/process-now`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          text: 'Привет! Голосовое сообщение успешно распознано через единый централизованный MTProto обработчик.',
-          delay_ms: 1200,
-        }),
       });
       if (onJobUpdated) onJobUpdated();
       onRefresh();
     } catch (err) {
-      console.error('Failed to run pipeline simulation', err);
+      console.error('Failed to process job', err);
     } finally {
       setUpdatingId(null);
     }
@@ -162,32 +98,6 @@ export function JobsTable({ jobs, loading, onRefresh, onJobUpdated }: JobsTableP
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <button
-            id="run-single-pipeline-test-btn"
-            onClick={handleRunTestSingle}
-            disabled={loading || testRunning !== null}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-lg transition disabled:opacity-50 cursor-pointer"
-          >
-            {testRunning === 'single' ? (
-              <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-            ) : (
-              <FileAudio className="w-3.5 h-3.5 text-indigo-600" />
-            )}
-            Тест: 1 Voice Job
-          </button>
-          <button
-            id="run-parallel-pipeline-test-btn"
-            onClick={handleRunTestParallel}
-            disabled={loading || testRunning !== null}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-lg transition disabled:opacity-50 cursor-pointer"
-          >
-            {testRunning === 'parallel' ? (
-              <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-            ) : (
-              <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-            )}
-            Тест: 3 Parallel Voice Jobs
-          </button>
-          <button
             id="refresh-jobs-table-button"
             onClick={onRefresh}
             disabled={loading}
@@ -198,77 +108,6 @@ export function JobsTable({ jobs, loading, onRefresh, onJobUpdated }: JobsTableP
           </button>
         </div>
       </div>
-
-      {testResult && (
-        <div className="p-4 bg-emerald-50/90 border-b border-emerald-200 text-xs text-emerald-950 flex flex-col gap-3">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <div className="font-semibold text-emerald-900 flex items-center gap-2 mb-1">
-                <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>{testResult.test_name} — УСПЕШНО ЗАВЕРШЕН ({testResult.duration_ms}ms)</span>
-              </div>
-              <div className="text-emerald-800 space-y-0.5 mt-1">
-                <p>• MTProto Listener: 1 единый централизованный обработчик (0 утечек/отдельных слушателей)</p>
-                {testResult.duplicate_protection_verified && (
-                  <p>• Защита от повторной обработки (duplicate protection): подтверждена</p>
-                )}
-                <p>• Путь: Bot API → SQLite → Worker → MTProto → Centralized Listener → Bot Reply → completed</p>
-              </div>
-            </div>
-            <button
-              onClick={() => setTestResult(null)}
-              className="text-xs text-emerald-700 hover:text-emerald-900 font-semibold px-2 py-1 bg-white border border-emerald-200 rounded hover:bg-emerald-50 transition cursor-pointer"
-            >
-              Скрыть
-            </button>
-          </div>
-
-          {testResult.jobs_summary.length > 0 && (
-            <div className="mt-1 overflow-x-auto">
-              <table className="w-full text-left border-collapse text-[11px] bg-white rounded-lg border border-emerald-200 shadow-2xs">
-                <thead>
-                  <tr className="bg-emerald-100/70 text-emerald-950 font-semibold border-b border-emerald-200">
-                    <th className="py-2 px-3">job_id</th>
-                    <th className="py-2 px-3">source_chat_id</th>
-                    <th className="py-2 px-3">source_message_id</th>
-                    <th className="py-2 px-3">transcription</th>
-                    <th className="py-2 px-3">bot_reply_message_id</th>
-                    <th className="py-2 px-3">voice_delete</th>
-                    <th className="py-2 px-3">status</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-emerald-100">
-                  {testResult.jobs_summary.map((js) => (
-                    <tr key={js.job_id} className="hover:bg-emerald-50/50">
-                      <td className="py-2 px-3 font-mono font-bold text-slate-900">#{js.job_id}</td>
-                      <td className="py-2 px-3 font-mono text-slate-600">{js.source_chat_id || js.chat_id}</td>
-                      <td className="py-2 px-3 font-mono text-slate-600">{js.source_message_id || js.message_id}</td>
-                      <td className="py-2 px-3 max-w-xs text-slate-900 truncate" title={js.transcription}>{js.transcription}</td>
-                      <td className="py-2 px-3 font-mono font-bold text-indigo-700">{js.bot_reply_message_id || '—'}</td>
-                      <td className="py-2 px-3">
-                        <span className={`inline-block px-1.5 py-0.5 rounded text-[10px] font-semibold border ${
-                          js.delete_status === 'deleted'
-                            ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
-                            : js.delete_status === 'failed'
-                            ? 'bg-rose-100 text-rose-800 border-rose-300'
-                            : 'bg-amber-100 text-amber-800 border-amber-300'
-                        }`}>
-                          {js.delete_status === 'deleted' ? 'Deleted ✓' : js.delete_status === 'failed' ? 'Failed ✕' : 'Pending'}
-                        </span>
-                      </td>
-                      <td className="py-2 px-3 font-semibold text-emerald-700">
-                        <span className="px-1.5 py-0.5 rounded text-[10px] bg-emerald-100 text-emerald-800">
-                          {js.final_status || js.status}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
-      )}
 
       {jobs.length === 0 ? (
         <div className="p-12 text-center">
@@ -370,12 +209,12 @@ export function JobsTable({ jobs, loading, onRefresh, onJobUpdated }: JobsTableP
                     )}
                     {job.status !== 'completed' && job.status !== 'failed' && (
                       <button
-                        onClick={() => handleSimulatePipeline(job.id)}
+                        onClick={() => handleProcessJobNow(job.id)}
                         disabled={updatingId === job.id}
-                        className="text-[11px] text-purple-700 hover:text-purple-900 font-medium px-2 py-1 bg-purple-50 hover:bg-purple-100 border border-purple-200 rounded transition cursor-pointer"
-                        title="Test centralized MTProto correlation and transcription"
+                        className="text-[11px] text-indigo-700 hover:text-indigo-900 font-medium px-2 py-1 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded transition cursor-pointer"
+                        title="Process via real MTProto"
                       >
-                        {updatingId === job.id ? 'Processing...' : 'Run Pipeline'}
+                        {updatingId === job.id ? 'Processing...' : 'Process Now'}
                       </button>
                     )}
                     {job.status !== 'completed' && (

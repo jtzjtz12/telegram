@@ -22,6 +22,8 @@ export interface AppConfig {
     botToken?: string;
     apiId?: number;
     apiHash?: string;
+    userPhone?: string;
+    session?: string;
     sessionString?: string;
   };
 }
@@ -44,6 +46,7 @@ export const config: AppConfig = {
     botToken: process.env.TELEGRAM_BOT_TOKEN,
     apiId: process.env.TELEGRAM_API_ID ? parseInt(process.env.TELEGRAM_API_ID, 10) : undefined,
     apiHash: process.env.TELEGRAM_API_HASH,
-    sessionString: process.env.TELEGRAM_SESSION_STRING,
+    userPhone: process.env.TELEGRAM_USER_PHONE,
+    session: process.env.TELEGRAM_SESSION || process.env.TELEGRAM_SESSION_STRING,
   },
 };

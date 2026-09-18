@@ -170,48 +170,19 @@ jobsRouter.post('/:id/retry', async (req: Request, res: Response) => {
 });
 
 /**
- * POST /api/jobs/:id/simulate-pipeline
- * Runs the full centralized pipeline for a job:
- * 1. Registers in centralized correlation with MTProto sent_message_id
- * 2. Receives intermediate status message ("Распознаю...")
- * 3. Receives final transcription message
- * 4. Verifies zero extra listeners and complete correlation
+ * POST /api/jobs/:id/process-now
+ * Manually dispatches an existing job through the real MTProto transcription pipeline
  */
-jobsRouter.post('/:id/simulate-pipeline', async (req: Request, res: Response) => {
+jobsRouter.post('/:id/process-now', async (req: Request, res: Response) => {
   try {
     const id = parseInt(req.params.id, 10);
-    const { text, delay_ms = 1200 } = req.body || {};
-
-    const result = await transcriberWorker.simulateBotInteraction(
-      id,
-      text || 'Привет! Голосовое сообщение успешно обработано через централизованный MTProto обработчик.',
-      delay_ms
-    );
-
+    const result = await transcriberWorker.processJobNow(id);
     res.status(200).json(result);
   } catch (err) {
-    logger.error(`Failed to simulate pipeline for job ${req.params.id}`, err);
+    logger.error(`Failed to process job ${req.params.id}`, err);
     res.status(500).json({
       success: false,
-      error: err instanceof Error ? err.message : 'Simulation failed',
-    });
-  }
-});
-
-/**
- * POST /api/jobs/test-parallel
- * Executes parallel 3-jobs test (#2, #3, #4) through the single centralized MTProto listener.
- */
-jobsRouter.post('/test-parallel', async (req: Request, res: Response) => {
-  try {
-    const { job_ids = [2, 3, 4] } = req.body || {};
-    const result = await transcriberWorker.runParallelJobsTest(job_ids);
-    res.status(200).json(result);
-  } catch (err) {
-    logger.error('Failed to run parallel MTProto jobs test', err);
-    res.status(500).json({
-      success: false,
-      error: err instanceof Error ? err.message : 'Parallel test failed',
+      error: err instanceof Error ? err.message : 'Processing failed',
     });
   }
 });
