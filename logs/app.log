@@ -1,515 +1,116 @@
-{"id":"1rpvoiw","timestamp":"2026-09-18T17:07:20.226Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"ou1phoj","timestamp":"2026-09-18T17:07:20.231Z","level":"error","message":"[TranscriberWorker] Failed to connect MTProto client on start","meta":{"error":"[object Object]"}}
-{"id":"206xnya","timestamp":"2026-09-18T17:07:20.231Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"0qkdkuj","timestamp":"2026-09-18T17:07:20.232Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"khn1hmj","timestamp":"2026-09-18T17:07:20.502Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"cxuu146","timestamp":"2026-09-18T17:07:20.848Z","level":"debug","message":"GET /"}
-{"id":"r20pla5","timestamp":"2026-09-18T17:07:21.236Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","attempts":1}}
-{"id":"mwc000k","timestamp":"2026-09-18T17:07:21.237Z","level":"error","message":"[JOB FAILED] Voice file not found locally on disk","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","error":"Voice file not found at local path: /tmp/voice_sample_2.ogg"}}
-{"id":"fegch16","timestamp":"2026-09-18T17:07:21.242Z","level":"error","message":"[JOB FAILED] Worker failed during job processing","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"error_message":"Voice file not found at local path: /tmp/voice_sample_2.ogg","error_stack":"Error: Voice file not found at local path: /tmp/voice_sample_2.ogg\n    at TranscriberWorkerService.sendVoiceAndAwaitTranscription (/app/applet/src/transcriber/worker.ts:386:13)\n    at async TranscriberWorkerService.processPendingQueue (/app/applet/src/transcriber/worker.ts:599:7)\n    at async Timeout._onTimeout (/app/applet/src/transcriber/worker.ts:559:9)"}}
-{"id":"l4f9str","timestamp":"2026-09-18T17:07:21.463Z","level":"debug","message":"GET /"}
-{"id":"xurtno1","timestamp":"2026-09-18T17:07:23.246Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"gc9s0gt","timestamp":"2026-09-18T17:07:23.252Z","level":"error","message":"[TranscriberWorker] Failed to connect MTProto client on start","meta":{"error":"[object Object]"}}
-{"id":"0huie6a","timestamp":"2026-09-18T17:07:23.252Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"02wcxhu","timestamp":"2026-09-18T17:07:23.252Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"02fgzu8","timestamp":"2026-09-18T17:07:27.241Z","level":"debug","message":"GET /health"}
-{"id":"u7limfa","timestamp":"2026-09-18T17:07:29.294Z","level":"debug","message":"GET /api/status"}
-{"id":"aj0qjp7","timestamp":"2026-09-18T17:07:31.361Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"5kj0nx4","timestamp":"2026-09-18T17:07:33.580Z","level":"debug","message":"GET /"}
-{"id":"gntee1u","timestamp":"2026-09-18T17:07:38.908Z","level":"debug","message":"POST /api/jobs/test"}
-{"id":"wp2fp4p","timestamp":"2026-09-18T17:07:38.912Z","level":"error","message":"Error inserting job into SQLite","meta":{"error_message":"SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status","error_stack":"LibsqlError: SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status\n    at mapSqliteError (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:653:16)\n    at executeStmt (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:556:15)\n    at Sqlite3Client.execute (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:245:20)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async DatabaseService.createJob (/app/applet/src/database.ts:293:21)\n    at async <anonymous> (/app/applet/src/routes/jobs.ts:74:17)"}}
-{"id":"oisnlzx","timestamp":"2026-09-18T17:07:50.340Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"v28ofu3","timestamp":"2026-09-18T17:07:50.350Z","level":"error","message":"[TranscriberWorker] Failed to connect MTProto client on start","meta":{"error":"[object Object]"}}
-{"id":"nla16j2","timestamp":"2026-09-18T17:07:50.351Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"nseplms","timestamp":"2026-09-18T17:07:50.351Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"4lgshh8","timestamp":"2026-09-18T17:07:50.603Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"v2bzn3w","timestamp":"2026-09-18T17:07:51.202Z","level":"debug","message":"GET /"}
-{"id":"0wl04so","timestamp":"2026-09-18T17:07:56.139Z","level":"debug","message":"GET /"}
-{"id":"lb5m17o","timestamp":"2026-09-18T17:07:56.902Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"wqzl1zv","timestamp":"2026-09-18T17:07:56.989Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"yzbsatk","timestamp":"2026-09-18T17:08:02.285Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"qqcpu2f","timestamp":"2026-09-18T17:08:06.894Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"0o93i38","timestamp":"2026-09-18T17:08:12.362Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"wwnxbk1","timestamp":"2026-09-18T17:08:17.276Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"z8dygck","timestamp":"2026-09-18T17:08:22.278Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"vruqe45","timestamp":"2026-09-18T17:08:27.278Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"qmmw70z","timestamp":"2026-09-18T17:08:32.279Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"p1tbslm","timestamp":"2026-09-18T17:08:37.279Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"4wjsawz","timestamp":"2026-09-18T17:08:42.280Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"o443lct","timestamp":"2026-09-18T17:08:47.279Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"6dvdxsx","timestamp":"2026-09-18T17:08:52.281Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"7ig2nqr","timestamp":"2026-09-18T17:08:57.280Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ivzma7g","timestamp":"2026-09-18T17:13:10.281Z","level":"debug","message":"GET /"}
-{"id":"j6fev4r","timestamp":"2026-09-18T17:13:10.762Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"gkuzjme","timestamp":"2026-09-18T17:13:10.852Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"h8j8rb0","timestamp":"2026-09-18T17:13:16.301Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"bsuzi4b","timestamp":"2026-09-18T17:13:21.303Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"zfux4j8","timestamp":"2026-09-18T17:13:26.303Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"xvsrhlw","timestamp":"2026-09-18T17:13:31.304Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"oagnd61","timestamp":"2026-09-18T17:13:34.970Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"jk6ojog","timestamp":"2026-09-18T17:13:34.975Z","level":"error","message":"[TranscriberWorker] Failed to connect MTProto client on start","meta":{"error":"[object Object]"}}
-{"id":"kfmg0vx","timestamp":"2026-09-18T17:13:34.975Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"oauebsh","timestamp":"2026-09-18T17:13:34.975Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"kkyguod","timestamp":"2026-09-18T17:13:35.215Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"nxklcqe","timestamp":"2026-09-18T17:13:36.199Z","level":"debug","message":"GET /"}
-{"id":"2x6x73x","timestamp":"2026-09-18T17:13:36.379Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"782a1w7","timestamp":"2026-09-18T17:13:38.320Z","level":"debug","message":"GET /"}
-{"id":"gp81ae1","timestamp":"2026-09-18T17:13:39.538Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"vmuome4","timestamp":"2026-09-18T17:13:39.625Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"genjjwb","timestamp":"2026-09-18T17:13:44.540Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"jidz4hx","timestamp":"2026-09-18T17:13:49.541Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"z0x84ri","timestamp":"2026-09-18T17:13:54.541Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"e3iovgk","timestamp":"2026-09-18T17:13:59.541Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"mf71pal","timestamp":"2026-09-18T17:14:04.540Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"27e6udl","timestamp":"2026-09-18T17:14:09.541Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ihq9bwm","timestamp":"2026-09-18T17:14:51.880Z","level":"debug","message":"GET /"}
-{"id":"778a9ua","timestamp":"2026-09-18T17:14:52.342Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ztw6jaj","timestamp":"2026-09-18T17:14:52.429Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"6j04w0r","timestamp":"2026-09-18T17:14:57.343Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ozmsw8m","timestamp":"2026-09-18T17:15:02.349Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"lko8ov8","timestamp":"2026-09-18T17:15:07.346Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"t63ty91","timestamp":"2026-09-18T17:15:12.348Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"herhzsn","timestamp":"2026-09-18T17:15:18.309Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"xxai1ua","timestamp":"2026-09-18T17:15:23.316Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"o9pmrci","timestamp":"2026-09-18T17:15:27.345Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"nlb495s","timestamp":"2026-09-18T17:15:32.347Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"hq03a0d","timestamp":"2026-09-18T17:15:37.349Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"x5m4za0","timestamp":"2026-09-18T17:15:42.347Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"75zw930","timestamp":"2026-09-18T17:15:47.351Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"f8ufsyz","timestamp":"2026-09-18T17:15:52.352Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"gufr2ur","timestamp":"2026-09-18T17:15:57.349Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"h2lzvdi","timestamp":"2026-09-18T17:16:02.352Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"yo6xify","timestamp":"2026-09-18T17:16:07.353Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"yoei4ck","timestamp":"2026-09-18T17:16:12.349Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"tt54t3x","timestamp":"2026-09-18T17:16:17.353Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"lig4zbl","timestamp":"2026-09-18T17:16:22.352Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"6prpa2y","timestamp":"2026-09-18T17:16:27.357Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ub4q7ob","timestamp":"2026-09-18T17:16:32.355Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"x27hrxw","timestamp":"2026-09-18T17:16:37.353Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"v97z58l","timestamp":"2026-09-18T17:16:42.355Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"7iskfd0","timestamp":"2026-09-18T17:16:47.357Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"7ax6hmd","timestamp":"2026-09-18T17:16:52.353Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"x4nsxjs","timestamp":"2026-09-18T17:16:57.360Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"snanhn0","timestamp":"2026-09-18T17:17:02.353Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"2s8zz8j","timestamp":"2026-09-18T17:17:07.358Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ur829gq","timestamp":"2026-09-18T17:17:12.354Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"odwhbzd","timestamp":"2026-09-18T17:17:17.355Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"1jz9bo6","timestamp":"2026-09-18T17:17:22.360Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"z6gaa4u","timestamp":"2026-09-18T17:17:27.356Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"a7rlbi6","timestamp":"2026-09-18T17:17:32.359Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"rt827kz","timestamp":"2026-09-18T17:17:37.362Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"spcoqcb","timestamp":"2026-09-18T17:17:42.355Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"llu6au6","timestamp":"2026-09-18T17:17:47.357Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"mhse8z3","timestamp":"2026-09-18T17:17:53.318Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"2ho0hju","timestamp":"2026-09-18T17:17:57.362Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"5d097rp","timestamp":"2026-09-18T17:18:02.361Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"tt4mwiu","timestamp":"2026-09-18T17:18:07.357Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"no5zpiz","timestamp":"2026-09-18T17:18:13.194Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"u2n52dk","timestamp":"2026-09-18T17:18:17.359Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"kpzl0op","timestamp":"2026-09-18T17:18:22.359Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"1d5px2s","timestamp":"2026-09-18T17:18:27.360Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"aputzgt","timestamp":"2026-09-18T17:18:32.365Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"u7oh33l","timestamp":"2026-09-18T17:18:38.198Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"h26e1dk","timestamp":"2026-09-18T17:18:38.199Z","level":"info","message":"Connecting to Telegram MTProto network..."}
-{"id":"2g48cpm","timestamp":"2026-09-18T17:18:38.200Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
-{"id":"nsvfgsy","timestamp":"2026-09-18T17:18:38.220Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"421ymmm","timestamp":"2026-09-18T17:18:38.560Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"f7hfcwn","timestamp":"2026-09-18T17:18:38.585Z","level":"info","message":"[Telegram Bot] Received voice message","meta":{"chatId":"-1004455941289","messageId":7,"fileId":"AwACAgIAAyEFAAMBCZhEqQADB2qtZdcoOGVdnVzirP7VQMCbRzpnAAKwogACDClwSZC-cfxhcgprPQQ"}}
-{"id":"oqdw9yr","timestamp":"2026-09-18T17:18:38.638Z","level":"info","message":"[Telegram Bot] Downloaded voice file: /app/applet/data/audio/voice_1789751918638_7.oga (29712 bytes)"}
-{"id":"s7h45ox","timestamp":"2026-09-18T17:18:38.643Z","level":"error","message":"Error inserting job into SQLite","meta":{"error_message":"SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status","error_stack":"LibsqlError: SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status\n    at mapSqliteError (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:653:16)\n    at executeStmt (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:556:15)\n    at Sqlite3Client.execute (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:245:20)\n    at async DatabaseService.createJob (/app/applet/src/database.ts:293:21)\n    at async TelegramBotService.handleWebhookUpdate (/app/applet/src/telegram/bot.ts:190:19)\n    at async <anonymous> (/app/applet/src/telegram/bot.ts:258:19)"}}
-{"id":"ckxtq17","timestamp":"2026-09-18T17:18:38.643Z","level":"info","message":"[Telegram Bot] Received voice message","meta":{"chatId":"-1004455941289","messageId":8,"fileId":"AwACAgIAAyEFAAMBCZhEqQADCGqtZ2oabfUeD44Ifho0Y40nxqr-AALMogACDClwSdm40-v7RAABLj0E"}}
-{"id":"m18w4e9","timestamp":"2026-09-18T17:18:38.691Z","level":"info","message":"[Telegram Bot] Downloaded voice file: /app/applet/data/audio/voice_1789751918690_8.oga (36304 bytes)"}
-{"id":"5t3wn7g","timestamp":"2026-09-18T17:18:38.692Z","level":"error","message":"Error inserting job into SQLite","meta":{"error_message":"SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status","error_stack":"LibsqlError: SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status\n    at mapSqliteError (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:653:16)\n    at executeStmt (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:556:15)\n    at Sqlite3Client.execute (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:245:20)\n    at async DatabaseService.createJob (/app/applet/src/database.ts:293:21)\n    at async TelegramBotService.handleWebhookUpdate (/app/applet/src/telegram/bot.ts:190:19)\n    at async <anonymous> (/app/applet/src/telegram/bot.ts:258:19)"}}
-{"id":"tquxdv8","timestamp":"2026-09-18T17:18:38.692Z","level":"info","message":"[Telegram Bot] Received voice message","meta":{"chatId":"-1004455941289","messageId":9,"fileId":"AwACAgIAAyEFAAMBCZhEqQADCWqtZ8FNGWrJ14k4hfm6Ud35NC9VAALQogACDClwSbNKanBDAsJWPQQ"}}
-{"id":"mmhdmfe","timestamp":"2026-09-18T17:18:38.717Z","level":"info","message":"[Telegram Bot] Downloaded voice file: /app/applet/data/audio/voice_1789751918716_9.oga (27240 bytes)"}
-{"id":"nkrcf76","timestamp":"2026-09-18T17:18:38.718Z","level":"error","message":"Error inserting job into SQLite","meta":{"error_message":"SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status","error_stack":"LibsqlError: SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status\n    at mapSqliteError (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:653:16)\n    at executeStmt (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:556:15)\n    at Sqlite3Client.execute (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:245:20)\n    at async DatabaseService.createJob (/app/applet/src/database.ts:293:21)\n    at async TelegramBotService.handleWebhookUpdate (/app/applet/src/telegram/bot.ts:190:19)\n    at async <anonymous> (/app/applet/src/telegram/bot.ts:258:19)"}}
-{"id":"3myk1v1","timestamp":"2026-09-18T17:18:39.376Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
-{"id":"qpilh8m","timestamp":"2026-09-18T17:18:39.376Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
-{"id":"6x6aqqc","timestamp":"2026-09-18T17:18:39.376Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"jph0nno","timestamp":"2026-09-18T17:18:42.366Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"dak2hyj","timestamp":"2026-09-18T17:18:47.362Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ldkrtwu","timestamp":"2026-09-18T17:18:52.366Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"egnb6k1","timestamp":"2026-09-18T17:18:57.366Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"84h099h","timestamp":"2026-09-18T17:19:03.828Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"fcjcjin","timestamp":"2026-09-18T17:19:03.830Z","level":"info","message":"Connecting to Telegram MTProto network..."}
-{"id":"lo62r8i","timestamp":"2026-09-18T17:19:03.830Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
-{"id":"pwyhe5f","timestamp":"2026-09-18T17:19:03.854Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"8li5se5","timestamp":"2026-09-18T17:19:04.275Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"a8gsng5","timestamp":"2026-09-18T17:19:05.261Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
-{"id":"bgl5x4d","timestamp":"2026-09-18T17:19:05.261Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
-{"id":"6a4bkfk","timestamp":"2026-09-18T17:19:05.262Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"4lxu8ck","timestamp":"2026-09-18T17:19:07.371Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"fh0d9vu","timestamp":"2026-09-18T17:19:12.366Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"x9n9dlz","timestamp":"2026-09-18T17:19:17.365Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"tvgqt87","timestamp":"2026-09-18T17:19:19.829Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"0x4vlk6","timestamp":"2026-09-18T17:19:20.274Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":6,"chat_id":"-1004455941289","message_id":7,"local_file_path":"/app/applet/data/audio/voice_1789751918638_7.oga","attempts":0}}
-{"id":"zg4rdj8","timestamp":"2026-09-18T17:19:20.287Z","level":"info","message":"[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription","meta":{"job_id":6,"chat_id":"-1004455941289"}}
-{"id":"tbwq4eh","timestamp":"2026-09-18T17:19:20.405Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.6-flash","meta":{"job_id":6}}
-{"id":"4df1915","timestamp":"2026-09-18T17:19:21.444Z","level":"info","message":"[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription","meta":{"job_id":6,"chat_id":"-1004455941289"}}
-{"id":"rnb11k0","timestamp":"2026-09-18T17:19:21.591Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.6-flash","meta":{"job_id":6}}
-{"id":"9ra6nm0","timestamp":"2026-09-18T17:19:22.367Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"v9wnfga","timestamp":"2026-09-18T17:19:23.194Z","level":"info","message":"[Gemini AI] Transcription succeeded with gemini-3.6-flash","meta":{"job_id":6,"text_preview":"Раз, два, три. Ты понял?"}}
-{"id":"c1lld74","timestamp":"2026-09-18T17:19:23.229Z","level":"warn","message":"Telegram Bot API reply failed, retrying without reply_to_message_id","meta":{"chatId":"-1004455941289","replyToMessageId":7,"error":"{\"ok\":false,\"error_code\":400,\"description\":\"Bad Request: message to be replied not found\"}"}}
-{"id":"ah6suis","timestamp":"2026-09-18T17:19:23.313Z","level":"info","message":"[JOB COMPLETE VIA AI]\njob_id=6\ntext=Раз, два, три. Ты понял?","meta":{"job_id":6,"chat_id":"-1004455941289","message_id":7,"bot_reply_message_id":10}}
-{"id":"wp877e9","timestamp":"2026-09-18T17:19:23.988Z","level":"info","message":"[Gemini AI] Transcription succeeded with gemini-3.6-flash","meta":{"job_id":6,"text_preview":"Раз два три, ты понял?"}}
-{"id":"04fzbww","timestamp":"2026-09-18T17:19:24.029Z","level":"warn","message":"Telegram Bot API reply failed, retrying without reply_to_message_id","meta":{"chatId":"-1004455941289","replyToMessageId":7,"error":"{\"ok\":false,\"error_code\":400,\"description\":\"Bad Request: message to be replied not found\"}"}}
-{"id":"9y2pqua","timestamp":"2026-09-18T17:19:24.110Z","level":"info","message":"[JOB COMPLETE VIA AI]\njob_id=6\ntext=Раз два три, ты понял?","meta":{"job_id":6,"chat_id":"-1004455941289","message_id":7,"bot_reply_message_id":11}}
-{"id":"wm5sfhz","timestamp":"2026-09-18T17:19:24.213Z","level":"info","message":"[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription","meta":{"job_id":7,"chat_id":"-1004455941289"}}
-{"id":"ztuths6","timestamp":"2026-09-18T17:19:24.214Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.6-flash","meta":{"job_id":7}}
-{"id":"k9lzy45","timestamp":"2026-09-18T17:19:24.277Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":7,"chat_id":"-1004455941289","message_id":8,"local_file_path":"/app/applet/data/audio/voice_1789751918690_8.oga","attempts":0}}
-{"id":"iul1s1e","timestamp":"2026-09-18T17:19:24.338Z","level":"info","message":"[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription","meta":{"job_id":7,"chat_id":"-1004455941289"}}
-{"id":"kb55fr7","timestamp":"2026-09-18T17:19:24.339Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.6-flash","meta":{"job_id":7}}
-{"id":"rrhcjal","timestamp":"2026-09-18T17:19:27.368Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"i98qod1","timestamp":"2026-09-18T17:19:28.132Z","level":"info","message":"[Gemini AI] Transcription succeeded with gemini-3.6-flash","meta":{"job_id":7,"text_preview":"Раз, два, три, переведи"}}
-{"id":"1hkak1f","timestamp":"2026-09-18T17:19:28.240Z","level":"info","message":"[JOB COMPLETE VIA AI]\njob_id=7\ntext=Раз, два, три, переведи","meta":{"job_id":7,"chat_id":"-1004455941289","message_id":8,"bot_reply_message_id":12}}
-{"id":"jzmbklp","timestamp":"2026-09-18T17:19:31.530Z","level":"info","message":"[Gemini AI] Transcription succeeded with gemini-3.6-flash","meta":{"job_id":7,"text_preview":"Раз два три переведи"}}
-{"id":"0jptjfk","timestamp":"2026-09-18T17:19:31.618Z","level":"info","message":"[JOB COMPLETE VIA AI]\njob_id=7\ntext=Раз два три переведи","meta":{"job_id":7,"chat_id":"-1004455941289","message_id":8,"bot_reply_message_id":13}}
-{"id":"actzxn0","timestamp":"2026-09-18T17:19:31.654Z","level":"info","message":"[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription","meta":{"job_id":8,"chat_id":"-1004455941289"}}
-{"id":"uaw2ibk","timestamp":"2026-09-18T17:19:31.655Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.6-flash","meta":{"job_id":8}}
-{"id":"9d112gc","timestamp":"2026-09-18T17:19:32.283Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":8,"chat_id":"-1004455941289","message_id":9,"local_file_path":"/app/applet/data/audio/voice_1789751918716_9.oga","attempts":0}}
-{"id":"gvpmzsy","timestamp":"2026-09-18T17:19:32.301Z","level":"info","message":"[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription","meta":{"job_id":8,"chat_id":"-1004455941289"}}
-{"id":"jvbkjrt","timestamp":"2026-09-18T17:19:32.302Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.6-flash","meta":{"job_id":8}}
-{"id":"ivgj9wm","timestamp":"2026-09-18T17:19:32.365Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"h7776v3","timestamp":"2026-09-18T17:19:37.373Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"pdz376w","timestamp":"2026-09-18T17:19:39.851Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"vplfbpt","timestamp":"2026-09-18T17:19:40.744Z","level":"info","message":"[Gemini AI] Transcription succeeded with gemini-3.6-flash","meta":{"job_id":8,"text_preview":"Раз, два, три, переведи"}}
-{"id":"k1o4wi0","timestamp":"2026-09-18T17:19:40.859Z","level":"info","message":"[JOB COMPLETE VIA AI]\njob_id=8\ntext=Раз, два, три, переведи","meta":{"job_id":8,"chat_id":"-1004455941289","message_id":9,"bot_reply_message_id":14}}
-{"id":"dui4abw","timestamp":"2026-09-18T17:19:40.899Z","level":"info","message":"[Telegram Bot] Received voice message","meta":{"chatId":"-1004455941289","messageId":15,"fileId":"AwACAgIAAyEFAAMBCZhEqQADD2qtcqw4guKoMrA8mes-Mn9SpwV_AAJLowACDClwSfQt1HbJb4VCPQQ"}}
-{"id":"jxgj7fq","timestamp":"2026-09-18T17:19:40.946Z","level":"info","message":"[Telegram Bot] Downloaded voice file: /app/applet/data/audio/voice_1789751980946_15.oga (34656 bytes)"}
-{"id":"9hmixmr","timestamp":"2026-09-18T17:19:41.295Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":9,"chat_id":"-1004455941289","message_id":15,"local_file_path":"/app/applet/data/audio/voice_1789751980946_15.oga","attempts":0}}
-{"id":"lra8b68","timestamp":"2026-09-18T17:19:41.308Z","level":"info","message":"[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription","meta":{"job_id":9,"chat_id":"-1004455941289"}}
-{"id":"350jyk4","timestamp":"2026-09-18T17:19:41.309Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.6-flash","meta":{"job_id":9}}
-{"id":"edyp0oc","timestamp":"2026-09-18T17:19:41.605Z","level":"info","message":"[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription","meta":{"job_id":8,"chat_id":"-1004455941289"}}
-{"id":"z12qm8e","timestamp":"2026-09-18T17:19:41.753Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.6-flash","meta":{"job_id":8}}
-{"id":"krisp5l","timestamp":"2026-09-18T17:19:42.368Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"r0gx2ne","timestamp":"2026-09-18T17:19:42.605Z","level":"info","message":"[Gemini AI] Transcription succeeded with gemini-3.6-flash","meta":{"job_id":8,"text_preview":"Раз, два, три, переведи"}}
-{"id":"sz4qyvt","timestamp":"2026-09-18T17:19:42.675Z","level":"info","message":"[JOB COMPLETE VIA AI]\njob_id=8\ntext=Раз, два, три, переведи","meta":{"job_id":8,"chat_id":"-1004455941289","message_id":9,"bot_reply_message_id":16}}
-{"id":"opwqmzz","timestamp":"2026-09-18T17:19:47.366Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"7k6xh8t","timestamp":"2026-09-18T17:19:47.603Z","level":"info","message":"[Gemini AI] Transcription succeeded with gemini-3.6-flash","meta":{"job_id":9,"text_preview":"А сейчас ты понимаешь"}}
-{"id":"cw0u0z5","timestamp":"2026-09-18T17:19:47.713Z","level":"info","message":"[JOB COMPLETE VIA AI]\njob_id=9\ntext=А сейчас ты понимаешь","meta":{"job_id":9,"chat_id":"-1004455941289","message_id":15,"bot_reply_message_id":17}}
-{"id":"xpcasp5","timestamp":"2026-09-18T17:19:52.369Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"vt3w8lv","timestamp":"2026-09-18T17:19:57.367Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"dgvyglg","timestamp":"2026-09-18T17:20:02.369Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"2ndjwjp","timestamp":"2026-09-18T17:20:06.964Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"1kiz2kr","timestamp":"2026-09-18T17:20:06.966Z","level":"info","message":"Connecting to Telegram MTProto network..."}
-{"id":"y4mrpl8","timestamp":"2026-09-18T17:20:06.966Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
-{"id":"o8nuv2h","timestamp":"2026-09-18T17:20:06.987Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"8wmce67","timestamp":"2026-09-18T17:20:07.371Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"vunooag","timestamp":"2026-09-18T17:20:07.378Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"km08vh8","timestamp":"2026-09-18T17:20:08.504Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
-{"id":"2m6bxpr","timestamp":"2026-09-18T17:20:08.504Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
-{"id":"613ivdp","timestamp":"2026-09-18T17:20:08.504Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"nyi0bkh","timestamp":"2026-09-18T17:20:09.502Z","level":"warn","message":"[Gemini AI] Model gemini-3.6-flash failed, trying next candidate","meta":{"error":"{\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}"}}
-{"id":"8qy8bvc","timestamp":"2026-09-18T17:20:09.502Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.8-flash","meta":{"job_id":8}}
-{"id":"pmkn9gw","timestamp":"2026-09-18T17:20:12.369Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"15jgs8g","timestamp":"2026-09-18T17:20:15.571Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"rzf3e1j","timestamp":"2026-09-18T17:20:15.573Z","level":"info","message":"Connecting to Telegram MTProto network..."}
-{"id":"7dijwnr","timestamp":"2026-09-18T17:20:15.573Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
-{"id":"fejci9i","timestamp":"2026-09-18T17:20:15.593Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"yvom46i","timestamp":"2026-09-18T17:20:15.884Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"w1hprh5","timestamp":"2026-09-18T17:20:16.742Z","level":"debug","message":"GET /"}
-{"id":"yby4t34","timestamp":"2026-09-18T17:20:17.179Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
-{"id":"0prj2q8","timestamp":"2026-09-18T17:20:17.180Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
-{"id":"pchno0o","timestamp":"2026-09-18T17:20:17.181Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"hbahu9u","timestamp":"2026-09-18T17:20:17.371Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"3fbiff5","timestamp":"2026-09-18T17:20:20.870Z","level":"debug","message":"GET /"}
-{"id":"2lxel3h","timestamp":"2026-09-18T17:20:21.318Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"u8li08t","timestamp":"2026-09-18T17:20:21.402Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"cpwv6rb","timestamp":"2026-09-18T17:20:26.314Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"s9ywmld","timestamp":"2026-09-18T17:20:31.316Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"sy6l1lk","timestamp":"2026-09-18T17:20:34.528Z","level":"warn","message":"[Gemini AI] Model gemini-3.8-flash failed, trying next candidate","meta":{"error":"{\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}"}}
-{"id":"izzr6cn","timestamp":"2026-09-18T17:20:34.528Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-2.5-pro","meta":{"job_id":8}}
-{"id":"4lowa1x","timestamp":"2026-09-18T17:20:34.649Z","level":"warn","message":"[Gemini AI] Model gemini-2.5-pro failed, trying next candidate","meta":{"error":"{\"error\":{\"code\":404,\"message\":\"This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API.\",\"status\":\"NOT_FOUND\"}}"}}
-{"id":"i5wq4ha","timestamp":"2026-09-18T17:20:36.311Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"16f1xu2","timestamp":"2026-09-18T17:20:36.738Z","level":"info","message":"[Telegram Bot] Received voice message","meta":{"chatId":"-1004455941289","messageId":18,"fileId":"AwACAgIAAyEFAAMBCZhEqQADEmqtcuSwkE6S91YOLrk3mf418gzTAAJOowACDClwSdkLG8aIx5pwPQQ"}}
-{"id":"soqy906","timestamp":"2026-09-18T17:20:36.784Z","level":"info","message":"[Telegram Bot] Downloaded voice file: /app/applet/data/audio/voice_1789752036783_18.oga (56904 bytes)"}
-{"id":"kfsbduo","timestamp":"2026-09-18T17:20:37.196Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":10,"chat_id":"-1004455941289","message_id":18,"local_file_path":"/app/applet/data/audio/voice_1789752036783_18.oga","attempts":0}}
-{"id":"kojzp11","timestamp":"2026-09-18T17:20:37.197Z","level":"info","message":"[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription","meta":{"job_id":10,"chat_id":"-1004455941289"}}
-{"id":"5zmne81","timestamp":"2026-09-18T17:20:37.365Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.6-flash","meta":{"job_id":10}}
-{"id":"lgno86y","timestamp":"2026-09-18T17:20:40.346Z","level":"info","message":"[Gemini AI] Transcription succeeded with gemini-3.6-flash","meta":{"job_id":10,"text_preview":"Переведёшь ли сообщение в транслит?"}}
-{"id":"z72v6ks","timestamp":"2026-09-18T17:20:40.419Z","level":"info","message":"[JOB COMPLETE VIA AI]\njob_id=10\ntext=Переведёшь ли сообщение в транслит?","meta":{"job_id":10,"chat_id":"-1004455941289","message_id":18,"bot_reply_message_id":19}}
-{"id":"i9m0ts4","timestamp":"2026-09-18T17:20:41.315Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"hpngzyf","timestamp":"2026-09-18T17:20:46.317Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"vz2ykf7","timestamp":"2026-09-18T17:20:51.319Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"f9v6l0a","timestamp":"2026-09-18T17:20:56.316Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"y6m5v7q","timestamp":"2026-09-18T17:21:01.314Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"kgzvylm","timestamp":"2026-09-18T17:21:06.322Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"hd1ktkl","timestamp":"2026-09-18T17:21:11.318Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"y5swc7b","timestamp":"2026-09-18T17:21:16.315Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"mhd8ub1","timestamp":"2026-09-18T17:21:21.340Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"zk6qgfa","timestamp":"2026-09-18T17:21:26.334Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"yz76ujl","timestamp":"2026-09-18T17:21:31.339Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"cth5o35","timestamp":"2026-09-18T17:21:36.337Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"3j7sup0","timestamp":"2026-09-18T17:21:41.343Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"8fv2l5h","timestamp":"2026-09-18T17:21:46.338Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"npcjy8w","timestamp":"2026-09-18T17:21:51.339Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"myu0m8d","timestamp":"2026-09-18T17:21:56.343Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"q5jjay6","timestamp":"2026-09-18T17:22:01.340Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"9ircg9r","timestamp":"2026-09-18T17:22:06.338Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ppmnum3","timestamp":"2026-09-18T17:22:11.339Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"1nui0wl","timestamp":"2026-09-18T17:22:16.345Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"98964kx","timestamp":"2026-09-18T17:22:22.029Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"46v3m9j","timestamp":"2026-09-18T17:22:26.321Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"e7i0js5","timestamp":"2026-09-18T17:22:31.321Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"7b49v7h","timestamp":"2026-09-18T17:22:32.061Z","level":"info","message":"[Telegram Bot] Received voice message","meta":{"chatId":"-1004455941289","messageId":20,"fileId":"AwACAgIAAyEFAAMBCZhEqQADFGqtc1dARrHuRf0_Ve4y-TiF9i8bAAJYowACDClwSXFJLZS8iuLdPQQ"}}
-{"id":"7g2apo5","timestamp":"2026-09-18T17:22:32.119Z","level":"info","message":"[Telegram Bot] Downloaded voice file: /app/applet/data/audio/voice_1789752152118_20.oga (37952 bytes)"}
-{"id":"yb41znt","timestamp":"2026-09-18T17:22:32.275Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":11,"chat_id":"-1004455941289","message_id":20,"local_file_path":"/app/applet/data/audio/voice_1789752152118_20.oga","attempts":0}}
-{"id":"0qal6pu","timestamp":"2026-09-18T17:22:32.275Z","level":"info","message":"[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription","meta":{"job_id":11,"chat_id":"-1004455941289"}}
-{"id":"sxpb4se","timestamp":"2026-09-18T17:22:32.276Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.6-flash","meta":{"job_id":11}}
-{"id":"bc671ny","timestamp":"2026-09-18T17:22:35.651Z","level":"info","message":"[Gemini AI] Transcription succeeded with gemini-3.6-flash","meta":{"job_id":11,"text_preview":"Обработаешь сообщение?"}}
-{"id":"zwjhskj","timestamp":"2026-09-18T17:22:35.716Z","level":"info","message":"[JOB COMPLETE VIA AI]\njob_id=11\ntext=Обработаешь сообщение?","meta":{"job_id":11,"chat_id":"-1004455941289","message_id":20,"bot_reply_message_id":21}}
-{"id":"otaye57","timestamp":"2026-09-18T17:22:36.323Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"9z1li7c","timestamp":"2026-09-18T17:22:41.320Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"3mkvfmu","timestamp":"2026-09-18T17:22:46.342Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"crt8n31","timestamp":"2026-09-18T17:22:51.352Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"8zn0f3y","timestamp":"2026-09-18T17:22:56.341Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"b8p0mix","timestamp":"2026-09-18T17:23:01.343Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"9rde1b0","timestamp":"2026-09-18T17:23:06.348Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"1kxj2jq","timestamp":"2026-09-18T17:23:11.347Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"adcflav","timestamp":"2026-09-18T17:23:17.065Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ljcukco","timestamp":"2026-09-18T17:23:21.347Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"vx4411e","timestamp":"2026-09-18T17:23:26.326Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"60hqgna","timestamp":"2026-09-18T17:23:31.327Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"5kajtko","timestamp":"2026-09-18T17:23:36.325Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"e0jjlhe","timestamp":"2026-09-18T17:23:41.329Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"2sc9bjr","timestamp":"2026-09-18T17:23:46.328Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"dkvb1pc","timestamp":"2026-09-18T17:23:51.324Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"an23g4x","timestamp":"2026-09-18T17:23:56.324Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"qvwvvow","timestamp":"2026-09-18T17:24:01.334Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"1xc1myw","timestamp":"2026-09-18T17:24:06.346Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"nvaujkh","timestamp":"2026-09-18T17:24:11.326Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"cfiwj59","timestamp":"2026-09-18T17:24:16.328Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"wi6nzkg","timestamp":"2026-09-18T17:24:21.333Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"aswq5xd","timestamp":"2026-09-18T17:24:26.326Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"obzf8n3","timestamp":"2026-09-18T17:24:34.431Z","level":"debug","message":"GET /"}
-{"id":"5vmggdh","timestamp":"2026-09-18T17:24:34.937Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"xkg13o5","timestamp":"2026-09-18T17:24:35.026Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"rq9xpvb","timestamp":"2026-09-18T17:24:39.952Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"8wo27ao","timestamp":"2026-09-18T17:24:44.939Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"tg9xw4c","timestamp":"2026-09-18T17:24:49.939Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"vvkqmwo","timestamp":"2026-09-18T17:24:54.941Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ejpkeqf","timestamp":"2026-09-18T17:24:59.941Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"b2p2c6t","timestamp":"2026-09-18T17:25:04.939Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"mye1p65","timestamp":"2026-09-18T17:25:09.940Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"riltapv","timestamp":"2026-09-18T17:25:14.939Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"x6sctdm","timestamp":"2026-09-18T17:25:19.941Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"q3bncx4","timestamp":"2026-09-18T17:25:24.940Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"6z3jadg","timestamp":"2026-09-18T17:25:29.938Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"gp2h7ro","timestamp":"2026-09-18T17:25:34.940Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"vxccdsh","timestamp":"2026-09-18T17:25:39.942Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"6lmm0tn","timestamp":"2026-09-18T17:25:44.942Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"pfbllgl","timestamp":"2026-09-18T17:25:49.942Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"43n5g6w","timestamp":"2026-09-18T17:25:54.943Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"6tbx2rm","timestamp":"2026-09-18T17:25:59.943Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"9nd9cxj","timestamp":"2026-09-18T17:26:04.944Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"81a0tiy","timestamp":"2026-09-18T17:26:09.946Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"o1rqk60","timestamp":"2026-09-18T17:26:14.945Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"xqw5xp1","timestamp":"2026-09-18T17:26:19.944Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"anmj9uy","timestamp":"2026-09-18T17:26:24.944Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"miq7vft","timestamp":"2026-09-18T17:26:29.945Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"p98znzl","timestamp":"2026-09-18T17:26:34.944Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ji9rl45","timestamp":"2026-09-18T17:26:39.946Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"heh4bnc","timestamp":"2026-09-18T17:26:44.947Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ohovy8s","timestamp":"2026-09-18T17:26:49.946Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"xzx6pja","timestamp":"2026-09-18T17:26:54.945Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"qr8sggg","timestamp":"2026-09-18T17:26:59.947Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"b77qa2h","timestamp":"2026-09-18T17:27:04.948Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"fv40k2f","timestamp":"2026-09-18T17:27:09.950Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"jlhahhg","timestamp":"2026-09-18T17:27:14.949Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"1exjvq2","timestamp":"2026-09-18T17:27:19.951Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ni78n8j","timestamp":"2026-09-18T17:27:24.950Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"w9jd6i2","timestamp":"2026-09-18T17:27:29.950Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"f962m7a","timestamp":"2026-09-18T17:27:34.951Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"mpc4luz","timestamp":"2026-09-18T17:27:39.957Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"zb0svzb","timestamp":"2026-09-18T17:27:44.949Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"02305cx","timestamp":"2026-09-18T17:27:49.951Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ik8pdve","timestamp":"2026-09-18T17:27:54.951Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"21d3agt","timestamp":"2026-09-18T17:27:59.953Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"tjov1h6","timestamp":"2026-09-18T17:28:04.953Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"kteun5g","timestamp":"2026-09-18T17:28:09.953Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"inq79lb","timestamp":"2026-09-18T17:28:14.953Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"yrsuqks","timestamp":"2026-09-18T17:28:20.614Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"3dts4lz","timestamp":"2026-09-18T17:28:24.955Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"i3jw1rw","timestamp":"2026-09-18T17:28:29.964Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"d9nsjt1","timestamp":"2026-09-18T17:28:34.954Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"jkpgu2y","timestamp":"2026-09-18T17:28:39.954Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"j2sr9iu","timestamp":"2026-09-18T17:28:44.955Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"veiktoo","timestamp":"2026-09-18T17:28:49.954Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"tl2w6ch","timestamp":"2026-09-18T17:28:54.956Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"qtf3prv","timestamp":"2026-09-18T17:28:59.956Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"kromwab","timestamp":"2026-09-18T17:29:04.956Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"cjsd9ja","timestamp":"2026-09-18T17:29:09.956Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"879o72f","timestamp":"2026-09-18T17:29:14.957Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"11hvmhf","timestamp":"2026-09-18T17:29:19.958Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"xtda15k","timestamp":"2026-09-18T17:29:24.958Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"qbsjqs8","timestamp":"2026-09-18T17:29:29.958Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"2zfiafl","timestamp":"2026-09-18T17:29:34.958Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"72h6np8","timestamp":"2026-09-18T17:29:39.959Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ffc0ors","timestamp":"2026-09-18T17:29:44.959Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"4gzi44a","timestamp":"2026-09-18T17:29:51.756Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"rjaylbm","timestamp":"2026-09-18T17:29:51.758Z","level":"info","message":"Connecting to Telegram MTProto network..."}
-{"id":"9ovkol6","timestamp":"2026-09-18T17:29:51.758Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
-{"id":"7w4xa30","timestamp":"2026-09-18T17:29:51.781Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"t0w3bow","timestamp":"2026-09-18T17:29:52.123Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"fenomb7","timestamp":"2026-09-18T17:29:53.274Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
-{"id":"1dwh9ya","timestamp":"2026-09-18T17:29:53.274Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
-{"id":"8gyk8k9","timestamp":"2026-09-18T17:29:53.274Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"z24r1y1","timestamp":"2026-09-18T17:29:54.961Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"z5wj994","timestamp":"2026-09-18T17:29:56.370Z","level":"debug","message":"GET /api/status"}
-{"id":"4rrw459","timestamp":"2026-09-18T17:29:58.320Z","level":"debug","message":"GET /api/jobs"}
-{"id":"2awsco7","timestamp":"2026-09-18T17:29:59.961Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"t23tfmv","timestamp":"2026-09-18T17:30:04.963Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"c7055eb","timestamp":"2026-09-18T17:30:07.273Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"4c7vloc","timestamp":"2026-09-18T17:30:07.274Z","level":"info","message":"Connecting to Telegram MTProto network..."}
-{"id":"tclvlce","timestamp":"2026-09-18T17:30:07.275Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
-{"id":"3o23edc","timestamp":"2026-09-18T17:30:07.299Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"wcjnd20","timestamp":"2026-09-18T17:30:07.594Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"3g1oaf1","timestamp":"2026-09-18T17:30:08.163Z","level":"debug","message":"GET /"}
-{"id":"o15ha7g","timestamp":"2026-09-18T17:30:08.861Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
-{"id":"06fwct7","timestamp":"2026-09-18T17:30:08.861Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
-{"id":"pgjh5or","timestamp":"2026-09-18T17:30:08.861Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"hhr431f","timestamp":"2026-09-18T17:30:09.961Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"5ze37zd","timestamp":"2026-09-18T17:30:13.262Z","level":"debug","message":"GET /"}
-{"id":"oynkkip","timestamp":"2026-09-18T17:30:13.665Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"4rxu9xb","timestamp":"2026-09-18T17:30:13.748Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"fd5ic58","timestamp":"2026-09-18T17:30:18.658Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"0xygsg9","timestamp":"2026-09-18T17:30:23.660Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"g6fr9je","timestamp":"2026-09-18T17:30:28.662Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"5wfgdk5","timestamp":"2026-09-18T17:30:33.661Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"vup5g39","timestamp":"2026-09-18T17:30:38.666Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"c8ewzc4","timestamp":"2026-09-18T17:30:43.661Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"d0sneh3","timestamp":"2026-09-18T17:30:48.662Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"fwnwlja","timestamp":"2026-09-18T17:30:53.659Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"47pqo1e","timestamp":"2026-09-18T17:30:58.660Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"wtpnzul","timestamp":"2026-09-18T17:31:03.664Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"548m7c2","timestamp":"2026-09-18T17:31:08.664Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"g3jsubs","timestamp":"2026-09-18T17:31:13.662Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"yhf1r0t","timestamp":"2026-09-18T17:31:18.661Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ev96egl","timestamp":"2026-09-18T17:31:23.664Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"5my7tss","timestamp":"2026-09-18T17:31:28.665Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"at04asq","timestamp":"2026-09-18T17:31:33.666Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ylptue7","timestamp":"2026-09-18T17:31:38.665Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"0pqt2b4","timestamp":"2026-09-18T17:31:43.663Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"69fhhp5","timestamp":"2026-09-18T17:31:48.665Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"f1dsak6","timestamp":"2026-09-18T17:31:53.666Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"fs8hf2f","timestamp":"2026-09-18T17:31:58.664Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"3lpxih5","timestamp":"2026-09-18T17:32:03.667Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"9h2h7bc","timestamp":"2026-09-18T17:32:08.667Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"b6mkfbo","timestamp":"2026-09-18T17:32:13.673Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"gsz7uxl","timestamp":"2026-09-18T17:32:18.668Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"f1gke4e","timestamp":"2026-09-18T17:32:23.668Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"qdw03jc","timestamp":"2026-09-18T17:32:28.669Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"7333ssr","timestamp":"2026-09-18T17:32:33.670Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ou3x2j6","timestamp":"2026-09-18T17:32:38.671Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"espqu9p","timestamp":"2026-09-18T17:32:43.670Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"kdoj0v6","timestamp":"2026-09-18T17:32:48.671Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ysgqojl","timestamp":"2026-09-18T17:32:53.670Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"cwx92b0","timestamp":"2026-09-18T17:32:58.671Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"0fi63rl","timestamp":"2026-09-18T17:33:03.672Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"9rbxs97","timestamp":"2026-09-18T17:33:08.670Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"11hjhz5","timestamp":"2026-09-18T17:33:13.671Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"iar696j","timestamp":"2026-09-18T17:33:18.672Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"z2833dk","timestamp":"2026-09-18T17:33:24.380Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"rz6d6s4","timestamp":"2026-09-18T17:33:28.673Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"krdtt84","timestamp":"2026-09-18T17:33:33.672Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"j0hfyi6","timestamp":"2026-09-18T17:33:38.673Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"bee094h","timestamp":"2026-09-18T17:33:43.672Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"qjoplty","timestamp":"2026-09-18T17:33:48.676Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"whxfwr6","timestamp":"2026-09-18T17:33:53.675Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ztuzk1h","timestamp":"2026-09-18T17:33:58.676Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"oofpqgm","timestamp":"2026-09-18T17:34:03.676Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"bh24xom","timestamp":"2026-09-18T17:34:08.676Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"4yrpax1","timestamp":"2026-09-18T17:34:13.677Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"3bdrue0","timestamp":"2026-09-18T17:34:18.676Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"z579erb","timestamp":"2026-09-18T17:34:23.677Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"1w3a6gg","timestamp":"2026-09-18T17:34:28.677Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"uzyqm7j","timestamp":"2026-09-18T17:34:33.676Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"d2ia3gc","timestamp":"2026-09-18T17:34:38.677Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"rdbjxlz","timestamp":"2026-09-18T17:34:43.676Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"634pi9q","timestamp":"2026-09-18T17:34:48.679Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"mu8levf","timestamp":"2026-09-18T17:34:53.680Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"wupo321","timestamp":"2026-09-18T17:34:58.679Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ct3pxkg","timestamp":"2026-09-18T17:35:03.679Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"txumwdr","timestamp":"2026-09-18T17:35:08.680Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"yldh349","timestamp":"2026-09-18T17:35:13.681Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"5aqf0dd","timestamp":"2026-09-18T17:35:18.680Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"hb8nifm","timestamp":"2026-09-18T17:35:23.682Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"9xjjte3","timestamp":"2026-09-18T17:35:28.685Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"u7dw6cc","timestamp":"2026-09-18T17:35:33.680Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"5jnm4j1","timestamp":"2026-09-18T17:35:38.681Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"l8938po","timestamp":"2026-09-18T17:35:43.680Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"9trdvy9","timestamp":"2026-09-18T17:35:48.682Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"o4rplif","timestamp":"2026-09-18T17:35:53.685Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"bxrs36h","timestamp":"2026-09-18T17:35:59.401Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"k2ugigs","timestamp":"2026-09-18T17:36:04.401Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"j2zfq9l","timestamp":"2026-09-18T17:36:09.402Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ifqj56t","timestamp":"2026-09-18T17:36:14.402Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"5e9z7h2","timestamp":"2026-09-18T17:36:16.992Z","level":"info","message":"[Telegram Bot] Received voice message","meta":{"chatId":"-1004455941289","messageId":22,"fileId":"AwACAgIAAyEFAAMBCZhEqQADFmqtdpAyr0CRFN0p8-4fkhQk2xWVAAKAowACDClwSZHoA3s20VDHPQQ"}}
-{"id":"ymleg43","timestamp":"2026-09-18T17:36:17.083Z","level":"info","message":"[Telegram Bot] Downloaded voice file: /app/applet/data/audio/voice_1789752977083_22.oga (50312 bytes)"}
-{"id":"iua6xko","timestamp":"2026-09-18T17:36:18.072Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":12,"chat_id":"-1004455941289","message_id":22,"local_file_path":"/app/applet/data/audio/voice_1789752977083_22.oga","attempts":0}}
-{"id":"gtvlmrd","timestamp":"2026-09-18T17:36:18.073Z","level":"info","message":"[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription","meta":{"job_id":12,"chat_id":"-1004455941289"}}
-{"id":"09uf49o","timestamp":"2026-09-18T17:36:18.226Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.6-flash","meta":{"job_id":12}}
-{"id":"5kopqoe","timestamp":"2026-09-18T17:36:19.406Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"d60v86b","timestamp":"2026-09-18T17:36:20.166Z","level":"info","message":"[Gemini AI] Transcription succeeded with gemini-3.6-flash","meta":{"job_id":12,"text_preview":"Проверка удаления сообщения."}}
-{"id":"r16yaf7","timestamp":"2026-09-18T17:36:20.315Z","level":"info","message":"[Telegram Bot] Successfully deleted original voice message 22 in chat -1004455941289"}
-{"id":"l1ktzb0","timestamp":"2026-09-18T17:36:20.315Z","level":"info","message":"[DELETE SUCCESS] Deleted original voice message","meta":{"job_id":12,"chat_id":"-1004455941289","message_id":22,"deleted_at":"2026-09-18T17:36:20.315Z"}}
-{"id":"ibk49is","timestamp":"2026-09-18T17:36:20.316Z","level":"info","message":"[JOB COMPLETE VIA AI]\njob_id=12\ntext=Проверка удаления сообщения.","meta":{"job_id":12,"chat_id":"-1004455941289","message_id":22,"bot_reply_message_id":23}}
-{"id":"hrkhcwu","timestamp":"2026-09-18T17:36:24.382Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"olkmnaz","timestamp":"2026-09-18T17:36:28.686Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"09h0ysi","timestamp":"2026-09-18T17:36:34.402Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"k5diopz","timestamp":"2026-09-18T17:36:39.404Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"x30n5eg","timestamp":"2026-09-18T17:36:44.404Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"nl2yarf","timestamp":"2026-09-18T17:36:48.688Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"sgfznku","timestamp":"2026-09-18T17:36:53.689Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"9gowbam","timestamp":"2026-09-18T17:36:58.687Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"zhyir7a","timestamp":"2026-09-18T17:37:03.691Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"on0on41","timestamp":"2026-09-18T17:37:08.686Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"axqa0dd","timestamp":"2026-09-18T17:37:13.690Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"u2sskma","timestamp":"2026-09-18T17:37:18.688Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"4ks6h68","timestamp":"2026-09-18T17:37:23.688Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"h4k3d5x","timestamp":"2026-09-18T17:37:28.687Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"fvmueos","timestamp":"2026-09-18T17:37:33.691Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"bl5rrxs","timestamp":"2026-09-18T17:37:38.689Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"mhgk7hz","timestamp":"2026-09-18T17:37:43.689Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"uredthc","timestamp":"2026-09-18T17:37:48.691Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"2r3dnqv","timestamp":"2026-09-18T17:37:53.690Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"dr0y7t5","timestamp":"2026-09-18T17:37:58.693Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"xk5k62p","timestamp":"2026-09-18T17:38:03.697Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"x2kusjt","timestamp":"2026-09-18T17:38:08.691Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"i1clzur","timestamp":"2026-09-18T17:38:13.692Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"9lt5ig5","timestamp":"2026-09-18T17:38:18.705Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"g45be11","timestamp":"2026-09-18T17:38:23.692Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"7om6uvj","timestamp":"2026-09-18T17:38:29.402Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"er6kjd5","timestamp":"2026-09-18T17:38:33.693Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"7m1yaaf","timestamp":"2026-09-18T17:38:38.692Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"ft3upqo","timestamp":"2026-09-18T17:38:43.694Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"fdsy05x","timestamp":"2026-09-18T17:38:48.693Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"142q5ox","timestamp":"2026-09-18T17:38:53.696Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"uxg70xi","timestamp":"2026-09-18T17:38:58.695Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"3wnxz94","timestamp":"2026-09-18T17:39:03.698Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"fdzyvj2","timestamp":"2026-09-18T17:39:08.694Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"yeyzih3","timestamp":"2026-09-18T17:39:13.697Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"e93idme","timestamp":"2026-09-18T17:39:18.698Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"rpzqryh","timestamp":"2026-09-18T17:39:23.697Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"4qmuflq","timestamp":"2026-09-18T17:39:28.698Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"dd0p8if","timestamp":"2026-09-18T17:39:35.642Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"1arl99y","timestamp":"2026-09-18T17:39:38.700Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"eijq2s8","timestamp":"2026-09-18T17:39:43.052Z","level":"debug","message":"GET /"}
-{"id":"kczam83","timestamp":"2026-09-18T17:39:43.526Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"2cp8zoh","timestamp":"2026-09-18T17:39:43.607Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"lb8fshi","timestamp":"2026-09-18T17:39:48.528Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"2sz7wiq","timestamp":"2026-09-18T17:39:53.522Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"mzr2629","timestamp":"2026-09-18T17:39:58.523Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"qymuv6l","timestamp":"2026-09-18T17:40:03.529Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"6scpr0w","timestamp":"2026-09-18T17:40:08.524Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"oj2msnf","timestamp":"2026-09-18T17:40:13.525Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"8teeqek","timestamp":"2026-09-18T17:40:18.525Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"7wl282w","timestamp":"2026-09-18T17:40:24.679Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"5lmbj1q","timestamp":"2026-09-18T17:40:24.681Z","level":"info","message":"Connecting to Telegram MTProto network..."}
-{"id":"xlonf2v","timestamp":"2026-09-18T17:40:24.681Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
-{"id":"fbn12rs","timestamp":"2026-09-18T17:40:24.703Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"644fczt","timestamp":"2026-09-18T17:40:24.930Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"29duaed","timestamp":"2026-09-18T17:40:26.090Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
-{"id":"qpznccj","timestamp":"2026-09-18T17:40:26.091Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
-{"id":"2y1ocv1","timestamp":"2026-09-18T17:40:26.091Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"43s0jzi","timestamp":"2026-09-18T17:40:26.295Z","level":"debug","message":"GET /api/status"}
+{"id":"4w4743z","timestamp":"2026-09-18T18:01:50.446Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"kkb1lg0","timestamp":"2026-09-18T18:01:50.448Z","level":"info","message":"Connecting to Telegram MTProto network..."}
+{"id":"gk8lw69","timestamp":"2026-09-18T18:01:50.448Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
+{"id":"7d9g3ul","timestamp":"2026-09-18T18:01:50.475Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
+{"id":"w1mnfey","timestamp":"2026-09-18T18:01:50.817Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
+{"id":"nd1siva","timestamp":"2026-09-18T18:01:51.216Z","level":"debug","message":"GET /"}
+{"id":"ia3no5e","timestamp":"2026-09-18T18:01:51.784Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
+{"id":"kfdsvae","timestamp":"2026-09-18T18:01:51.784Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
+{"id":"swz6lk3","timestamp":"2026-09-18T18:01:51.785Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
+{"id":"uyfoi3i","timestamp":"2026-09-18T18:01:52.789Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","attempts":1}}
+{"id":"4out9ch","timestamp":"2026-09-18T18:01:52.790Z","level":"error","message":"[JOB FAILED] Voice file not found locally on disk","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","error":"Voice file not found at local path: /tmp/voice_sample_2.ogg"}}
+{"id":"913xywq","timestamp":"2026-09-18T18:01:52.795Z","level":"error","message":"[JOB FAILED] Worker failed during job processing","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"error_message":"Voice file not found at local path: /tmp/voice_sample_2.ogg","error_stack":"Error: Voice file not found at local path: /tmp/voice_sample_2.ogg\n    at TranscriberWorkerService.sendVoiceAndAwaitTranscription (/app/applet/src/transcriber/worker.ts:476:13)\n    at async TranscriberWorkerService.processPendingQueue (/app/applet/src/transcriber/worker.ts:752:7)\n    at async Timeout._onTimeout (/app/applet/src/transcriber/worker.ts:712:9)"}}
+{"id":"15gaiex","timestamp":"2026-09-18T18:01:55.650Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"vllcszw","timestamp":"2026-09-18T18:01:55.652Z","level":"info","message":"Connecting to Telegram MTProto network..."}
+{"id":"23bmvr5","timestamp":"2026-09-18T18:01:55.652Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
+{"id":"2ly3iti","timestamp":"2026-09-18T18:01:55.690Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
+{"id":"ojrtdzi","timestamp":"2026-09-18T18:01:56.776Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
+{"id":"fchfumd","timestamp":"2026-09-18T18:01:57.312Z","level":"debug","message":"GET /"}
+{"id":"sf21mzt","timestamp":"2026-09-18T18:01:57.421Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
+{"id":"s5z58tj","timestamp":"2026-09-18T18:01:57.422Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
+{"id":"42xpele","timestamp":"2026-09-18T18:01:57.422Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
+{"id":"xe9c7xz","timestamp":"2026-09-18T18:01:59.441Z","level":"info","message":"[Telegram Bot] Received voice message","meta":{"chatId":"-1004455941289","messageId":26,"fileId":"AwACAgIAAyEFAAMBCZhEqQADGmqtfJfBBULiyGAYkBM_jZqGLdRwAALZowACDClwSXswEgh2KjP3PQQ"}}
+{"id":"kz1or3f","timestamp":"2026-09-18T18:01:59.489Z","level":"info","message":"[Telegram Bot] Downloaded voice file: /app/applet/data/audio/voice_1789754519488_26.oga (27240 bytes)"}
+{"id":"ap9ut15","timestamp":"2026-09-18T18:02:00.434Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":6,"chat_id":"-1004455941289","message_id":26,"local_file_path":"/app/applet/data/audio/voice_1789754519488_26.oga","attempts":0}}
+{"id":"xv7bdk8","timestamp":"2026-09-18T18:02:00.434Z","level":"info","message":"[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription","meta":{"job_id":6,"chat_id":"-1004455941289"}}
+{"id":"vi4lsob","timestamp":"2026-09-18T18:02:00.555Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.6-flash","meta":{"job_id":6}}
+{"id":"03iaq40","timestamp":"2026-09-18T18:02:03.761Z","level":"info","message":"[Gemini AI] Transcription succeeded with gemini-3.6-flash","meta":{"job_id":6,"text_preview":"Ты работаешь еще?"}}
+{"id":"u3ku52b","timestamp":"2026-09-18T18:02:03.918Z","level":"info","message":"[Telegram Bot] Successfully deleted original voice message 26 in chat -1004455941289"}
+{"id":"fk5n52k","timestamp":"2026-09-18T18:02:03.919Z","level":"info","message":"[DELETE SUCCESS] Deleted original voice message","meta":{"job_id":6,"chat_id":"-1004455941289","message_id":26,"deleted_at":"2026-09-18T18:02:03.919Z"}}
+{"id":"5ro29o4","timestamp":"2026-09-18T18:02:03.920Z","level":"info","message":"[JOB COMPLETE VIA AI]\njob_id=6\ntext=Ты работаешь еще?","meta":{"job_id":6,"chat_id":"-1004455941289","message_id":26,"bot_reply_message_id":27}}
+{"id":"vzmioxj","timestamp":"2026-09-18T18:02:04.950Z","level":"debug","message":"GET /"}
+{"id":"2if1jd5","timestamp":"2026-09-18T18:02:05.106Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"taeu3ae","timestamp":"2026-09-18T18:02:05.826Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"8a249zp","timestamp":"2026-09-18T18:02:05.917Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"7of95s8","timestamp":"2026-09-18T18:02:10.831Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"19axjgj","timestamp":"2026-09-18T18:02:15.434Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"jgolfqo","timestamp":"2026-09-18T18:02:15.827Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"5iy3xq0","timestamp":"2026-09-18T18:02:20.825Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"r3zlkci","timestamp":"2026-09-18T18:02:25.512Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"uj8vv4d","timestamp":"2026-09-18T18:02:25.826Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"slfsivk","timestamp":"2026-09-18T18:02:30.826Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"pqre8z3","timestamp":"2026-09-18T18:02:35.574Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"to1tzsu","timestamp":"2026-09-18T18:02:35.829Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"7oqw6zj","timestamp":"2026-09-18T18:02:40.840Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"dttd2ww","timestamp":"2026-09-18T18:02:45.914Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"65tons7","timestamp":"2026-09-18T18:02:46.524Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"9548na4","timestamp":"2026-09-18T18:02:51.197Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"y3a2kvd","timestamp":"2026-09-18T18:02:51.198Z","level":"info","message":"Connecting to Telegram MTProto network..."}
+{"id":"cnujibh","timestamp":"2026-09-18T18:02:51.199Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
+{"id":"qmwz3a4","timestamp":"2026-09-18T18:02:51.223Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
+{"id":"jkr46k7","timestamp":"2026-09-18T18:02:51.641Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
+{"id":"8t7jlmr","timestamp":"2026-09-18T18:02:52.699Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
+{"id":"d1sp3j5","timestamp":"2026-09-18T18:02:52.700Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
+{"id":"p2buq13","timestamp":"2026-09-18T18:02:52.700Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
+{"id":"sg12ok4","timestamp":"2026-09-18T18:02:56.526Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"9qd86u4","timestamp":"2026-09-18T18:02:56.711Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"sgymo46","timestamp":"2026-09-18T18:02:56.989Z","level":"debug","message":"GET /health"}
+{"id":"rdzxpzx","timestamp":"2026-09-18T18:02:58.784Z","level":"debug","message":"GET /api/status"}
+{"id":"vjvappz","timestamp":"2026-09-18T18:03:01.104Z","level":"debug","message":"POST /api/admin/login"}
+{"id":"w29drqt","timestamp":"2026-09-18T18:03:01.523Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"7pzs74x","timestamp":"2026-09-18T18:03:02.899Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"loskc1j","timestamp":"2026-09-18T18:10:31.430Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","attempts":1}}
+{"id":"l8mopo1","timestamp":"2026-09-18T18:10:31.430Z","level":"error","message":"[JOB FAILED] Voice file not found locally on disk","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","error":"Voice file not found at local path: /tmp/voice_sample_2.ogg"}}
+{"id":"6mlilaq","timestamp":"2026-09-18T18:10:31.437Z","level":"error","message":"[JOB FAILED] Worker failed during job processing","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"error_message":"Voice file not found at local path: /tmp/voice_sample_2.ogg","error_stack":"Error: Voice file not found at local path: /tmp/voice_sample_2.ogg\n    at TranscriberWorkerService.sendVoiceAndAwaitTranscription (/app/applet/src/transcriber/worker.ts:476:13)\n    at async TranscriberWorkerService.processPendingQueue (/app/applet/src/transcriber/worker.ts:752:7)\n    at async Timeout._onTimeout (/app/applet/src/transcriber/worker.ts:712:9)"}}
+{"id":"0wegb6u","timestamp":"2026-09-18T18:10:35.043Z","level":"debug","message":"GET /"}
+{"id":"wthjd31","timestamp":"2026-09-18T18:10:35.539Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"eksltaw","timestamp":"2026-09-18T18:10:35.630Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"gpvbyfq","timestamp":"2026-09-18T18:10:40.559Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"hbfkvlk","timestamp":"2026-09-18T18:10:45.558Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"1dxb8jd","timestamp":"2026-09-18T18:10:50.560Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"784c35y","timestamp":"2026-09-18T18:10:55.561Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"j48k6un","timestamp":"2026-09-18T18:11:00.560Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"lnbrv0g","timestamp":"2026-09-18T18:11:05.563Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"cixev0n","timestamp":"2026-09-18T18:11:10.563Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"oevt87n","timestamp":"2026-09-18T18:11:15.562Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"iw8tmbg","timestamp":"2026-09-18T18:11:20.563Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"a6gqlaj","timestamp":"2026-09-18T18:11:25.621Z","level":"debug","message":"GET /"}
+{"id":"fdtmffx","timestamp":"2026-09-18T18:11:26.109Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"c56wjnb","timestamp":"2026-09-18T18:11:26.199Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"fevrtzv","timestamp":"2026-09-18T18:11:31.562Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"uupu7ld","timestamp":"2026-09-18T18:11:36.560Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"xoyazqj","timestamp":"2026-09-18T18:11:41.564Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"2r362g6","timestamp":"2026-09-18T18:11:46.566Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"mqnvc9r","timestamp":"2026-09-18T18:11:51.564Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"7m9v62z","timestamp":"2026-09-18T18:11:56.566Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"k2wm3mv","timestamp":"2026-09-18T18:12:01.566Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"zqgmt6q","timestamp":"2026-09-18T18:12:06.565Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"felf1dd","timestamp":"2026-09-18T18:12:11.566Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"t7earzx","timestamp":"2026-09-18T18:12:16.565Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"6kzq6rt","timestamp":"2026-09-18T18:12:21.568Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"0p6oa4w","timestamp":"2026-09-18T18:12:26.567Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"6si99cp","timestamp":"2026-09-18T18:12:31.568Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"v9ucglk","timestamp":"2026-09-18T18:12:36.568Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"zw91513","timestamp":"2026-09-18T18:12:44.232Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"97r3jti","timestamp":"2026-09-18T18:12:44.233Z","level":"info","message":"Connecting to Telegram MTProto network..."}
+{"id":"9hhzz83","timestamp":"2026-09-18T18:12:44.234Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
+{"id":"tsnj3aq","timestamp":"2026-09-18T18:12:44.260Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
+{"id":"sevfzhg","timestamp":"2026-09-18T18:12:44.697Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
+{"id":"v8yshzv","timestamp":"2026-09-18T18:12:44.833Z","level":"debug","message":"GET /"}
+{"id":"bvg4fmu","timestamp":"2026-09-18T18:12:44.893Z","level":"debug","message":"GET /"}
+{"id":"aawrunk","timestamp":"2026-09-18T18:12:46.260Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
+{"id":"t4mtlw3","timestamp":"2026-09-18T18:12:46.260Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
+{"id":"lit9l9h","timestamp":"2026-09-18T18:12:46.260Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
+{"id":"s9wzn3n","timestamp":"2026-09-18T18:12:46.569Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"z3birh6","timestamp":"2026-09-18T18:12:51.569Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"zztn6uq","timestamp":"2026-09-18T18:12:56.572Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"99hcjm5","timestamp":"2026-09-18T18:12:59.375Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"tlqgdu3","timestamp":"2026-09-18T18:12:59.377Z","level":"info","message":"Connecting to Telegram MTProto network..."}
+{"id":"bhm8qz1","timestamp":"2026-09-18T18:12:59.378Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
+{"id":"xgxws70","timestamp":"2026-09-18T18:12:59.407Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
+{"id":"otwuimj","timestamp":"2026-09-18T18:12:59.737Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
+{"id":"obrewc5","timestamp":"2026-09-18T18:13:00.648Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
+{"id":"oc3urou","timestamp":"2026-09-18T18:13:00.648Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
+{"id":"fty6ee4","timestamp":"2026-09-18T18:13:00.648Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
+{"id":"dgdl4oe","timestamp":"2026-09-18T18:13:01.573Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"tj4k003","timestamp":"2026-09-18T18:13:02.262Z","level":"debug","message":"GET /health"}
