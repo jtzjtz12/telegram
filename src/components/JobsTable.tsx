@@ -18,9 +18,10 @@ const BADGE_STYLES: Record<JobStatus, string> = {
 };
 
 const DELETE_BADGE_STYLES: Record<string, string> = {
-  pending: 'bg-amber-50 text-amber-700 border-amber-200',
   deleted: 'bg-emerald-50 text-emerald-700 border-emerald-200',
   failed: 'bg-rose-50 text-rose-700 border-rose-200',
+  not_deleted: 'bg-slate-50 text-slate-500 border-slate-200',
+  pending: 'bg-slate-50 text-slate-500 border-slate-200',
 };
 
 export function JobsTable({ jobs, loading, onRefresh, onJobUpdated }: JobsTableProps) {
@@ -162,7 +163,7 @@ export function JobsTable({ jobs, loading, onRefresh, onJobUpdated }: JobsTableP
                       <div>
                         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium border bg-rose-50 text-rose-700 border-rose-200" title={job.delete_error || 'Deletion failed'}>
                           <AlertTriangle className="w-3 h-3 text-rose-600" />
-                          Delete Failed
+                          Delete failed
                         </span>
                         {job.delete_error && (
                           <div className="text-rose-600 text-[10px] mt-0.5 truncate max-w-[120px]" title={job.delete_error}>
@@ -173,7 +174,7 @@ export function JobsTable({ jobs, loading, onRefresh, onJobUpdated }: JobsTableP
                     ) : (
                       <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium border bg-slate-50 text-slate-500 border-slate-200">
                         <Clock className="w-3 h-3 text-slate-400" />
-                        Pending
+                        Not deleted
                       </span>
                     )}
                   </td>
@@ -292,8 +293,9 @@ export function JobsTable({ jobs, loading, onRefresh, onJobUpdated }: JobsTableP
                 <span className="text-slate-400 block text-[10px] uppercase font-sans font-semibold">Original Voice Deletion</span>
                 <div className="flex items-center gap-2">
                   <span className="text-slate-400">delete_status:</span>
-                  <span className={`inline-block font-semibold px-2 py-0.5 rounded text-[11px] border ${DELETE_BADGE_STYLES[selectedJob.delete_status || 'pending']}`}>
-                    {selectedJob.delete_status || 'pending'}
+                  <span className={`inline-block font-semibold px-2 py-0.5 rounded text-[11px] border ${DELETE_BADGE_STYLES[selectedJob.delete_status || 'not_deleted']}`}>
+                    {selectedJob.delete_status === 'deleted' ? 'Deleted' :
+                     selectedJob.delete_status === 'failed' ? 'Delete failed' : 'Not deleted'}
                   </span>
                 </div>
                 <div><span className="text-slate-400">deleted_at:</span> <span className="text-slate-900">{selectedJob.deleted_at || 'null'}</span></div>

@@ -51,9 +51,23 @@ class DatabaseService {
           attempts INTEGER NOT NULL DEFAULT 0,
           outgoing_mtproto_message_id INTEGER,
           bot_reply_message_id INTEGER,
-          delete_status TEXT
+          delete_status TEXT DEFAULT 'not_deleted',
+          deleted_at TEXT,
+          delete_error TEXT
         );
       `);
+
+      // Ensure new columns exist on existing databases
+      try {
+        await this.client.execute('ALTER TABLE jobs ADD COLUMN deleted_at TEXT');
+      } catch {
+        // column already exists
+      }
+      try {
+        await this.client.execute('ALTER TABLE jobs ADD COLUMN delete_error TEXT');
+      } catch {
+        // column already exists
+      }
 
       logger.info(`SQLite database connected at ${config.databasePath}`);
       this.isInitialized = true;
@@ -210,7 +224,9 @@ class DatabaseService {
       attempts: Number(row.attempts || 0),
       outgoing_mtproto_message_id: row.outgoing_mtproto_message_id != null ? Number(row.outgoing_mtproto_message_id) : null,
       bot_reply_message_id: row.bot_reply_message_id != null ? Number(row.bot_reply_message_id) : null,
-      delete_status: (row.delete_status as Job['delete_status']) || null,
+      delete_status: (row.delete_status as Job['delete_status']) || 'not_deleted',
+      deleted_at: row.deleted_at ? String(row.deleted_at) : null,
+      delete_error: row.delete_error ? String(row.delete_error) : null,
     };
   }
 
@@ -285,7 +301,9 @@ class DatabaseService {
       attempts: jobData.attempts || 0,
       outgoing_mtproto_message_id: jobData.outgoing_mtproto_message_id || null,
       bot_reply_message_id: jobData.bot_reply_message_id || null,
-      delete_status: jobData.delete_status || 'pending',
+      delete_status: jobData.delete_status || 'not_deleted',
+      deleted_at: jobData.deleted_at || null,
+      delete_error: jobData.delete_error || null,
     };
 
     if (this.client) {
@@ -295,8 +313,8 @@ class DatabaseService {
             telegram_chat_id, telegram_message_id, sender_user_id, original_file_id,
             local_file_path, status, created_at, started_at, completed_at, transcription,
             error, transcriber_message_id, attempts, outgoing_mtproto_message_id,
-            bot_reply_message_id, delete_status
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING *`,
+            bot_reply_message_id, delete_status, deleted_at, delete_error
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING *`,
           args: [
             newJob.telegram_chat_id,
             newJob.telegram_message_id,
@@ -314,6 +332,8 @@ class DatabaseService {
             newJob.outgoing_mtproto_message_id,
             newJob.bot_reply_message_id,
             newJob.delete_status,
+            newJob.deleted_at,
+            newJob.delete_error,
           ] as any,
         });
 

@@ -17,7 +17,7 @@ export interface Job {
   attempts: number;
   outgoing_mtproto_message_id?: number | null;
   bot_reply_message_id?: number | null;
-  delete_status?: 'pending' | 'deleted' | 'failed' | null;
+  delete_status?: 'deleted' | 'failed' | 'not_deleted' | 'pending' | null;
   deleted_at?: string | null;
   delete_error?: string | null;
 }

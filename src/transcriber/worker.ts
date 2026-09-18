@@ -295,14 +295,50 @@ export class TranscriberWorkerService {
       return false;
     }
 
-    // Step 2: Complete the job in SQLite (original voice deletion deferred to subsequent stage per requirement)
+    // Step 2: Delete the original voice message ONLY after sendMessage succeeded
+    let deleteStatus: Job['delete_status'] = 'not_deleted';
+    let deletedAt: string | null = null;
+    let deleteError: string | null = null;
+
+    try {
+      const delResult = await telegramBot.deleteMessage(
+        correlation.telegramChatId,
+        correlation.telegramMessageId
+      );
+      if (delResult.success) {
+        deleteStatus = 'deleted';
+        deletedAt = new Date().toISOString();
+        logger.info(`[DELETE SUCCESS] Deleted original voice message`, {
+          job_id: correlation.jobId,
+          chat_id: correlation.telegramChatId,
+          message_id: correlation.telegramMessageId,
+          deleted_at: deletedAt,
+        });
+      } else {
+        deleteStatus = 'failed';
+        deleteError = delResult.error || 'Failed to delete message';
+        logger.warn(`[DELETE FAILED] Failed to delete original voice message`, {
+          job_id: correlation.jobId,
+          chat_id: correlation.telegramChatId,
+          message_id: correlation.telegramMessageId,
+          error: deleteError,
+        });
+      }
+    } catch (delErr: unknown) {
+      deleteStatus = 'failed';
+      deleteError = delErr instanceof Error ? delErr.message : String(delErr);
+    }
+
+    // Step 3: Complete the job in SQLite
     await db.updateJob(correlation.jobId, {
       status: 'completed',
       transcription: cleanText,
       bot_reply_message_id: replyResult.message_id,
       completed_at: receivedAt.toISOString(),
       transcriber_message_id: msg.id,
-      delete_status: 'pending',
+      delete_status: deleteStatus,
+      deleted_at: deletedAt,
+      delete_error: deleteError,
     });
 
     // [JOB COMPLETE] Structured Log with all required metrics
@@ -472,12 +508,48 @@ export class TranscriberWorkerService {
         transcriptionText
       );
 
+      // Only delete original voice message after sendMessage succeeded
+      let deleteStatus: Job['delete_status'] = 'not_deleted';
+      let deletedAt: string | null = null;
+      let deleteError: string | null = null;
+
+      try {
+        const delResult = await telegramBot.deleteMessage(
+          job.telegram_chat_id,
+          job.telegram_message_id
+        );
+        if (delResult.success) {
+          deleteStatus = 'deleted';
+          deletedAt = new Date().toISOString();
+          logger.info(`[DELETE SUCCESS] Deleted original voice message`, {
+            job_id: jobId,
+            chat_id: job.telegram_chat_id,
+            message_id: job.telegram_message_id,
+            deleted_at: deletedAt,
+          });
+        } else {
+          deleteStatus = 'failed';
+          deleteError = delResult.error || 'Failed to delete message';
+          logger.warn(`[DELETE FAILED] Failed to delete original voice message`, {
+            job_id: jobId,
+            chat_id: job.telegram_chat_id,
+            message_id: job.telegram_message_id,
+            error: deleteError,
+          });
+        }
+      } catch (delErr: unknown) {
+        deleteStatus = 'failed';
+        deleteError = delErr instanceof Error ? delErr.message : String(delErr);
+      }
+
       await db.updateJob(jobId, {
         status: 'completed',
         transcription: transcriptionText,
         bot_reply_message_id: replyResult.message_id,
         completed_at: new Date().toISOString(),
-        delete_status: 'pending',
+        delete_status: deleteStatus,
+        deleted_at: deletedAt,
+        delete_error: deleteError,
       });
 
       logger.info(`[JOB COMPLETE VIA AI]\njob_id=${jobId}\ntext=${transcriptionText}`, {

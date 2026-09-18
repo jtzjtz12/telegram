@@ -66,75 +66,118 @@ export class TelegramBotService {
   ): Promise<{ message_id: number; sent_at: string }> {
     const sentAt = new Date().toISOString();
 
-    if (this.botToken) {
-      try {
-        const url = `https://api.telegram.org/bot${this.botToken}/sendMessage`;
-        // First try: with reply_to_message_id
-        let res = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: chatId,
-            reply_to_message_id: replyToMessageId,
-            text: `🎙 Расшифровка:\n\n${text}`,
-          }),
-        });
+    if (!this.botToken) {
+      throw new Error('Telegram bot token not configured');
+    }
 
-        if (res.ok) {
-          const data = (await res.json()) as { ok: boolean; result?: { message_id: number } };
-          if (data.ok && data.result) {
-            return {
-              message_id: data.result.message_id,
-              sent_at: sentAt,
-            };
-          }
+    const url = `https://api.telegram.org/bot${this.botToken}/sendMessage`;
+    let lastError = '';
+
+    // First try: with reply_to_message_id
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          reply_to_message_id: replyToMessageId,
+          text: text,
+        }),
+      });
+
+      if (res.ok) {
+        const data = (await res.json()) as { ok: boolean; result?: { message_id: number } };
+        if (data.ok && data.result) {
+          return {
+            message_id: data.result.message_id,
+            sent_at: sentAt,
+          };
         }
-
-        // Second try: without reply_to_message_id (useful in channels where replies are forbidden)
-        const firstErr = await res.text();
+      } else {
+        lastError = await res.text();
         logger.warn('Telegram Bot API reply failed, retrying without reply_to_message_id', {
           chatId,
           replyToMessageId,
-          error: firstErr,
-        });
-
-        res = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text: `🎙 Расшифровка голосового сообщения:\n\n${text}`,
-          }),
-        });
-
-        if (res.ok) {
-          const data = (await res.json()) as { ok: boolean; result?: { message_id: number } };
-          if (data.ok && data.result) {
-            return {
-              message_id: data.result.message_id,
-              sent_at: sentAt,
-            };
-          }
-        } else {
-          const secondErr = await res.text();
-          logger.error('Telegram Bot API direct sendMessage also failed', undefined, {
-            status: res.status,
-            error: secondErr,
-          });
-        }
-      } catch (err) {
-        logger.warn('Telegram Bot API network call failed', {
-          error: err instanceof Error ? err.message : String(err),
+          error: lastError,
         });
       }
+    } catch (netErr: unknown) {
+      lastError = netErr instanceof Error ? netErr.message : String(netErr);
+      logger.warn('Telegram Bot API network call failed on first attempt', { error: lastError });
     }
 
-    const simulatedMsgId = Math.floor(10000 + Math.random() * 90000);
-    logger.info(`[Bot Reply] Simulated reply fallback (msg_id=${simulatedMsgId})`);
-    return {
-      message_id: simulatedMsgId,
-      sent_at: sentAt,
-    };
+    // Second try: without reply_to_message_id (useful in channels where replies are forbidden)
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text,
+        }),
+      });
+
+      if (res.ok) {
+        const data = (await res.json()) as { ok: boolean; result?: { message_id: number } };
+        if (data.ok && data.result) {
+          return {
+            message_id: data.result.message_id,
+            sent_at: sentAt,
+          };
+        }
+      }
+
+      const secondErr = await res.text();
+      throw new Error(`Telegram Bot API sendMessage failed: ${res.status} ${secondErr}`);
+    } catch (err: unknown) {
+      const errMsg = err instanceof Error ? err.message : String(err);
+      logger.error('Telegram Bot API direct sendMessage failed', undefined, {
+        chatId,
+        error: errMsg,
+      });
+      throw new Error(`Telegram Bot API sendMessage failed: ${errMsg}`);
+    }
+  }
+
+  /**
+   * Deletes a message in Telegram chat via Bot API deleteMessage.
+   */
+  public async deleteMessage(chatId: string, messageId: number): Promise<{ success: boolean; error?: string }> {
+    if (!this.botToken) {
+      return { success: false, error: 'Telegram bot token not configured' };
+    }
+
+    try {
+      const url = `https://api.telegram.org/bot${this.botToken}/deleteMessage`;
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          message_id: messageId,
+        }),
+      });
+
+      if (res.ok) {
+        const data = (await res.json()) as { ok: boolean; result?: boolean; description?: string };
+        if (data.ok && data.result) {
+          logger.info(`[Telegram Bot] Successfully deleted original voice message ${messageId} in chat ${chatId}`);
+          return { success: true };
+        } else {
+          const errMsg = data.description || 'Unknown Telegram deleteMessage error';
+          logger.warn(`[Telegram Bot] deleteMessage rejected: ${errMsg}`, { chatId, messageId });
+          return { success: false, error: errMsg };
+        }
+      } else {
+        const errText = await res.text();
+        logger.warn(`[Telegram Bot] deleteMessage HTTP ${res.status}: ${errText}`, { chatId, messageId });
+        return { success: false, error: `HTTP ${res.status}: ${errText}` };
+      }
+    } catch (err: unknown) {
+      const errMsg = err instanceof Error ? err.message : String(err);
+      logger.error(`[Telegram Bot] deleteMessage network exception`, err, { chatId, messageId });
+      return { success: false, error: errMsg };
+    }
   }
 
   /**
