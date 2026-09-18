@@ -8,7 +8,7 @@ if (!process.env.TELEGRAM_BOT_TOKEN) {
   dotenv.config({ path: path.resolve(process.cwd(), '.env.example') });
 }
 
-export const TELEGRAM_SESSION_FILE_PATH = '/app/data/telegram-session.txt';
+export const TELEGRAM_SESSION_FILE_PATH = path.resolve(process.cwd(), 'data', 'telegram-session.txt');
 
 /**
  * Loads the Telegram MTProto StringSession.
