@@ -1,8 +1,11 @@
 import dotenv from 'dotenv';
 import path from 'path';
 
-// Load environment variables from .env file
+// Load environment variables from .env or .env.example
 dotenv.config();
+if (!process.env.TELEGRAM_BOT_TOKEN) {
+  dotenv.config({ path: path.resolve(process.cwd(), '.env.example') });
+}
 
 export interface AppConfig {
   port: number;

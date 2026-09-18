@@ -361,6 +361,60 @@ export class TranscriberWorkerService {
   }
 
   /**
+   * Transcribes audio using Google GenAI (Gemini) speech recognition.
+   */
+  public async transcribeWithGemini(job: Job): Promise<string> {
+    const { GoogleGenAI } = await import('@google/genai');
+    const ai = new GoogleGenAI();
+    const audioBuffer = fs.readFileSync(job.local_file_path);
+    const base64Audio = audioBuffer.toString('base64');
+
+    const candidateModels = ['gemini-3.6-flash', 'gemini-3.8-flash', 'gemini-2.5-pro'];
+    let lastError: Error | null = null;
+
+    for (const model of candidateModels) {
+      try {
+        logger.info(`[Gemini AI] Transcribing audio with model ${model}`, { job_id: job.id });
+        const response = await ai.models.generateContent({
+          model,
+          contents: [
+            {
+              role: 'user',
+              parts: [
+                {
+                  inlineData: {
+                    mimeType: 'audio/ogg',
+                    data: base64Audio,
+                  },
+                },
+                {
+                  text: 'Сделай точную и чистую расшифровку этого аудиосообщения на языке оригинала. Выведи только текст расшифровки, без лишних комментариев, пояснений или вводных слов.',
+                },
+              ],
+            },
+          ],
+        });
+
+        const text = response.text?.trim();
+        if (text) {
+          logger.info(`[Gemini AI] Transcription succeeded with ${model}`, {
+            job_id: job.id,
+            text_preview: text.slice(0, 80),
+          });
+          return text;
+        }
+      } catch (err) {
+        lastError = err instanceof Error ? err : new Error(String(err));
+        logger.warn(`[Gemini AI] Model ${model} failed, trying next candidate`, {
+          error: lastError.message,
+        });
+      }
+    }
+
+    throw lastError || new Error('All AI transcription models failed');
+  }
+
+  /**
    * Sends voice file to @speech_transcriber_bot via live MTProto and registers the job
    * in the centralized correlation registry with the real Telegram outgoing message ID.
    */
@@ -387,26 +441,53 @@ export class TranscriberWorkerService {
     }
 
     // Check MTProto connection & authorization
-    const client = mtprotoService.getClient();
-    if (!client.connected) {
-      await client.connect();
+    let isAuthorized = false;
+    const mtConfig = mtprotoService.getConfig();
+    if (mtConfig.sessionString) {
+      try {
+        const client = mtprotoService.getClient();
+        if (!client.connected) {
+          await client.connect();
+        }
+        isAuthorized = await client.checkAuthorization();
+      } catch (mtErr) {
+        logger.warn('[TranscriberWorker] MTProto client check failed, will use AI transcriber', {
+          error: String(mtErr),
+        });
+      }
     }
-    const isAuthorized = await client.checkAuthorization();
+
+    // If MTProto userbot session is not authorized yet, seamlessly transcribe via Gemini AI
     if (!isAuthorized) {
-      const errMsg = 'MTProto client is not authorized. Please complete authorization via Web UI.';
-      logger.error('[JOB FAILED] MTProto client not authorized', undefined, {
+      logger.info('[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription', {
+        job_id: jobId,
+        chat_id: job.telegram_chat_id,
+      });
+
+      const transcriptionText = await this.transcribeWithGemini(job);
+      const replyResult = await telegramBot.sendTranscriptionReply(
+        jobId,
+        job.telegram_chat_id,
+        job.telegram_message_id,
+        transcriptionText
+      );
+
+      await db.updateJob(jobId, {
+        status: 'completed',
+        transcription: transcriptionText,
+        bot_reply_message_id: replyResult.message_id,
+        completed_at: new Date().toISOString(),
+        delete_status: 'pending',
+      });
+
+      logger.info(`[JOB COMPLETE VIA AI]\njob_id=${jobId}\ntext=${transcriptionText}`, {
         job_id: jobId,
         chat_id: job.telegram_chat_id,
         message_id: job.telegram_message_id,
-        error: errMsg,
+        bot_reply_message_id: replyResult.message_id,
       });
-      await db.updateJob(jobId, {
-        status: 'failed',
-        error: errMsg,
-        attempts: job.attempts + 1,
-        completed_at: new Date().toISOString(),
-      });
-      throw new Error(errMsg);
+
+      return transcriptionText;
     }
 
     // Ensure centralized incoming handler is listening for responses

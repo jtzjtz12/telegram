@@ -1,27 +1,140 @@
-{"timestamp":"2026-09-18T16:04:29.916Z","level":"info","message":"Database initialized successfully","context":{"path":"/app/applet/data/transcriber.db"}}
-{"timestamp":"2026-09-18T16:04:29.918Z","level":"info","message":"Database empty, inserting demonstration jobs across statuses..."}
-{"timestamp":"2026-09-18T16:04:29.923Z","level":"info","message":"[JOB CREATED] Job saved to SQLite","context":{"id":4,"status":"pending","chat_id":"-1001998877665","message_id":2012}}
-{"timestamp":"2026-09-18T16:04:29.924Z","level":"info","message":"[JOB CREATED] Job saved to SQLite","context":{"id":5,"status":"failed","chat_id":"-1001998877665","message_id":2013}}
-{"timestamp":"2026-09-18T16:04:29.924Z","level":"info","message":"Demonstration jobs seeded successfully"}
-{"timestamp":"2026-09-18T16:04:29.925Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","context":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"timestamp":"2026-09-18T16:04:29.925Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"timestamp":"2026-09-18T16:04:29.920Z","level":"info","message":"[JOB CREATED] Job saved to SQLite","context":{"id":1,"status":"completed","chat_id":"-1001892345678","message_id":1042}}
-{"timestamp":"2026-09-18T16:04:29.921Z","level":"info","message":"[JOB CREATED] Job saved to SQLite","context":{"id":2,"status":"waiting_transcription","chat_id":"-1001892345678","message_id":1043}}
-{"timestamp":"2026-09-18T16:04:29.922Z","level":"info","message":"[JOB CREATED] Job saved to SQLite","context":{"id":3,"status":"processing","chat_id":"-1001998877665","message_id":2011}}
-{"timestamp":"2026-09-18T16:04:30.121Z","level":"info","message":"Telegram Voice Transcriber Server running on http://0.0.0.0:3000","context":{"port":3000,"environment":"development","database":"data/transcriber.db"}}
-{"timestamp":"2026-09-18T16:04:30.927Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","context":{"job_id":4,"chat_id":"-1001998877665","message_id":2012,"local_file_path":"/tmp/voice_sample_4.ogg","attempts":0}}
-{"timestamp":"2026-09-18T16:04:30.928Z","level":"error","message":"[JOB FAILED] Voice file not found locally on disk","context":{"job_id":4,"chat_id":"-1001998877665","message_id":2012,"local_file_path":"/tmp/voice_sample_4.ogg","error":"Voice file not found at local path: /tmp/voice_sample_4.ogg"}}
-{"timestamp":"2026-09-18T16:04:30.929Z","level":"error","message":"[JOB FAILED] Worker failed during job processing","context":{"job_id":4,"chat_id":"-1001998877665","message_id":2012},"error":"Voice file not found at local path: /tmp/voice_sample_4.ogg","stack":"Error: Voice file not found at local path: /tmp/voice_sample_4.ogg\n    at TranscriberWorkerService.sendVoiceAndAwaitTranscription (/app/applet/src/transcriber/worker.ts:418:29)\n    at TranscriberWorkerService.processPendingQueue (/app/applet/src/transcriber/worker.ts:592:18)\n    at async Timeout._onTimeout (/app/applet/src/transcriber/worker.ts:552:9)"}
-{"timestamp":"2026-09-18T16:06:28.019Z","level":"error","message":"MTProto authorization error","error":"[object Object]"}
-{"timestamp":"2026-09-18T16:12:20.889Z","level":"info","message":"[RECOVERY] Recovered 1 interrupted processing jobs back to pending"}
-{"timestamp":"2026-09-18T16:12:20.891Z","level":"info","message":"[RECOVERY] Recovered 1 interrupted waiting_transcription jobs back to pending (attempts incremented)"}
-{"timestamp":"2026-09-18T16:12:20.891Z","level":"info","message":"Database initialized successfully","context":{"path":"/app/applet/data/transcriber.db"}}
-{"timestamp":"2026-09-18T16:12:20.892Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","context":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"timestamp":"2026-09-18T16:12:20.892Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"timestamp":"2026-09-18T16:12:21.074Z","level":"info","message":"Telegram Voice Transcriber Server running on http://0.0.0.0:3000","context":{"port":3000,"environment":"development","database":"data/transcriber.db"}}
-{"timestamp":"2026-09-18T16:12:21.895Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","context":{"job_id":3,"chat_id":"-1001998877665","message_id":2011,"local_file_path":"/tmp/voice_sample_3.ogg","attempts":0}}
-{"timestamp":"2026-09-18T16:12:21.896Z","level":"error","message":"[JOB FAILED] Voice file not found locally on disk","context":{"job_id":3,"chat_id":"-1001998877665","message_id":2011,"local_file_path":"/tmp/voice_sample_3.ogg","error":"Voice file not found at local path: /tmp/voice_sample_3.ogg"}}
-{"timestamp":"2026-09-18T16:12:21.898Z","level":"error","message":"[JOB FAILED] Worker failed during job processing","context":{"job_id":3,"chat_id":"-1001998877665","message_id":2011},"error":"Voice file not found at local path: /tmp/voice_sample_3.ogg","stack":"Error: Voice file not found at local path: /tmp/voice_sample_3.ogg\n    at TranscriberWorkerService.sendVoiceAndAwaitTranscription (/app/applet/src/transcriber/worker.ts:418:29)\n    at TranscriberWorkerService.processPendingQueue (/app/applet/src/transcriber/worker.ts:592:18)\n    at async Timeout._onTimeout (/app/applet/src/transcriber/worker.ts:552:9)"}
-{"timestamp":"2026-09-18T16:12:22.896Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","context":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","attempts":1}}
-{"timestamp":"2026-09-18T16:12:22.896Z","level":"error","message":"[JOB FAILED] Voice file not found locally on disk","context":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","error":"Voice file not found at local path: /tmp/voice_sample_2.ogg"}}
-{"timestamp":"2026-09-18T16:12:22.898Z","level":"error","message":"[JOB FAILED] Worker failed during job processing","context":{"job_id":2,"chat_id":"-1001892345678","message_id":1043},"error":"Voice file not found at local path: /tmp/voice_sample_2.ogg","stack":"Error: Voice file not found at local path: /tmp/voice_sample_2.ogg\n    at TranscriberWorkerService.sendVoiceAndAwaitTranscription (/app/applet/src/transcriber/worker.ts:418:29)\n    at TranscriberWorkerService.processPendingQueue (/app/applet/src/transcriber/worker.ts:592:18)\n    at async Timeout._onTimeout (/app/applet/src/transcriber/worker.ts:552:9)"}
+{"id":"1rpvoiw","timestamp":"2026-09-18T17:07:20.226Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"ou1phoj","timestamp":"2026-09-18T17:07:20.231Z","level":"error","message":"[TranscriberWorker] Failed to connect MTProto client on start","meta":{"error":"[object Object]"}}
+{"id":"206xnya","timestamp":"2026-09-18T17:07:20.231Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
+{"id":"0qkdkuj","timestamp":"2026-09-18T17:07:20.232Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
+{"id":"khn1hmj","timestamp":"2026-09-18T17:07:20.502Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
+{"id":"cxuu146","timestamp":"2026-09-18T17:07:20.848Z","level":"debug","message":"GET /"}
+{"id":"r20pla5","timestamp":"2026-09-18T17:07:21.236Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","attempts":1}}
+{"id":"mwc000k","timestamp":"2026-09-18T17:07:21.237Z","level":"error","message":"[JOB FAILED] Voice file not found locally on disk","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","error":"Voice file not found at local path: /tmp/voice_sample_2.ogg"}}
+{"id":"fegch16","timestamp":"2026-09-18T17:07:21.242Z","level":"error","message":"[JOB FAILED] Worker failed during job processing","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"error_message":"Voice file not found at local path: /tmp/voice_sample_2.ogg","error_stack":"Error: Voice file not found at local path: /tmp/voice_sample_2.ogg\n    at TranscriberWorkerService.sendVoiceAndAwaitTranscription (/app/applet/src/transcriber/worker.ts:386:13)\n    at async TranscriberWorkerService.processPendingQueue (/app/applet/src/transcriber/worker.ts:599:7)\n    at async Timeout._onTimeout (/app/applet/src/transcriber/worker.ts:559:9)"}}
+{"id":"l4f9str","timestamp":"2026-09-18T17:07:21.463Z","level":"debug","message":"GET /"}
+{"id":"xurtno1","timestamp":"2026-09-18T17:07:23.246Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"gc9s0gt","timestamp":"2026-09-18T17:07:23.252Z","level":"error","message":"[TranscriberWorker] Failed to connect MTProto client on start","meta":{"error":"[object Object]"}}
+{"id":"0huie6a","timestamp":"2026-09-18T17:07:23.252Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
+{"id":"02wcxhu","timestamp":"2026-09-18T17:07:23.252Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
+{"id":"02fgzu8","timestamp":"2026-09-18T17:07:27.241Z","level":"debug","message":"GET /health"}
+{"id":"u7limfa","timestamp":"2026-09-18T17:07:29.294Z","level":"debug","message":"GET /api/status"}
+{"id":"aj0qjp7","timestamp":"2026-09-18T17:07:31.361Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"5kj0nx4","timestamp":"2026-09-18T17:07:33.580Z","level":"debug","message":"GET /"}
+{"id":"gntee1u","timestamp":"2026-09-18T17:07:38.908Z","level":"debug","message":"POST /api/jobs/test"}
+{"id":"wp2fp4p","timestamp":"2026-09-18T17:07:38.912Z","level":"error","message":"Error inserting job into SQLite","meta":{"error_message":"SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status","error_stack":"LibsqlError: SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status\n    at mapSqliteError (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:653:16)\n    at executeStmt (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:556:15)\n    at Sqlite3Client.execute (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:245:20)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async DatabaseService.createJob (/app/applet/src/database.ts:293:21)\n    at async <anonymous> (/app/applet/src/routes/jobs.ts:74:17)"}}
+{"id":"oisnlzx","timestamp":"2026-09-18T17:07:50.340Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"v28ofu3","timestamp":"2026-09-18T17:07:50.350Z","level":"error","message":"[TranscriberWorker] Failed to connect MTProto client on start","meta":{"error":"[object Object]"}}
+{"id":"nla16j2","timestamp":"2026-09-18T17:07:50.351Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
+{"id":"nseplms","timestamp":"2026-09-18T17:07:50.351Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
+{"id":"4lgshh8","timestamp":"2026-09-18T17:07:50.603Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
+{"id":"v2bzn3w","timestamp":"2026-09-18T17:07:51.202Z","level":"debug","message":"GET /"}
+{"id":"0wl04so","timestamp":"2026-09-18T17:07:56.139Z","level":"debug","message":"GET /"}
+{"id":"lb5m17o","timestamp":"2026-09-18T17:07:56.902Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"wqzl1zv","timestamp":"2026-09-18T17:07:56.989Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"yzbsatk","timestamp":"2026-09-18T17:08:02.285Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"qqcpu2f","timestamp":"2026-09-18T17:08:06.894Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"0o93i38","timestamp":"2026-09-18T17:08:12.362Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"wwnxbk1","timestamp":"2026-09-18T17:08:17.276Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"z8dygck","timestamp":"2026-09-18T17:08:22.278Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"vruqe45","timestamp":"2026-09-18T17:08:27.278Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"qmmw70z","timestamp":"2026-09-18T17:08:32.279Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"p1tbslm","timestamp":"2026-09-18T17:08:37.279Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"4wjsawz","timestamp":"2026-09-18T17:08:42.280Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"o443lct","timestamp":"2026-09-18T17:08:47.279Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"6dvdxsx","timestamp":"2026-09-18T17:08:52.281Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"7ig2nqr","timestamp":"2026-09-18T17:08:57.280Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"ivzma7g","timestamp":"2026-09-18T17:13:10.281Z","level":"debug","message":"GET /"}
+{"id":"j6fev4r","timestamp":"2026-09-18T17:13:10.762Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"gkuzjme","timestamp":"2026-09-18T17:13:10.852Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"h8j8rb0","timestamp":"2026-09-18T17:13:16.301Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"bsuzi4b","timestamp":"2026-09-18T17:13:21.303Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"zfux4j8","timestamp":"2026-09-18T17:13:26.303Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"xvsrhlw","timestamp":"2026-09-18T17:13:31.304Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"oagnd61","timestamp":"2026-09-18T17:13:34.970Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"jk6ojog","timestamp":"2026-09-18T17:13:34.975Z","level":"error","message":"[TranscriberWorker] Failed to connect MTProto client on start","meta":{"error":"[object Object]"}}
+{"id":"kfmg0vx","timestamp":"2026-09-18T17:13:34.975Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
+{"id":"oauebsh","timestamp":"2026-09-18T17:13:34.975Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
+{"id":"kkyguod","timestamp":"2026-09-18T17:13:35.215Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
+{"id":"nxklcqe","timestamp":"2026-09-18T17:13:36.199Z","level":"debug","message":"GET /"}
+{"id":"2x6x73x","timestamp":"2026-09-18T17:13:36.379Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"782a1w7","timestamp":"2026-09-18T17:13:38.320Z","level":"debug","message":"GET /"}
+{"id":"gp81ae1","timestamp":"2026-09-18T17:13:39.538Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"vmuome4","timestamp":"2026-09-18T17:13:39.625Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"genjjwb","timestamp":"2026-09-18T17:13:44.540Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"jidz4hx","timestamp":"2026-09-18T17:13:49.541Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"z0x84ri","timestamp":"2026-09-18T17:13:54.541Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"e3iovgk","timestamp":"2026-09-18T17:13:59.541Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"mf71pal","timestamp":"2026-09-18T17:14:04.540Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"27e6udl","timestamp":"2026-09-18T17:14:09.541Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"ihq9bwm","timestamp":"2026-09-18T17:14:51.880Z","level":"debug","message":"GET /"}
+{"id":"778a9ua","timestamp":"2026-09-18T17:14:52.342Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"ztw6jaj","timestamp":"2026-09-18T17:14:52.429Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"6j04w0r","timestamp":"2026-09-18T17:14:57.343Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"ozmsw8m","timestamp":"2026-09-18T17:15:02.349Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"lko8ov8","timestamp":"2026-09-18T17:15:07.346Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"t63ty91","timestamp":"2026-09-18T17:15:12.348Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"herhzsn","timestamp":"2026-09-18T17:15:18.309Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"xxai1ua","timestamp":"2026-09-18T17:15:23.316Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"o9pmrci","timestamp":"2026-09-18T17:15:27.345Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"nlb495s","timestamp":"2026-09-18T17:15:32.347Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"hq03a0d","timestamp":"2026-09-18T17:15:37.349Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"x5m4za0","timestamp":"2026-09-18T17:15:42.347Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"75zw930","timestamp":"2026-09-18T17:15:47.351Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"f8ufsyz","timestamp":"2026-09-18T17:15:52.352Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"gufr2ur","timestamp":"2026-09-18T17:15:57.349Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"h2lzvdi","timestamp":"2026-09-18T17:16:02.352Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"yo6xify","timestamp":"2026-09-18T17:16:07.353Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"yoei4ck","timestamp":"2026-09-18T17:16:12.349Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"tt54t3x","timestamp":"2026-09-18T17:16:17.353Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"lig4zbl","timestamp":"2026-09-18T17:16:22.352Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"6prpa2y","timestamp":"2026-09-18T17:16:27.357Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"ub4q7ob","timestamp":"2026-09-18T17:16:32.355Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"x27hrxw","timestamp":"2026-09-18T17:16:37.353Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"v97z58l","timestamp":"2026-09-18T17:16:42.355Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"7iskfd0","timestamp":"2026-09-18T17:16:47.357Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"7ax6hmd","timestamp":"2026-09-18T17:16:52.353Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"x4nsxjs","timestamp":"2026-09-18T17:16:57.360Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"snanhn0","timestamp":"2026-09-18T17:17:02.353Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"2s8zz8j","timestamp":"2026-09-18T17:17:07.358Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"ur829gq","timestamp":"2026-09-18T17:17:12.354Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"odwhbzd","timestamp":"2026-09-18T17:17:17.355Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"1jz9bo6","timestamp":"2026-09-18T17:17:22.360Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"z6gaa4u","timestamp":"2026-09-18T17:17:27.356Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"a7rlbi6","timestamp":"2026-09-18T17:17:32.359Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"rt827kz","timestamp":"2026-09-18T17:17:37.362Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"spcoqcb","timestamp":"2026-09-18T17:17:42.355Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"llu6au6","timestamp":"2026-09-18T17:17:47.357Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"mhse8z3","timestamp":"2026-09-18T17:17:53.318Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"2ho0hju","timestamp":"2026-09-18T17:17:57.362Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"5d097rp","timestamp":"2026-09-18T17:18:02.361Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"tt4mwiu","timestamp":"2026-09-18T17:18:07.357Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"no5zpiz","timestamp":"2026-09-18T17:18:13.194Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"u2n52dk","timestamp":"2026-09-18T17:18:17.359Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"kpzl0op","timestamp":"2026-09-18T17:18:22.359Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"1d5px2s","timestamp":"2026-09-18T17:18:27.360Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"aputzgt","timestamp":"2026-09-18T17:18:32.365Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"u7oh33l","timestamp":"2026-09-18T17:18:38.198Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"h26e1dk","timestamp":"2026-09-18T17:18:38.199Z","level":"info","message":"Connecting to Telegram MTProto network..."}
+{"id":"2g48cpm","timestamp":"2026-09-18T17:18:38.200Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
+{"id":"nsvfgsy","timestamp":"2026-09-18T17:18:38.220Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
+{"id":"421ymmm","timestamp":"2026-09-18T17:18:38.560Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
+{"id":"f7hfcwn","timestamp":"2026-09-18T17:18:38.585Z","level":"info","message":"[Telegram Bot] Received voice message","meta":{"chatId":"-1004455941289","messageId":7,"fileId":"AwACAgIAAyEFAAMBCZhEqQADB2qtZdcoOGVdnVzirP7VQMCbRzpnAAKwogACDClwSZC-cfxhcgprPQQ"}}
+{"id":"oqdw9yr","timestamp":"2026-09-18T17:18:38.638Z","level":"info","message":"[Telegram Bot] Downloaded voice file: /app/applet/data/audio/voice_1789751918638_7.oga (29712 bytes)"}
+{"id":"s7h45ox","timestamp":"2026-09-18T17:18:38.643Z","level":"error","message":"Error inserting job into SQLite","meta":{"error_message":"SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status","error_stack":"LibsqlError: SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status\n    at mapSqliteError (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:653:16)\n    at executeStmt (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:556:15)\n    at Sqlite3Client.execute (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:245:20)\n    at async DatabaseService.createJob (/app/applet/src/database.ts:293:21)\n    at async TelegramBotService.handleWebhookUpdate (/app/applet/src/telegram/bot.ts:190:19)\n    at async <anonymous> (/app/applet/src/telegram/bot.ts:258:19)"}}
+{"id":"ckxtq17","timestamp":"2026-09-18T17:18:38.643Z","level":"info","message":"[Telegram Bot] Received voice message","meta":{"chatId":"-1004455941289","messageId":8,"fileId":"AwACAgIAAyEFAAMBCZhEqQADCGqtZ2oabfUeD44Ifho0Y40nxqr-AALMogACDClwSdm40-v7RAABLj0E"}}
+{"id":"m18w4e9","timestamp":"2026-09-18T17:18:38.691Z","level":"info","message":"[Telegram Bot] Downloaded voice file: /app/applet/data/audio/voice_1789751918690_8.oga (36304 bytes)"}
+{"id":"5t3wn7g","timestamp":"2026-09-18T17:18:38.692Z","level":"error","message":"Error inserting job into SQLite","meta":{"error_message":"SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status","error_stack":"LibsqlError: SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status\n    at mapSqliteError (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:653:16)\n    at executeStmt (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:556:15)\n    at Sqlite3Client.execute (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:245:20)\n    at async DatabaseService.createJob (/app/applet/src/database.ts:293:21)\n    at async TelegramBotService.handleWebhookUpdate (/app/applet/src/telegram/bot.ts:190:19)\n    at async <anonymous> (/app/applet/src/telegram/bot.ts:258:19)"}}
+{"id":"tquxdv8","timestamp":"2026-09-18T17:18:38.692Z","level":"info","message":"[Telegram Bot] Received voice message","meta":{"chatId":"-1004455941289","messageId":9,"fileId":"AwACAgIAAyEFAAMBCZhEqQADCWqtZ8FNGWrJ14k4hfm6Ud35NC9VAALQogACDClwSbNKanBDAsJWPQQ"}}
+{"id":"mmhdmfe","timestamp":"2026-09-18T17:18:38.717Z","level":"info","message":"[Telegram Bot] Downloaded voice file: /app/applet/data/audio/voice_1789751918716_9.oga (27240 bytes)"}
+{"id":"nkrcf76","timestamp":"2026-09-18T17:18:38.718Z","level":"error","message":"Error inserting job into SQLite","meta":{"error_message":"SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status","error_stack":"LibsqlError: SQLITE_CONSTRAINT: NOT NULL constraint failed: jobs.delete_status\n    at mapSqliteError (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:653:16)\n    at executeStmt (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:556:15)\n    at Sqlite3Client.execute (file:///app/applet/node_modules/@libsql/client/lib-esm/sqlite3.js:245:20)\n    at async DatabaseService.createJob (/app/applet/src/database.ts:293:21)\n    at async TelegramBotService.handleWebhookUpdate (/app/applet/src/telegram/bot.ts:190:19)\n    at async <anonymous> (/app/applet/src/telegram/bot.ts:258:19)"}}
+{"id":"3myk1v1","timestamp":"2026-09-18T17:18:39.376Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
+{"id":"qpilh8m","timestamp":"2026-09-18T17:18:39.376Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
+{"id":"6x6aqqc","timestamp":"2026-09-18T17:18:39.376Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
+{"id":"jph0nno","timestamp":"2026-09-18T17:18:42.366Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"dak2hyj","timestamp":"2026-09-18T17:18:47.362Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"ldkrtwu","timestamp":"2026-09-18T17:18:52.366Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"egnb6k1","timestamp":"2026-09-18T17:18:57.366Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"84h099h","timestamp":"2026-09-18T17:19:03.828Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"fcjcjin","timestamp":"2026-09-18T17:19:03.830Z","level":"info","message":"Connecting to Telegram MTProto network..."}
+{"id":"lo62r8i","timestamp":"2026-09-18T17:19:03.830Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
+{"id":"pwyhe5f","timestamp":"2026-09-18T17:19:03.854Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
+{"id":"8li5se5","timestamp":"2026-09-18T17:19:04.275Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
+{"id":"a8gsng5","timestamp":"2026-09-18T17:19:05.261Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
+{"id":"bgl5x4d","timestamp":"2026-09-18T17:19:05.261Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
+{"id":"6a4bkfk","timestamp":"2026-09-18T17:19:05.262Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
