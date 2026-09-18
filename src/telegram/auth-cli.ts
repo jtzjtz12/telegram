@@ -35,8 +35,9 @@ async function runAuthCLI() {
     console.log('-----------------------------------------------------');
     console.log('\nGenerated TELEGRAM_SESSION:');
     console.log(sessionString);
-    console.log('\nSaving TELEGRAM_SESSION to .env file...');
+    console.log('\nSaving TELEGRAM_SESSION to /app/data/telegram-session.txt and .env...');
 
+    mtprotoService.saveSessionToFile(sessionString);
     mtprotoService.saveSessionToEnvFile(sessionString, '.env');
 
     console.log('Done! Your MTProto client is now authenticated.');

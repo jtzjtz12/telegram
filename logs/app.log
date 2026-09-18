@@ -1,116 +1,242 @@
-{"id":"4w4743z","timestamp":"2026-09-18T18:01:50.446Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"kkb1lg0","timestamp":"2026-09-18T18:01:50.448Z","level":"info","message":"Connecting to Telegram MTProto network..."}
-{"id":"gk8lw69","timestamp":"2026-09-18T18:01:50.448Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
-{"id":"7d9g3ul","timestamp":"2026-09-18T18:01:50.475Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"w1mnfey","timestamp":"2026-09-18T18:01:50.817Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"nd1siva","timestamp":"2026-09-18T18:01:51.216Z","level":"debug","message":"GET /"}
-{"id":"ia3no5e","timestamp":"2026-09-18T18:01:51.784Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
-{"id":"kfdsvae","timestamp":"2026-09-18T18:01:51.784Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
-{"id":"swz6lk3","timestamp":"2026-09-18T18:01:51.785Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"uyfoi3i","timestamp":"2026-09-18T18:01:52.789Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","attempts":1}}
-{"id":"4out9ch","timestamp":"2026-09-18T18:01:52.790Z","level":"error","message":"[JOB FAILED] Voice file not found locally on disk","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","error":"Voice file not found at local path: /tmp/voice_sample_2.ogg"}}
-{"id":"913xywq","timestamp":"2026-09-18T18:01:52.795Z","level":"error","message":"[JOB FAILED] Worker failed during job processing","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"error_message":"Voice file not found at local path: /tmp/voice_sample_2.ogg","error_stack":"Error: Voice file not found at local path: /tmp/voice_sample_2.ogg\n    at TranscriberWorkerService.sendVoiceAndAwaitTranscription (/app/applet/src/transcriber/worker.ts:476:13)\n    at async TranscriberWorkerService.processPendingQueue (/app/applet/src/transcriber/worker.ts:752:7)\n    at async Timeout._onTimeout (/app/applet/src/transcriber/worker.ts:712:9)"}}
-{"id":"15gaiex","timestamp":"2026-09-18T18:01:55.650Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"vllcszw","timestamp":"2026-09-18T18:01:55.652Z","level":"info","message":"Connecting to Telegram MTProto network..."}
-{"id":"23bmvr5","timestamp":"2026-09-18T18:01:55.652Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
-{"id":"2ly3iti","timestamp":"2026-09-18T18:01:55.690Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"ojrtdzi","timestamp":"2026-09-18T18:01:56.776Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"fchfumd","timestamp":"2026-09-18T18:01:57.312Z","level":"debug","message":"GET /"}
-{"id":"sf21mzt","timestamp":"2026-09-18T18:01:57.421Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
-{"id":"s5z58tj","timestamp":"2026-09-18T18:01:57.422Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
-{"id":"42xpele","timestamp":"2026-09-18T18:01:57.422Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"xe9c7xz","timestamp":"2026-09-18T18:01:59.441Z","level":"info","message":"[Telegram Bot] Received voice message","meta":{"chatId":"-1004455941289","messageId":26,"fileId":"AwACAgIAAyEFAAMBCZhEqQADGmqtfJfBBULiyGAYkBM_jZqGLdRwAALZowACDClwSXswEgh2KjP3PQQ"}}
-{"id":"kz1or3f","timestamp":"2026-09-18T18:01:59.489Z","level":"info","message":"[Telegram Bot] Downloaded voice file: /app/applet/data/audio/voice_1789754519488_26.oga (27240 bytes)"}
-{"id":"ap9ut15","timestamp":"2026-09-18T18:02:00.434Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":6,"chat_id":"-1004455941289","message_id":26,"local_file_path":"/app/applet/data/audio/voice_1789754519488_26.oga","attempts":0}}
-{"id":"xv7bdk8","timestamp":"2026-09-18T18:02:00.434Z","level":"info","message":"[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription","meta":{"job_id":6,"chat_id":"-1004455941289"}}
-{"id":"vi4lsob","timestamp":"2026-09-18T18:02:00.555Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.6-flash","meta":{"job_id":6}}
-{"id":"03iaq40","timestamp":"2026-09-18T18:02:03.761Z","level":"info","message":"[Gemini AI] Transcription succeeded with gemini-3.6-flash","meta":{"job_id":6,"text_preview":"Ты работаешь еще?"}}
-{"id":"u3ku52b","timestamp":"2026-09-18T18:02:03.918Z","level":"info","message":"[Telegram Bot] Successfully deleted original voice message 26 in chat -1004455941289"}
-{"id":"fk5n52k","timestamp":"2026-09-18T18:02:03.919Z","level":"info","message":"[DELETE SUCCESS] Deleted original voice message","meta":{"job_id":6,"chat_id":"-1004455941289","message_id":26,"deleted_at":"2026-09-18T18:02:03.919Z"}}
-{"id":"5ro29o4","timestamp":"2026-09-18T18:02:03.920Z","level":"info","message":"[JOB COMPLETE VIA AI]\njob_id=6\ntext=Ты работаешь еще?","meta":{"job_id":6,"chat_id":"-1004455941289","message_id":26,"bot_reply_message_id":27}}
-{"id":"vzmioxj","timestamp":"2026-09-18T18:02:04.950Z","level":"debug","message":"GET /"}
-{"id":"2if1jd5","timestamp":"2026-09-18T18:02:05.106Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
-{"id":"taeu3ae","timestamp":"2026-09-18T18:02:05.826Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"8a249zp","timestamp":"2026-09-18T18:02:05.917Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"7of95s8","timestamp":"2026-09-18T18:02:10.831Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"19axjgj","timestamp":"2026-09-18T18:02:15.434Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
-{"id":"jgolfqo","timestamp":"2026-09-18T18:02:15.827Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"5iy3xq0","timestamp":"2026-09-18T18:02:20.825Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"r3zlkci","timestamp":"2026-09-18T18:02:25.512Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
-{"id":"uj8vv4d","timestamp":"2026-09-18T18:02:25.826Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"slfsivk","timestamp":"2026-09-18T18:02:30.826Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"pqre8z3","timestamp":"2026-09-18T18:02:35.574Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
-{"id":"to1tzsu","timestamp":"2026-09-18T18:02:35.829Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"7oqw6zj","timestamp":"2026-09-18T18:02:40.840Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"dttd2ww","timestamp":"2026-09-18T18:02:45.914Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
-{"id":"65tons7","timestamp":"2026-09-18T18:02:46.524Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"9548na4","timestamp":"2026-09-18T18:02:51.197Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"y3a2kvd","timestamp":"2026-09-18T18:02:51.198Z","level":"info","message":"Connecting to Telegram MTProto network..."}
-{"id":"cnujibh","timestamp":"2026-09-18T18:02:51.199Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
-{"id":"qmwz3a4","timestamp":"2026-09-18T18:02:51.223Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"jkr46k7","timestamp":"2026-09-18T18:02:51.641Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"8t7jlmr","timestamp":"2026-09-18T18:02:52.699Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
-{"id":"d1sp3j5","timestamp":"2026-09-18T18:02:52.700Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
-{"id":"p2buq13","timestamp":"2026-09-18T18:02:52.700Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"sg12ok4","timestamp":"2026-09-18T18:02:56.526Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"9qd86u4","timestamp":"2026-09-18T18:02:56.711Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
-{"id":"sgymo46","timestamp":"2026-09-18T18:02:56.989Z","level":"debug","message":"GET /health"}
-{"id":"rdzxpzx","timestamp":"2026-09-18T18:02:58.784Z","level":"debug","message":"GET /api/status"}
-{"id":"vjvappz","timestamp":"2026-09-18T18:03:01.104Z","level":"debug","message":"POST /api/admin/login"}
-{"id":"w29drqt","timestamp":"2026-09-18T18:03:01.523Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"7pzs74x","timestamp":"2026-09-18T18:03:02.899Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"loskc1j","timestamp":"2026-09-18T18:10:31.430Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","attempts":1}}
-{"id":"l8mopo1","timestamp":"2026-09-18T18:10:31.430Z","level":"error","message":"[JOB FAILED] Voice file not found locally on disk","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","error":"Voice file not found at local path: /tmp/voice_sample_2.ogg"}}
-{"id":"6mlilaq","timestamp":"2026-09-18T18:10:31.437Z","level":"error","message":"[JOB FAILED] Worker failed during job processing","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"error_message":"Voice file not found at local path: /tmp/voice_sample_2.ogg","error_stack":"Error: Voice file not found at local path: /tmp/voice_sample_2.ogg\n    at TranscriberWorkerService.sendVoiceAndAwaitTranscription (/app/applet/src/transcriber/worker.ts:476:13)\n    at async TranscriberWorkerService.processPendingQueue (/app/applet/src/transcriber/worker.ts:752:7)\n    at async Timeout._onTimeout (/app/applet/src/transcriber/worker.ts:712:9)"}}
-{"id":"0wegb6u","timestamp":"2026-09-18T18:10:35.043Z","level":"debug","message":"GET /"}
-{"id":"wthjd31","timestamp":"2026-09-18T18:10:35.539Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"eksltaw","timestamp":"2026-09-18T18:10:35.630Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"gpvbyfq","timestamp":"2026-09-18T18:10:40.559Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"hbfkvlk","timestamp":"2026-09-18T18:10:45.558Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"1dxb8jd","timestamp":"2026-09-18T18:10:50.560Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"784c35y","timestamp":"2026-09-18T18:10:55.561Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"j48k6un","timestamp":"2026-09-18T18:11:00.560Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"lnbrv0g","timestamp":"2026-09-18T18:11:05.563Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"cixev0n","timestamp":"2026-09-18T18:11:10.563Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"oevt87n","timestamp":"2026-09-18T18:11:15.562Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"iw8tmbg","timestamp":"2026-09-18T18:11:20.563Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"a6gqlaj","timestamp":"2026-09-18T18:11:25.621Z","level":"debug","message":"GET /"}
-{"id":"fdtmffx","timestamp":"2026-09-18T18:11:26.109Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"c56wjnb","timestamp":"2026-09-18T18:11:26.199Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"fevrtzv","timestamp":"2026-09-18T18:11:31.562Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"uupu7ld","timestamp":"2026-09-18T18:11:36.560Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"xoyazqj","timestamp":"2026-09-18T18:11:41.564Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"2r362g6","timestamp":"2026-09-18T18:11:46.566Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"mqnvc9r","timestamp":"2026-09-18T18:11:51.564Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"7m9v62z","timestamp":"2026-09-18T18:11:56.566Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"k2wm3mv","timestamp":"2026-09-18T18:12:01.566Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"zqgmt6q","timestamp":"2026-09-18T18:12:06.565Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"felf1dd","timestamp":"2026-09-18T18:12:11.566Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"t7earzx","timestamp":"2026-09-18T18:12:16.565Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"6kzq6rt","timestamp":"2026-09-18T18:12:21.568Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"0p6oa4w","timestamp":"2026-09-18T18:12:26.567Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"6si99cp","timestamp":"2026-09-18T18:12:31.568Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"v9ucglk","timestamp":"2026-09-18T18:12:36.568Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"zw91513","timestamp":"2026-09-18T18:12:44.232Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"97r3jti","timestamp":"2026-09-18T18:12:44.233Z","level":"info","message":"Connecting to Telegram MTProto network..."}
-{"id":"9hhzz83","timestamp":"2026-09-18T18:12:44.234Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
-{"id":"tsnj3aq","timestamp":"2026-09-18T18:12:44.260Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"sevfzhg","timestamp":"2026-09-18T18:12:44.697Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"v8yshzv","timestamp":"2026-09-18T18:12:44.833Z","level":"debug","message":"GET /"}
-{"id":"bvg4fmu","timestamp":"2026-09-18T18:12:44.893Z","level":"debug","message":"GET /"}
-{"id":"aawrunk","timestamp":"2026-09-18T18:12:46.260Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
-{"id":"t4mtlw3","timestamp":"2026-09-18T18:12:46.260Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
-{"id":"lit9l9h","timestamp":"2026-09-18T18:12:46.260Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"s9wzn3n","timestamp":"2026-09-18T18:12:46.569Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"z3birh6","timestamp":"2026-09-18T18:12:51.569Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"zztn6uq","timestamp":"2026-09-18T18:12:56.572Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"99hcjm5","timestamp":"2026-09-18T18:12:59.375Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
-{"id":"tlqgdu3","timestamp":"2026-09-18T18:12:59.377Z","level":"info","message":"Connecting to Telegram MTProto network..."}
-{"id":"bhm8qz1","timestamp":"2026-09-18T18:12:59.378Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
-{"id":"xgxws70","timestamp":"2026-09-18T18:12:59.407Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
-{"id":"otwuimj","timestamp":"2026-09-18T18:12:59.737Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
-{"id":"obrewc5","timestamp":"2026-09-18T18:13:00.648Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
-{"id":"oc3urou","timestamp":"2026-09-18T18:13:00.648Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
-{"id":"fty6ee4","timestamp":"2026-09-18T18:13:00.648Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
-{"id":"dgdl4oe","timestamp":"2026-09-18T18:13:01.573Z","level":"debug","message":"GET /api/admin/metrics"}
-{"id":"tj4k003","timestamp":"2026-09-18T18:13:02.262Z","level":"debug","message":"GET /health"}
+{"id":"r7gx8za","timestamp":"2026-09-18T18:54:23.035Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"07d34gn","timestamp":"2026-09-18T18:54:23.036Z","level":"warn","message":"[Telegram Bot] No bot token configured, skipping polling"}
+{"id":"5d0dwq6","timestamp":"2026-09-18T18:54:23.041Z","level":"error","message":"[TranscriberWorker] Failed to connect MTProto client on start","meta":{"error":"[object Object]"}}
+{"id":"1i1bmfc","timestamp":"2026-09-18T18:54:23.041Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
+{"id":"kk9c091","timestamp":"2026-09-18T18:54:23.043Z","level":"info","message":"SQLite database connected at /app/applet/data/transcriber.db"}
+{"id":"t63mmf3","timestamp":"2026-09-18T18:54:23.300Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
+{"id":"eiqttqz","timestamp":"2026-09-18T18:54:24.045Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","attempts":1}}
+{"id":"b6v1sbs","timestamp":"2026-09-18T18:54:24.046Z","level":"error","message":"[JOB FAILED] Voice file not found locally on disk","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"local_file_path":"/tmp/voice_sample_2.ogg","error":"Voice file not found at local path: /tmp/voice_sample_2.ogg"}}
+{"id":"ucae10z","timestamp":"2026-09-18T18:54:24.052Z","level":"error","message":"[JOB FAILED] Worker failed during job processing","meta":{"job_id":2,"chat_id":"-1001892345678","message_id":1043,"error_message":"Voice file not found at local path: /tmp/voice_sample_2.ogg","error_stack":"Error: Voice file not found at local path: /tmp/voice_sample_2.ogg\n    at TranscriberWorkerService.sendVoiceAndAwaitTranscription (/app/applet/src/transcriber/worker.ts:476:13)\n    at async TranscriberWorkerService.processPendingQueue (/app/applet/src/transcriber/worker.ts:752:7)\n    at async Timeout._onTimeout (/app/applet/src/transcriber/worker.ts:712:9)"}}
+{"id":"9hgaok8","timestamp":"2026-09-18T18:54:24.201Z","level":"debug","message":"GET /"}
+{"id":"9pxxvv6","timestamp":"2026-09-18T18:54:26.752Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"b2ldw5i","timestamp":"2026-09-18T18:54:31.753Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"8kega52","timestamp":"2026-09-18T18:54:38.528Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"owpok0v","timestamp":"2026-09-18T18:54:38.529Z","level":"info","message":"Connecting to Telegram MTProto network..."}
+{"id":"pe48fpo","timestamp":"2026-09-18T18:54:38.530Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
+{"id":"exb4oqn","timestamp":"2026-09-18T18:54:38.556Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
+{"id":"63tismw","timestamp":"2026-09-18T18:54:38.838Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
+{"id":"3eoc0oz","timestamp":"2026-09-18T18:54:39.709Z","level":"debug","message":"GET /"}
+{"id":"6h0007b","timestamp":"2026-09-18T18:54:40.107Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
+{"id":"zqs9ab6","timestamp":"2026-09-18T18:54:40.107Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
+{"id":"zdkq97w","timestamp":"2026-09-18T18:54:40.107Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
+{"id":"ozr8jgc","timestamp":"2026-09-18T18:54:41.754Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"qxdiyel","timestamp":"2026-09-18T18:54:43.537Z","level":"debug","message":"GET /"}
+{"id":"6wfx7do","timestamp":"2026-09-18T18:54:44.188Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"3va4wpz","timestamp":"2026-09-18T18:54:44.454Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"qnuqype","timestamp":"2026-09-18T18:54:44.541Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"5mokgho","timestamp":"2026-09-18T18:54:49.751Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"whv75w0","timestamp":"2026-09-18T18:54:54.274Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"h8dkyql","timestamp":"2026-09-18T18:54:54.756Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"flhv6b0","timestamp":"2026-09-18T18:54:59.508Z","level":"info","message":"[Telegram Bot] Received voice message","meta":{"chatId":"-1004455941289","messageId":52,"fileId":"AwACAgIAAyEFAAMBCZhEqQADNGqtiQPtwbjsCGl8hjEpAAFtF90NxQACqqQAAgwpcEkEjyDGrD7tsj0E"}}
+{"id":"ggi8i1c","timestamp":"2026-09-18T18:54:59.594Z","level":"info","message":"[Telegram Bot] Downloaded voice file: /app/applet/data/audio/voice_1789757699594_52.oga (31360 bytes)"}
+{"id":"3kdgulv","timestamp":"2026-09-18T18:54:59.753Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"s1aknae","timestamp":"2026-09-18T18:55:00.124Z","level":"info","message":"[JOB PROCESSING] Worker picked up pending voice job","meta":{"job_id":6,"chat_id":"-1004455941289","message_id":52,"local_file_path":"/app/applet/data/audio/voice_1789757699594_52.oga","attempts":0}}
+{"id":"d34prna","timestamp":"2026-09-18T18:55:00.125Z","level":"info","message":"[TranscriberWorker] MTProto not authorized yet — using Gemini AI for instant transcription","meta":{"job_id":6,"chat_id":"-1004455941289"}}
+{"id":"b8esguu","timestamp":"2026-09-18T18:55:00.287Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.6-flash","meta":{"job_id":6}}
+{"id":"v3ci0ea","timestamp":"2026-09-18T18:55:02.645Z","level":"warn","message":"[Gemini AI] Model gemini-3.6-flash failed, trying next candidate","meta":{"error":"{\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}"}}
+{"id":"f69zwjv","timestamp":"2026-09-18T18:55:02.645Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-3.8-flash","meta":{"job_id":6}}
+{"id":"32nxael","timestamp":"2026-09-18T18:55:04.363Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"xoc70ug","timestamp":"2026-09-18T18:55:04.560Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"lchae7r","timestamp":"2026-09-18T18:55:05.208Z","level":"warn","message":"[Gemini AI] Model gemini-3.8-flash failed, trying next candidate","meta":{"error":"{\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}"}}
+{"id":"45ac3hc","timestamp":"2026-09-18T18:55:05.209Z","level":"info","message":"[Gemini AI] Transcribing audio with model gemini-2.5-pro","meta":{"job_id":6}}
+{"id":"mg0hpo4","timestamp":"2026-09-18T18:55:05.365Z","level":"warn","message":"[Gemini AI] Model gemini-2.5-pro failed, trying next candidate","meta":{"error":"{\"error\":{\"code\":404,\"message\":\"This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API.\",\"status\":\"NOT_FOUND\"}}"}}
+{"id":"0mk8hga","timestamp":"2026-09-18T18:55:05.468Z","level":"error","message":"[JOB FAILED] Worker failed during job processing","meta":{"job_id":6,"chat_id":"-1004455941289","message_id":52,"error_message":"{\"error\":{\"code\":404,\"message\":\"This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API.\",\"status\":\"NOT_FOUND\"}}","error_stack":"ApiError: {\"error\":{\"code\":404,\"message\":\"This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API.\",\"status\":\"NOT_FOUND\"}}\n    at throwErrorIfNotOK (/app/applet/node_modules/@google/genai/src/_api_client.ts:1109:24)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async <anonymous> (/app/applet/node_modules/@google/genai/src/_api_client.ts:654:9)\n    at async Models.Models.generateContent (/app/applet/node_modules/@google/genai/src/models.ts:132:14)\n    at async TranscriberWorkerService.transcribeWithGemini (/app/applet/src/transcriber/worker.ts:414:26)\n    at async TranscriberWorkerService.sendVoiceAndAwaitTranscription (/app/applet/src/transcriber/worker.ts:503:33)\n    at async TranscriberWorkerService.processPendingQueue (/app/applet/src/transcriber/worker.ts:752:7)\n    at async Timeout._onTimeout (/app/applet/src/transcriber/worker.ts:712:9)"}}
+{"id":"yqhzkf9","timestamp":"2026-09-18T18:55:09.451Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"xa99179","timestamp":"2026-09-18T18:55:14.451Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"vb7pu2h","timestamp":"2026-09-18T18:55:14.695Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"uq449cr","timestamp":"2026-09-18T18:55:19.453Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"ojsmr2t","timestamp":"2026-09-18T18:55:24.454Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"yzgaabp","timestamp":"2026-09-18T18:55:24.769Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"h2x0ema","timestamp":"2026-09-18T18:55:29.453Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"evia3lm","timestamp":"2026-09-18T18:55:34.452Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"0yrjcjb","timestamp":"2026-09-18T18:55:34.839Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"gvov1sk","timestamp":"2026-09-18T18:55:39.758Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"xo0co3x","timestamp":"2026-09-18T18:55:42.670Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"kkpzkgo","timestamp":"2026-09-18T18:55:42.672Z","level":"info","message":"Connecting to Telegram MTProto network..."}
+{"id":"hsh67ff","timestamp":"2026-09-18T18:55:42.672Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
+{"id":"8c840l5","timestamp":"2026-09-18T18:55:42.698Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
+{"id":"tnhyi1f","timestamp":"2026-09-18T18:55:43.018Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
+{"id":"8s2se30","timestamp":"2026-09-18T18:55:44.055Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
+{"id":"z9vjmqn","timestamp":"2026-09-18T18:55:44.055Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
+{"id":"rqgj2s5","timestamp":"2026-09-18T18:55:44.056Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
+{"id":"pwj37mv","timestamp":"2026-09-18T18:55:44.763Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"8cx84ez","timestamp":"2026-09-18T18:55:47.913Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"8h0ut78","timestamp":"2026-09-18T18:55:49.760Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"ygyojs9","timestamp":"2026-09-18T18:55:54.456Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"2955dfi","timestamp":"2026-09-18T18:55:57.985Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"zo1tyat","timestamp":"2026-09-18T18:55:59.456Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"zkwcmu7","timestamp":"2026-09-18T18:56:04.459Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"obyjsa9","timestamp":"2026-09-18T18:56:08.055Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"lq5m9a9","timestamp":"2026-09-18T18:56:09.461Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"jklwjow","timestamp":"2026-09-18T18:56:14.457Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"5ypte9u","timestamp":"2026-09-18T18:56:18.179Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"wwccg02","timestamp":"2026-09-18T18:56:19.456Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"zbpqrcc","timestamp":"2026-09-18T18:56:24.459Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"6k1qr09","timestamp":"2026-09-18T18:56:28.253Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"32h4wx5","timestamp":"2026-09-18T18:56:29.459Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"56urd7m","timestamp":"2026-09-18T18:56:34.461Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"n5rscb2","timestamp":"2026-09-18T18:56:38.360Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"9jj2vdv","timestamp":"2026-09-18T18:56:39.458Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"tbhrvz4","timestamp":"2026-09-18T18:56:44.462Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"x25nhjg","timestamp":"2026-09-18T18:56:48.697Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"ufws4pj","timestamp":"2026-09-18T18:56:49.460Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"9da7i7r","timestamp":"2026-09-18T18:56:54.460Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"csxlbr7","timestamp":"2026-09-18T18:56:58.783Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"tugbeqm","timestamp":"2026-09-18T18:56:59.462Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"0uui744","timestamp":"2026-09-18T18:57:04.461Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"v3jgt4r","timestamp":"2026-09-18T18:57:08.847Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"rxslw6i","timestamp":"2026-09-18T18:57:09.460Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"j8odirk","timestamp":"2026-09-18T18:57:14.764Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"w460gv6","timestamp":"2026-09-18T18:57:18.928Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"8a079ds","timestamp":"2026-09-18T18:57:20.291Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"8an26q8","timestamp":"2026-09-18T18:57:24.766Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"6yaipvz","timestamp":"2026-09-18T18:57:29.263Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"ce93d5m","timestamp":"2026-09-18T18:57:29.767Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"bgb22so","timestamp":"2026-09-18T18:57:34.766Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"vdss5o0","timestamp":"2026-09-18T18:57:39.355Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"3o4gn84","timestamp":"2026-09-18T18:57:39.767Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"ld8reyg","timestamp":"2026-09-18T18:57:44.768Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"cqyu0xq","timestamp":"2026-09-18T18:57:49.436Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"q5iwcey","timestamp":"2026-09-18T18:57:49.768Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"o3ee43r","timestamp":"2026-09-18T18:57:54.769Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"n64fe23","timestamp":"2026-09-18T18:57:59.464Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"7ohbl1r","timestamp":"2026-09-18T18:57:59.507Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"9ta9rx6","timestamp":"2026-09-18T18:58:04.466Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"gekuj6c","timestamp":"2026-09-18T18:58:09.465Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"peky75o","timestamp":"2026-09-18T18:58:09.607Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"503k8en","timestamp":"2026-09-18T18:58:14.469Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"x2dk5ol","timestamp":"2026-09-18T18:58:19.467Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"fp3v55q","timestamp":"2026-09-18T18:58:19.684Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"cbthia8","timestamp":"2026-09-18T18:58:24.466Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"0u0ueas","timestamp":"2026-09-18T18:58:29.505Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"fhdy3bu","timestamp":"2026-09-18T18:58:29.745Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"pxkrefk","timestamp":"2026-09-18T18:58:34.468Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"rafinvw","timestamp":"2026-09-18T18:58:39.469Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"s8xbjp4","timestamp":"2026-09-18T18:58:39.835Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"a8oruhw","timestamp":"2026-09-18T18:58:44.469Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"ah5mq62","timestamp":"2026-09-18T18:58:49.467Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"k21fxpt","timestamp":"2026-09-18T18:58:50.160Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"fuuw51x","timestamp":"2026-09-18T18:58:54.772Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"fu337k5","timestamp":"2026-09-18T18:58:59.772Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"ufzrtav","timestamp":"2026-09-18T18:59:00.245Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"owhub5p","timestamp":"2026-09-18T18:59:04.772Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"bibuf58","timestamp":"2026-09-18T18:59:09.774Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"3700owy","timestamp":"2026-09-18T18:59:10.569Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"l4vca1b","timestamp":"2026-09-18T18:59:14.604Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"kjzn94t","timestamp":"2026-09-18T18:59:19.471Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"nw001r8","timestamp":"2026-09-18T18:59:20.640Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"56g6mss","timestamp":"2026-09-18T18:59:24.471Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"bmpc41l","timestamp":"2026-09-18T18:59:29.470Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"6mu9ekc","timestamp":"2026-09-18T18:59:30.713Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"6b2zzwx","timestamp":"2026-09-18T18:59:34.469Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"hr8d4d7","timestamp":"2026-09-18T18:59:39.472Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"5wgupca","timestamp":"2026-09-18T18:59:40.783Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"6m6z2h6","timestamp":"2026-09-18T18:59:44.473Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"8wszdd3","timestamp":"2026-09-18T18:59:49.473Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"s0qj2l3","timestamp":"2026-09-18T18:59:51.128Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"w0s09o0","timestamp":"2026-09-18T18:59:54.473Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"nbiu31y","timestamp":"2026-09-18T18:59:59.475Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"4ceda8e","timestamp":"2026-09-18T19:00:01.212Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"ky3lq5z","timestamp":"2026-09-18T19:00:04.473Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"4nup27f","timestamp":"2026-09-18T19:00:09.478Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"cgg9rnw","timestamp":"2026-09-18T19:00:11.288Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"73rnph6","timestamp":"2026-09-18T19:00:14.476Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"dkfdcja","timestamp":"2026-09-18T19:00:19.781Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"hufowfz","timestamp":"2026-09-18T19:00:21.358Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"4jfvlr4","timestamp":"2026-09-18T19:00:24.779Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"6b0mvhu","timestamp":"2026-09-18T19:00:29.475Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"5ytefmk","timestamp":"2026-09-18T19:00:31.439Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"d2qyhdd","timestamp":"2026-09-18T19:00:34.480Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"q55n072","timestamp":"2026-09-18T19:00:39.779Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"zfpniql","timestamp":"2026-09-18T19:00:41.515Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"yjj48m8","timestamp":"2026-09-18T19:00:44.483Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"zp8yob8","timestamp":"2026-09-18T19:00:49.780Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"fxawdcg","timestamp":"2026-09-18T19:00:51.581Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"wbyok8u","timestamp":"2026-09-18T19:00:54.779Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"j1olk17","timestamp":"2026-09-18T19:00:59.784Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"f6t31wq","timestamp":"2026-09-18T19:01:01.986Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"ydaj7k6","timestamp":"2026-09-18T19:01:04.781Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"y32wlt7","timestamp":"2026-09-18T19:01:09.784Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"hf64lci","timestamp":"2026-09-18T19:01:12.059Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"2zgkstg","timestamp":"2026-09-18T19:01:14.783Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"xfmigci","timestamp":"2026-09-18T19:01:19.479Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"26i6ngd","timestamp":"2026-09-18T19:01:22.123Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"2ouqk93","timestamp":"2026-09-18T19:01:24.480Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"qlxbyc5","timestamp":"2026-09-18T19:01:29.481Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"9s4xbkk","timestamp":"2026-09-18T19:01:32.213Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"wwuh4zh","timestamp":"2026-09-18T19:01:34.480Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"t8odk1w","timestamp":"2026-09-18T19:01:39.785Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"2foic7k","timestamp":"2026-09-18T19:01:42.298Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"mo4n8y0","timestamp":"2026-09-18T19:01:44.788Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"mpmi3ih","timestamp":"2026-09-18T19:01:49.785Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"nlgbsue","timestamp":"2026-09-18T19:01:52.378Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"yhgg58c","timestamp":"2026-09-18T19:01:54.785Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"okqopv9","timestamp":"2026-09-18T19:01:59.485Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"bft45sh","timestamp":"2026-09-18T19:02:02.474Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"mm08k3n","timestamp":"2026-09-18T19:02:04.483Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"1pwb92c","timestamp":"2026-09-18T19:02:09.484Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"npi0p2y","timestamp":"2026-09-18T19:02:12.569Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"jci0p8q","timestamp":"2026-09-18T19:02:14.485Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"6athrbl","timestamp":"2026-09-18T19:02:19.486Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"2s76kdb","timestamp":"2026-09-18T19:02:22.668Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"5irx2an","timestamp":"2026-09-18T19:02:25.059Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"lcbgstj","timestamp":"2026-09-18T19:02:29.484Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"oggsp85","timestamp":"2026-09-18T19:02:33.035Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"42osi7z","timestamp":"2026-09-18T19:02:34.485Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"2qrtkoi","timestamp":"2026-09-18T19:02:39.487Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"tk1z784","timestamp":"2026-09-18T19:02:43.370Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"gytbzmx","timestamp":"2026-09-18T19:02:44.485Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"1pxdxd1","timestamp":"2026-09-18T19:02:49.486Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"anyoovq","timestamp":"2026-09-18T19:02:53.457Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"8rqw8c5","timestamp":"2026-09-18T19:02:54.486Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"zleuyed","timestamp":"2026-09-18T19:02:59.489Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"5b48207","timestamp":"2026-09-18T19:03:03.569Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"eud38dy","timestamp":"2026-09-18T19:03:04.488Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"h9whoen","timestamp":"2026-09-18T19:03:09.490Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"aws5566","timestamp":"2026-09-18T19:03:13.900Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"aygqhv9","timestamp":"2026-09-18T19:03:14.489Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"j4t8vya","timestamp":"2026-09-18T19:03:19.489Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"2j2uxav","timestamp":"2026-09-18T19:03:24.001Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"3fwilb4","timestamp":"2026-09-18T19:03:24.488Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"8dydtcw","timestamp":"2026-09-18T19:03:29.489Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"mfk29pj","timestamp":"2026-09-18T19:03:34.076Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"qomm4az","timestamp":"2026-09-18T19:03:34.488Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"n45rwaw","timestamp":"2026-09-18T19:03:39.490Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"je7e4hs","timestamp":"2026-09-18T19:03:44.152Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"r3qmfjr","timestamp":"2026-09-18T19:03:44.491Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"itbu8b0","timestamp":"2026-09-18T19:03:49.491Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"o50p2ai","timestamp":"2026-09-18T19:03:54.242Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"yfcgoxr","timestamp":"2026-09-18T19:03:54.490Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"l0d1cql","timestamp":"2026-09-18T19:03:59.491Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"3bx8m52","timestamp":"2026-09-18T19:04:04.316Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"xb20o3y","timestamp":"2026-09-18T19:04:04.490Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"xx0aiki","timestamp":"2026-09-18T19:04:09.493Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"q7opt7x","timestamp":"2026-09-18T19:04:14.386Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"b52j9cc","timestamp":"2026-09-18T19:04:14.492Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"o9jtkx6","timestamp":"2026-09-18T19:04:19.493Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"1556kmz","timestamp":"2026-09-18T19:04:24.470Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"cx8d8qt","timestamp":"2026-09-18T19:04:24.494Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"9v0uw2q","timestamp":"2026-09-18T19:04:29.493Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"ed62vay","timestamp":"2026-09-18T19:04:34.493Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"lcu266d","timestamp":"2026-09-18T19:04:34.823Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"v7ax5nq","timestamp":"2026-09-18T19:04:39.494Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"t3kvm4t","timestamp":"2026-09-18T19:04:44.492Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"435eu7d","timestamp":"2026-09-18T19:04:44.906Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"2patpe5","timestamp":"2026-09-18T19:04:49.495Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"4bcyft3","timestamp":"2026-09-18T19:04:54.496Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"hlivlxj","timestamp":"2026-09-18T19:04:54.975Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"j5qu05u","timestamp":"2026-09-18T19:04:59.496Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"xsiwq5v","timestamp":"2026-09-18T19:05:06.305Z","level":"info","message":"[TranscriberWorker] Starting centralized MTProto worker service","meta":{"bot_target":"speech_transcriber_bot","timeout_seconds":180,"poll_interval_ms":1000}}
+{"id":"qun3s1f","timestamp":"2026-09-18T19:05:06.307Z","level":"info","message":"Connecting to Telegram MTProto network..."}
+{"id":"fiuzq85","timestamp":"2026-09-18T19:05:06.307Z","level":"info","message":"[Telegram Bot] Initializing Telegram Bot API polling..."}
+{"id":"wfzix6n","timestamp":"2026-09-18T19:05:06.334Z","level":"info","message":"SQLite database connected at data/transcriber.db"}
+{"id":"t13asad","timestamp":"2026-09-18T19:05:06.774Z","level":"info","message":"Server running on port 3000 (0.0.0.0:3000)"}
+{"id":"6h25wvf","timestamp":"2026-09-18T19:05:07.616Z","level":"warn","message":"Telegram MTProto client connected but not yet authorized. Run user authorization."}
+{"id":"sz39r2c","timestamp":"2026-09-18T19:05:07.616Z","level":"warn","message":"[TranscriberWorker] MTProto client connected but not authorized yet"}
+{"id":"hcicl24","timestamp":"2026-09-18T19:05:07.616Z","level":"info","message":"[TranscriberWorker] Single centralized MTProto incoming message handler registered successfully"}
+{"id":"tnqfm9n","timestamp":"2026-09-18T19:05:09.500Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"is9ey0x","timestamp":"2026-09-18T19:05:14.497Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"yaoiwau","timestamp":"2026-09-18T19:05:15.111Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}
+{"id":"reekez6","timestamp":"2026-09-18T19:05:19.497Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"gqu88u5","timestamp":"2026-09-18T19:05:24.499Z","level":"debug","message":"GET /api/admin/metrics"}
+{"id":"rf4j03q","timestamp":"2026-09-18T19:05:25.221Z","level":"warn","message":"[Telegram Bot] getUpdates returned non-200","meta":{"status":409,"error":"{\"ok\":false,\"error_code\":409,\"description\":\"Conflict: terminated by other getUpdates request; make sure that only one bot instance is running\"}"}}

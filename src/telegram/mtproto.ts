@@ -4,7 +4,7 @@ import readline from 'readline';
 import { TelegramClient, Api } from 'telegram';
 import { StringSession } from 'telegram/sessions/index.js';
 import { NewMessage, NewMessageEvent } from 'telegram/events/index.js';
-import { config } from '../config.js';
+import { config, TELEGRAM_SESSION_FILE_PATH } from '../config.js';
 import { logger } from '../logger.js';
 
 export interface MTProtoConfig {
@@ -65,6 +65,10 @@ class MTProtoTelegramService {
 
   /**
    * Retrieves active configuration from environment variables / config.
+   * Priority for StringSession:
+   * 1. process.env.TELEGRAM_SESSION / TELEGRAM_SESSION_STRING
+   * 2. config.telegram.session (initialized from env or persistent file)
+   * 3. /app/data/telegram-session.txt
    */
   public getConfig(): MTProtoConfig {
     const rawApiId = process.env.TELEGRAM_API_ID || config.telegram?.apiId;
@@ -72,9 +76,11 @@ class MTProtoTelegramService {
     const apiHash = process.env.TELEGRAM_API_HASH || config.telegram?.apiHash || '';
     const userPhone = process.env.TELEGRAM_USER_PHONE || config.telegram?.userPhone || '';
     const sessionString =
-      process.env.TELEGRAM_SESSION ||
+      (process.env.TELEGRAM_SESSION && process.env.TELEGRAM_SESSION.trim()) ||
+      (process.env.TELEGRAM_SESSION_STRING && process.env.TELEGRAM_SESSION_STRING.trim()) ||
       config.telegram?.session ||
       config.telegram?.sessionString ||
+      this.loadSessionFromFile() ||
       '';
     const targetBot = config.transcriber.botUsername || 'speech_transcriber_bot';
 
@@ -85,6 +91,41 @@ class MTProtoTelegramService {
       sessionString,
       targetBot,
     };
+  }
+
+  /**
+   * Persists the given StringSession to /app/data/telegram-session.txt
+   */
+  public saveSessionToFile(sessionString: string, filePath = TELEGRAM_SESSION_FILE_PATH): void {
+    const cleanSession = (sessionString || '').trim();
+    if (!cleanSession) return;
+    try {
+      const dir = path.dirname(filePath);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+      fs.writeFileSync(filePath, cleanSession, 'utf8');
+      logger.info(`Saved Telegram StringSession to persistent file: ${filePath}`);
+    } catch (err) {
+      logger.error(`Failed to save Telegram StringSession to ${filePath}`, err);
+    }
+  }
+
+  /**
+   * Loads the StringSession from /app/data/telegram-session.txt
+   */
+  public loadSessionFromFile(filePath = TELEGRAM_SESSION_FILE_PATH): string | undefined {
+    try {
+      if (fs.existsSync(filePath)) {
+        const content = fs.readFileSync(filePath, 'utf8').trim();
+        if (content.length > 0) {
+          return content;
+        }
+      }
+    } catch (err) {
+      logger.warn(`Failed to read session file from ${filePath}`, { error: String(err) });
+    }
+    return undefined;
   }
 
   /**
@@ -149,9 +190,12 @@ class MTProtoTelegramService {
   }
 
   /**
-   * Persists the given session string to .env or a custom file.
+   * Persists the given session string to persistent file and optionally to .env.
    */
   public saveSessionToEnvFile(sessionString: string, envPath = '.env'): void {
+    // Always ensure persistent file is updated
+    this.saveSessionToFile(sessionString);
+
     const fullPath = path.resolve(process.cwd(), envPath);
     let content = '';
 
@@ -214,6 +258,12 @@ class MTProtoTelegramService {
       });
 
       const sessionString = this.saveSession();
+      this.saveSessionToFile(sessionString);
+      this.saveSessionToEnvFile(sessionString);
+      process.env.TELEGRAM_SESSION = sessionString;
+      if (config.telegram) {
+        config.telegram.session = sessionString;
+      }
       logger.info('User authorization successful! StringSession generated.');
 
       await this.ensureCentralizedBotHandler();
@@ -292,6 +342,7 @@ class MTProtoTelegramService {
     const isAlreadyAuth = await client.checkAuthorization();
     if (isAlreadyAuth) {
       const sessionString = this.saveSession();
+      this.saveSessionToFile(sessionString);
       this.saveSessionToEnvFile(sessionString);
       process.env.TELEGRAM_SESSION = sessionString;
       if (config.telegram) {
@@ -367,6 +418,7 @@ class MTProtoTelegramService {
 
       logger.info('Telegram MTProto SignIn successful!');
       const sessionString = this.saveSession();
+      this.saveSessionToFile(sessionString);
       this.saveSessionToEnvFile(sessionString);
       process.env.TELEGRAM_SESSION = sessionString;
       if (config.telegram) {
@@ -448,6 +500,7 @@ class MTProtoTelegramService {
 
       logger.info('Telegram MTProto 2FA authentication successful!');
       const sessionString = this.saveSession();
+      this.saveSessionToFile(sessionString);
       this.saveSessionToEnvFile(sessionString);
       process.env.TELEGRAM_SESSION = sessionString;
       if (config.telegram) {
@@ -657,6 +710,7 @@ export const connectMTProto = () => mtprotoService.connect();
 export const authorizeMTProtoUser = (callbacks?: AuthCallbacks) =>
   mtprotoService.authorizeUser(callbacks);
 export const saveMTProtoSession = () => mtprotoService.saveSession();
+export const saveMTProtoSessionToFile = (session: string) => mtprotoService.saveSessionToFile(session);
 export const getMTProtoAuthStatus = () => mtprotoService.getAuthStatus();
 export const startMTProtoWebAuth = (phone?: string) => mtprotoService.startWebAuth(phone);
 export const submitMTProtoWebCode = (code: string) => mtprotoService.submitWebCode(code);

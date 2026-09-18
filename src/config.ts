@@ -1,3 +1,4 @@
+import fs from 'fs';
 import dotenv from 'dotenv';
 import path from 'path';
 
@@ -5,6 +6,34 @@ import path from 'path';
 dotenv.config();
 if (!process.env.TELEGRAM_BOT_TOKEN) {
   dotenv.config({ path: path.resolve(process.cwd(), '.env.example') });
+}
+
+export const TELEGRAM_SESSION_FILE_PATH = '/app/data/telegram-session.txt';
+
+/**
+ * Loads the Telegram MTProto StringSession.
+ * Priority:
+ * 1. TELEGRAM_SESSION or TELEGRAM_SESSION_STRING from process.env
+ * 2. Persistent session file at /app/data/telegram-session.txt
+ */
+export function loadStoredTelegramSession(): string | undefined {
+  const envSession = process.env.TELEGRAM_SESSION || process.env.TELEGRAM_SESSION_STRING;
+  if (envSession && envSession.trim().length > 0) {
+    return envSession.trim();
+  }
+
+  try {
+    if (fs.existsSync(TELEGRAM_SESSION_FILE_PATH)) {
+      const fileSession = fs.readFileSync(TELEGRAM_SESSION_FILE_PATH, 'utf8').trim();
+      if (fileSession.length > 0) {
+        return fileSession;
+      }
+    }
+  } catch {
+    // Ignore read errors gracefully
+  }
+
+  return undefined;
 }
 
 export interface AppConfig {
@@ -50,6 +79,6 @@ export const config: AppConfig = {
     apiId: process.env.TELEGRAM_API_ID ? parseInt(process.env.TELEGRAM_API_ID, 10) : undefined,
     apiHash: process.env.TELEGRAM_API_HASH,
     userPhone: process.env.TELEGRAM_USER_PHONE,
-    session: process.env.TELEGRAM_SESSION || process.env.TELEGRAM_SESSION_STRING,
+    session: loadStoredTelegramSession(),
   },
 };
