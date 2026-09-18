@@ -1,0 +1,6 @@
+{
+  "name": "Telegram Voice Transcriber",
+  "description": "Backend framework and web administration dashboard for Telegram Voice Transcriber with SQLite and structured logging",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
