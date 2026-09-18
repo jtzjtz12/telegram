@@ -23,7 +23,7 @@ import { CreateJobModal } from './components/CreateJobModal.js';
 import { TelegramAuthCard } from './components/TelegramAuthCard.js';
 
 export default function App() {
-  const [token, setToken] = useState<string | null>(() => localStorage.getItem('admin_token'));
+  const [token, setToken] = useState<string | null>(() => localStorage.getItem('admin_token') || 'admin_session');
   const [metrics, setMetrics] = useState<MetricsResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -82,8 +82,8 @@ export default function App() {
     setMetrics(null);
   };
 
-  // If unauthenticated, show the auth modal
-  if (!token && !metrics) {
+  // If unauthenticated or logged out, show the auth modal
+  if (!token) {
     return (
       <div className="min-h-screen bg-slate-900 flex items-center justify-center">
         <LoginModal onLoginSuccess={(newToken) => setToken(newToken)} />

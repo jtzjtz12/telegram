@@ -1,0 +1,162 @@
+Logger:         	MadelineProto 8.7.0
+Logger:         	Copyright (C) 2016-2026 Daniil Gentili
+Logger:         	Licensed under AGPLv3
+Logger:         	https://github.com/danog/MadelineProto
+Serialization:  	Got exclusive session lock!
+MTProto:        	The database settings have changed!
+MTProto:        	The prometheus settings have changed!
+MTProto:        	The serialization settings have changed!
+DataCenter:     	Connecting to DC 2
+DataCenterConnection: 	Restoring 0 messages to DC 2
+Session:        	Resetting session in DC 2.0 due to creating initial session...
+Connection:     	Connecting to DC 2.0 via tcp://149.154.167.51:443 main DC 2, via ipv4 using AbridgedStream => BufferedRawStream => DefaultStream 
+DataCenterConnection: 	Handling auth key transition to UNENCRYPTED_NO_PERMANENT in DC 2
+DataCenterConnection: 	Generating permanent authorization key for DC 2...
+Connection:     	Connected to DC 2.0 via tcp://149.154.167.51:443 main DC 2, via ipv4 using AbridgedStream => BufferedRawStream => DefaultStream!
+AuthKeyHandler: 	Factorizing with native_single_cpp (please wait, might take a while)
+AuthKeyHandler: 	Factorizing with python_single_alt (please wait, might take a while)
+AuthKeyHandler: 	Install https://prime.madelineproto.xyz and the FFI extension to speed this up!
+AuthKeyHandler: 	Factorizing with python_single (please wait, might take a while)
+AuthKeyHandler: 	Install https://prime.madelineproto.xyz and the FFI extension to speed this up!
+AuthKeyHandler: 	Factorizing with native_single (please wait, might take a while)
+AuthKeyHandler: 	Install https://prime.madelineproto.xyz and the FFI extension to speed this up!
+AuthKeyHandler: 	Auth key generated
+DataCenterConnection: 	Finished auth key transition to UNENCRYPTED_NO_PERMANENT in DC 2
+DataCenterConnection: 	Handling auth key transition to UNENCRYPTED in DC 2
+DataCenterConnection: 	Generating temporary authorization key for DC 2...
+AuthKeyHandler: 	Factorizing with native_single_cpp (please wait, might take a while)
+AuthKeyHandler: 	Factorizing with python_single_alt (please wait, might take a while)
+AuthKeyHandler: 	Install https://prime.madelineproto.xyz and the FFI extension to speed this up!
+AuthKeyHandler: 	Factorizing with python_single (please wait, might take a while)
+AuthKeyHandler: 	Install https://prime.madelineproto.xyz and the FFI extension to speed this up!
+AuthKeyHandler: 	Factorizing with native_single (please wait, might take a while)
+AuthKeyHandler: 	Install https://prime.madelineproto.xyz and the FFI extension to speed this up!
+AuthKeyHandler: 	Auth key generated
+DataCenterConnection: 	Finished auth key transition to UNENCRYPTED in DC 2
+DataCenterConnection: 	Handling auth key transition to ENCRYPTED_NOT_BOUND in DC 2
+DataCenterConnection: 	Bound temporary and permanent authorization keys, DC 2
+DataCenterConnection: 	Handling auth key transition to ENCRYPTED_NOT_INITED in DC 2
+DataCenterConnection: 	Writing client info (also executing help.getConfig)...
+DataCenterConnection: 	Finished auth key transition to ENCRYPTED_NOT_INITED in DC 2
+DataCenterConnection: 	Handling auth key transition to ENCRYPTED_NOT_AUTHED_NO_LOGIN in DC 2
+DataCenterConnection: 	Finished auth key transition to ENCRYPTED_NOT_AUTHED_NO_LOGIN in DC 2
+MTProto:        	Updated config!
+MTProto:        	Updated config!
+APIWrapper:     	Prompting initial serialization...
+SessionPaths:   	Waiting for exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/safe.php.lock...
+SessionPaths:   	Got exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/safe.php.lock...
+SessionPaths:   	Waiting for exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/lightState.php.lock...
+SessionPaths:   	Got exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/lightState.php.lock...
+APIWrapper:     	Saved session!
+APIWrapper:     	Done initial serialization!
+APIWrapper:     	Shutting down MadelineProto (danog\MadelineProto\API)
+MTProto:        	Will unreference instance
+DataCenterConnection: 	Disconnecting from shared DC 2
+Connection:     	Disconnecting from DC 2.0
+DataCenterConnection: 	Backed up  from DC 2.0
+Connection:     	Disconnected from DC 2.0
+DataCenterConnection: 	Backed up 0, added to 0 existing messages) from DC 2
+MTProto:        	Unreferenced instance
+APIWrapper:     	Prompting final serialization...
+SessionPaths:   	Waiting for exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/safe.php.lock...
+SessionPaths:   	Got exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/safe.php.lock...
+SessionPaths:   	Waiting for exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/lightState.php.lock...
+SessionPaths:   	Got exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/lightState.php.lock...
+APIWrapper:     	Saved session!
+APIWrapper:     	Done final serialization!
+Serialization:  	Unlocking exclusive session lock!
+Serialization:  	Unlocked exclusive session lock!
+AbstractServer: 	Starting IPC server /app/applet/php-version/data/telegram-session/session.madeline (process)
+ProcessRunner:  	Starting process with '/usr/bin/php8.2' '-dhtml_errors=0' '-ddisplay_errors=0' '-dlog_errors=1' '/app/applet/php-version/vendor/danog/madelineproto/src/Ipc/Runner/entry.php' 'madeline-ipc' '/app/applet/php-version/data/telegram-session/session.madeline' '1187316095'
+Serialization:  	MadelineProto is starting, please wait...
+DataCenter:     	Connecting to DC 2
+DataCenterConnection: 	Restoring 0 messages to DC 2
+Session:        	Resetting session in DC 2.0 due to creating initial session...
+Connection:     	Connecting to DC 2.0 via tcp://149.154.167.51:443 main DC 2, via ipv4 using AbridgedStream => BufferedRawStream => DefaultStream 
+DataCenterConnection: 	Handling auth key transition to ENCRYPTED_NOT_AUTHED_NO_LOGIN in DC 2
+DataCenterConnection: 	Finished auth key transition to ENCRYPTED_NOT_AUTHED_NO_LOGIN in DC 2
+Connection:     	Connected to DC 2.0 via tcp://149.154.167.51:443 main DC 2, via ipv4 using AbridgedStream => BufferedRawStream => DefaultStream!
+MTProto:        	AUTH_KEY_UNREGISTERED
+APIWrapper:     	MadelineProto is ready!
+SessionPaths:   	Waiting for exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/ipcState.php.lock...
+SessionPaths:   	Got exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/ipcState.php.lock...
+SessionPaths:   	Waiting for exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/safe.php.lock...
+SessionPaths:   	Got exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/safe.php.lock...
+SessionPaths:   	Waiting for exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/lightState.php.lock...
+SessionPaths:   	Got exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/lightState.php.lock...
+APIWrapper:     	Saved session!
+AbstractServer: 	IPC server started successfully!
+Serialization:  	MadelineProto is starting, please wait...
+Serialization:  	Connected to IPC socket!
+AbstractServer: 	Accepted IPC client connection!
+MTProto:        	Will unreference instance
+DataCenterConnection: 	Disconnecting from shared DC 2
+DataCenterConnection: 	Backed up 0, added to 0 existing messages) from DC 2
+MTProto:        	Unreferenced instance
+APIWrapper:     	MadelineProto is ready!
+MTProto:        	Shutting down MadelineProto (MTProto)
+MTProto:        	Will unreference instance
+DataCenterConnection: 	Disconnecting from shared DC 2
+DataCenterConnection: 	Backed up 0, added to 0 existing messages) from DC 2
+MTProto:        	Unreferenced instance
+MTProto:        	Successfully destroyed MadelineProto
+ProcessRunner:  	Got final message from worker: 
+ProcessRunner:  	Got final message from worker: 
+Logger:         	MadelineProto 8.7.0
+Logger:         	Copyright (C) 2016-2026 Daniil Gentili
+Logger:         	Licensed under AGPLv3
+Logger:         	https://github.com/danog/MadelineProto
+AbstractServer: 	Accepted IPC client connection!
+Serialization:  	MadelineProto is starting, please wait...
+Serialization:  	Connected to IPC socket!
+SessionPaths:   	Waiting for exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/safe.php.lock...
+SessionPaths:   	Got exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/safe.php.lock...
+SessionPaths:   	Waiting for exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/lightState.php.lock...
+SessionPaths:   	Got exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/lightState.php.lock...
+APIWrapper:     	Saved session!
+SessionPaths:   	Waiting for exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/safe.php.lock...
+SessionPaths:   	Got exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/safe.php.lock...
+SessionPaths:   	Waiting for exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/lightState.php.lock...
+SessionPaths:   	Got exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/lightState.php.lock...
+APIWrapper:     	Saved session!
+SessionPaths:   	Waiting for exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/safe.php.lock...
+SessionPaths:   	Got exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/safe.php.lock...
+SessionPaths:   	Waiting for exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/lightState.php.lock...
+SessionPaths:   	Got exclusive lock of /app/applet/php-version/data/telegram-session/session.madeline/lightState.php.lock...
+APIWrapper:     	Saved session!
+ReadLoop:       	danog\MadelineProto\NothingInTheSocketException in /app/applet/php-version/vendor/danog/madelineproto/src/Stream/Common/BufferedRawStream.php:161
+Stack trace:
+#0 /app/applet/php-version/vendor/danog/madelineproto/src/Stream/MTProtoTransport/AbridgedStream.php(84): danog\MadelineProto\Stream\Common\BufferedRawStream->bufferRead()
+#1 /app/applet/php-version/vendor/danog/madelineproto/src/Loop/Connection/ReadLoop.php(133): danog\MadelineProto\Stream\MTProtoTransport\AbridgedStream->getReadBuffer()
+#2 /app/applet/php-version/vendor/danog/madelineproto/src/Loop/Connection/ReadLoop.php(59): danog\MadelineProto\Loop\Connection\ReadLoop->readMessage()
+#3 /app/applet/php-version/vendor/danog/loop/lib/Loop.php(139): danog\MadelineProto\Loop\Connection\ReadLoop->loop()
+#4 /app/applet/php-version/vendor/danog/loop/lib/Loop.php(166): danog\Loop\Loop->loopInternal()
+#5 /app/applet/php-version/vendor/revolt/event-loop/src/EventLoop/Internal/AbstractDriver.php(629): danog\Loop\Loop->danog\Loop\{closure}()
+#6 [internal function]: Revolt\EventLoop\Internal\AbstractDriver->Revolt\EventLoop\Internal\{closure}()
+#7 /app/applet/php-version/vendor/revolt/event-loop/src/EventLoop/Internal/DriverSuspension.php(65): Fiber->resume()
+#8 /app/applet/php-version/vendor/revolt/event-loop/src/EventLoop/Internal/AbstractDriver.php(453): Revolt\EventLoop\Internal\DriverSuspension::Revolt\EventLoop\Internal\{closure}()
+#9 /app/applet/php-version/vendor/revolt/event-loop/src/EventLoop/Internal/AbstractDriver.php(648): Revolt\EventLoop\Internal\AbstractDriver->invokeMicrotasks()
+#10 [internal function]: Revolt\EventLoop\Internal\AbstractDriver->Revolt\EventLoop\Internal\{closure}()
+#11 /app/applet/php-version/vendor/revolt/event-loop/src/EventLoop/Internal/AbstractDriver.php(525): Fiber->resume()
+#12 /app/applet/php-version/vendor/revolt/event-loop/src/EventLoop/Internal/AbstractDriver.php(586): Revolt\EventLoop\Internal\AbstractDriver->invokeCallbacks()
+#13 [internal function]: Revolt\EventLoop\Internal\AbstractDriver->Revolt\EventLoop\Internal\{closure}()
+#14 /app/applet/php-version/vendor/revolt/event-loop/src/EventLoop/Internal/AbstractDriver.php(96): Fiber->resume()
+#15 /app/applet/php-version/vendor/revolt/event-loop/src/EventLoop/Internal/DriverSuspension.php(119): Revolt\EventLoop\Internal\AbstractDriver->Revolt\EventLoop\Internal\{closure}()
+#16 /app/applet/php-version/vendor/amphp/amp/src/Future.php(267): Revolt\EventLoop\Internal\DriverSuspension->suspend()
+#17 /app/applet/php-version/vendor/danog/madelineproto/src/Ipc/AbstractServer.php(177): Amp\Future->await()
+#18 /app/applet/php-version/vendor/danog/madelineproto/src/Ipc/Runner/entry.php(119): danog\MadelineProto\Ipc\AbstractServer::waitShutdown()
+#19 /app/applet/php-version/vendor/danog/madelineproto/src/Ipc/Runner/entry.php(154): danog\MadelineProto\Ipc\Runner\{closure}()
+#20 {main}
+ReadLoop:       	Got exception in DC 2.0, reconnecting...
+Connection:     	Reconnecting DC 2.0
+Connection:     	Disconnecting from DC 2.0
+Connection:     	Disconnected from DC 2.0
+Connection:     	Connecting to DC 2.0 via tcp://149.154.167.51:443 main DC 2, via ipv4 using AbridgedStream => BufferedRawStream => DefaultStream 
+Connection:     	Connected to DC 2.0 via tcp://149.154.167.51:443 main DC 2, via ipv4 using AbridgedStream => BufferedRawStream => DefaultStream!
+Logger:         	MadelineProto 8.7.0
+Logger:         	Copyright (C) 2016-2026 Daniil Gentili
+Logger:         	Licensed under AGPLv3
+Logger:         	https://github.com/danog/MadelineProto
+AbstractServer: 	Accepted IPC client connection!
+Serialization:  	MadelineProto is starting, please wait...
+Serialization:  	Connected to IPC socket!

@@ -401,11 +401,11 @@ export class TranscriberWorkerService {
    */
   public async transcribeWithGemini(job: Job): Promise<string> {
     const { GoogleGenAI } = await import('@google/genai');
-    const ai = new GoogleGenAI();
+    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
     const audioBuffer = fs.readFileSync(job.local_file_path);
     const base64Audio = audioBuffer.toString('base64');
 
-    const candidateModels = ['gemini-3.6-flash', 'gemini-3.8-flash', 'gemini-2.5-pro'];
+    const candidateModels = ['gemini-2.5-flash', 'gemini-2.5-pro', 'gemini-1.5-flash'];
     let lastError: Error | null = null;
 
     for (const model of candidateModels) {

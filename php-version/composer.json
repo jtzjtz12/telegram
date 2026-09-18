@@ -1,0 +1,29 @@
+{
+  "name": "transcriber/php-version",
+  "description": "Telegram Voice Transcriber service ported to PHP (Bot API + MadelineProto)",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.2",
+    "danog/madelineproto": "^8.0",
+    "vlucas/phpdotenv": "^5.6",
+    "guzzlehttp/guzzle": "^7.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "Transcriber\\": "src/"
+    },
+    "classmap": [
+      "config.php",
+      "logger.php",
+      "db.php",
+      "bot_api.php",
+      "poll.php",
+      "mtproto.php"
+    ]
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {}
+  }
+}
